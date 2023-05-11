@@ -1,17 +1,13 @@
 import React from 'react';
 
+import IMAGES from '../images';
 import FeaturedPicturesContainer from '../components/MainIntervalPictures';
-// import path from 'path';
 
 function Home(props: any) {
-    const images = [
-        "images/wallpaper-1.jpg",
-        "images/wallpaper-2.jpg"
-    ]
     return (
         <div>
             Sweet Home Alabama
-            <FeaturedPicturesContainer featuredPicturesPaths={images} key="featuredContainer" />
+            <FeaturedPicturesContainer featuredPicturesPaths={Object.values(IMAGES)} key="featuredContainer" />
         </div>
     );
 }

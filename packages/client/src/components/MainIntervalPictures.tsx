@@ -20,7 +20,13 @@ function FeaturedPicturesContainer(props: IFeaturedPicturesContainerProps) {
 
     return (
         <div className="mainContainer">
-            <img className="image" height="350px" width="650px" src={props.featuredPicturesPaths[currentPicture]} alt="some picture" />
+            <img
+                className="image"
+                height="350px"
+                width="650px"
+                src={props.featuredPicturesPaths[currentPicture]}
+                alt="some picture"
+            />
             <div className="rightArrow" onClick={onRightClick}>{"-->"}</div>
             <div className="leftArrow" onClick={onLeftClick}>{"<--"}</div>
         </div>
