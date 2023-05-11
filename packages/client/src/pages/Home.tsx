@@ -7,7 +7,7 @@ function Home(props: any) {
     return (
         <div>
             Sweet Home Alabama
-            <FeaturedPicturesContainer featuredPicturesPaths={Object.values(IMAGES)} key="featuredContainer" />
+            <FeaturedPicturesContainer featuredPictures={IMAGES} key="featuredContainer" />
         </div>
     );
 }

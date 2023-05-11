@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 interface IFeaturedPicturesContainerProps {
-    featuredPicturesPaths: string[];
+    featuredPictures: string[];
 }
 
 function FeaturedPicturesContainer(props: IFeaturedPicturesContainerProps) {
@@ -10,13 +10,13 @@ function FeaturedPicturesContainer(props: IFeaturedPicturesContainerProps) {
 
     useEffect(() => {
         console.log("inside", currentPicture)
-        const next = (currentPicture + 1) % props.featuredPicturesPaths.length;
+        const next = (currentPicture + 1) % props.featuredPictures.length;
         const id = setTimeout(() => setCurrentPicture(next), time);
         return () => clearTimeout(id);
-    }, [currentPicture, props.featuredPicturesPaths]);
+    }, [currentPicture, props.featuredPictures]);
 
-    const onRightClick = () => setCurrentPicture(prev => prev === props.featuredPicturesPaths.length - 1 ? 0 : prev + 1);
-    const onLeftClick = () => setCurrentPicture(prev => prev === 0 ? props.featuredPicturesPaths.length - 1 : prev - 1);
+    const onRightClick = () => setCurrentPicture(prev => prev === props.featuredPictures.length - 1 ? 0 : prev + 1);
+    const onLeftClick = () => setCurrentPicture(prev => prev === 0 ? props.featuredPictures.length - 1 : prev - 1);
 
     return (
         <div className="mainContainer">
@@ -24,11 +24,20 @@ function FeaturedPicturesContainer(props: IFeaturedPicturesContainerProps) {
                 className="image"
                 height="350px"
                 width="650px"
-                src={props.featuredPicturesPaths[currentPicture]}
+                src={props.featuredPictures[currentPicture]}
                 alt="some picture"
             />
             <div className="rightArrow" onClick={onRightClick}>{"-->"}</div>
             <div className="leftArrow" onClick={onLeftClick}>{"<--"}</div>
+            <div className="imageIndicatorContainer">
+                {
+                    props.featuredPictures.map((_, index) => {
+                        // ? maybe add functionality of choosing which picture to show
+                        if (currentPicture === index) return <>1</> // TODO: change to icons
+                        return <>0</> // TODO: change to icons
+                    })
+                }
+            </div>
         </div>
     );
 }
