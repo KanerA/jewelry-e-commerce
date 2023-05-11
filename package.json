@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "lerna run start --stream",
+    "start:client": "lerna run start --scope=@shaked-jewelry/client --stream",
+    "start:server": "lerna run start --scope=@shaked-jewelry/server --stream"
   },
   "author": "Assaf Kaner",
   "license": "UNLICENSED",
