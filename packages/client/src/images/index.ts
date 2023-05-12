@@ -1,4 +1,4 @@
-const numOfFeaturedImages = 5;
+const numOfFeaturedImages = 3;
 const featured = "featured";
 
 const IMAGES: any[] = [];
