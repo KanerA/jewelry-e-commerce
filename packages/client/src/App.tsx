@@ -4,6 +4,7 @@ import { Route, Routes } from 'react-router-dom';
 import routes from './routes';
 // import Logo from './components/Logo';
 import Navbar from './components/Navbar';
+import Footer from './components/Footer';
 
 function App() {
 
@@ -15,6 +16,7 @@ function App() {
           <Route key={`page-${index}`} path={route.path} Component={route.main} />
         ))}
       </Routes>
+      <Footer />
     </div>
   );
 }
