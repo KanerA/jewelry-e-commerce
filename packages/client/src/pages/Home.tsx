@@ -1,7 +1,7 @@
 import React from 'react';
 
 import IMAGES from '../images';
-import FeaturedPicturesContainer from '../components/MainIntervalPictures';
+import FeaturedPicturesContainer from '../components/IntervalCarousel';
 
 function Home(props: any) {
     return (
