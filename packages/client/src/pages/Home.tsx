@@ -2,12 +2,13 @@ import React from 'react';
 
 import IMAGES from '../images';
 import FeaturedPicturesContainer from '../components/IntervalCarousel';
+import ShopNow from '../components/ShopNow';
 
 function Home(props: any) {
     return (
         <div>
-            Sweet Home Alabama
             <FeaturedPicturesContainer featuredPictures={IMAGES} key="featuredContainer" />
+            <ShopNow />
         </div>
     );
 }
