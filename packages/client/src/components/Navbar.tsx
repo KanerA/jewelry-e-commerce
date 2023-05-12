@@ -6,16 +6,11 @@ import Search from './Search';
 function Navbar() {
     return (
         <nav className="navbar">
-            <Logo />
+            <Link to="/"><Logo /></Link>
             <ul className="pageLinks">
-                <li><Link to="/">home</Link></li>
-
-                <li><Link to="/rings">Rings</Link></li>
-                <li><Link to="/necklaces">Necklaces</Link></li>
-                <li><Link to="/bracelets">Bracelets</Link></li>
-
                 <li><Link to="/about">about</Link></li>
                 <li><Link to="/checkout">cart</Link></li>
+                <li><Link to="/checkout">favorites</Link></li>
             </ul>
             <Search />
         </nav>
