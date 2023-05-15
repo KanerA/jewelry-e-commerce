@@ -2,7 +2,8 @@ import About from "./pages/About";
 import Checkout from "./pages/Checkout";
 import Favorites from "./pages/Favorites";
 import Home from "./pages/Home";
-// import ProductType from "./pages/ProductType";
+import ProductType from "./pages/ProductType";
+import RINGS from './products/Rings';
 
 type routeType = {
   path: string;
@@ -30,6 +31,11 @@ const routes: routeType[] = [
     path: "/checkout", // TODO: change name of route
     sidebar: () => <div>checkout!</div>,
     main: Checkout
+  },
+  {
+    path: "/rings",
+    main: () => <ProductType products={RINGS} />,
+    sidebar: () => <div>Rings!</div>
   }
 ]
 
