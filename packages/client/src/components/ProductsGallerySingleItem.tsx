@@ -1,4 +1,5 @@
 import React from 'react';
+import PriceTag from './PriceTag';
 
 export type TSingleGalleryProduct = {
     imageSrc: string; // image path inside src folder
@@ -18,7 +19,7 @@ const ProductsGallerySingleItem = (props: TSingleGalleryProduct) => {
                 }} src={require("../" + props.imageSrc)} alt="some picture" />
             </div>
             <div className="itemName">{props.name}</div>
-            <div className="itemPrice">{props.price}</div>
+            <PriceTag price={props.price} />
             <div className="itemDescription">{props.description}</div>
         </div>
     );
