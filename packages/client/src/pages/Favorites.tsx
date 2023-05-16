@@ -2,8 +2,8 @@ import React from 'react';
 
 function Favorites(props: any) {
     return (
-        <div>
-
+        <div className="favoritesPage">
+            Your Favorite Choices
         </div>
     );
 }

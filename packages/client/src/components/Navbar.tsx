@@ -10,7 +10,7 @@ function Navbar() {
             <ul className="pageLinks">
                 <li><Link to="/about">about</Link></li>
                 <li><Link to="/checkout">cart</Link></li>
-                <li><Link to="/checkout">favorites</Link></li>
+                <li><Link to="/favorites">favorites</Link></li>
             </ul>
             <Search />
         </nav>
