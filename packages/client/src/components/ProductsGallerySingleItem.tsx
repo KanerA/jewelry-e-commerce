@@ -13,7 +13,9 @@ const ProductsGallerySingleItem = (props: TProduct) => {
     const dispatch = useDispatch();
     const favorites = useSelector(getFavorites);
     const itemInitialFavState = favorites.find((val: TProduct) => val.name === props.name);
+
     const [isFavorite, setIsFavorite] = useState<boolean>(!!itemInitialFavState);
+
     const onFavoriteClick = (e: any) => {
         !isFavorite ? dispatch({ type: actions.ADD_FAVORITE_ITEM, payload: props }) : dispatch({ type: actions.REMOVE_FAVORITE_ITEM, payload: props });
         setIsFavorite(prev => !prev);
