@@ -1,6 +1,6 @@
-import { TSingleGalleryProduct } from "../components/ProductsGallerySingleItem";
+import { TProduct } from "../store/types";
 
-const RINGS: TSingleGalleryProduct[] = [
+const RINGS: TProduct[] = [
     {
         name: "טבעת עמית שחורה",
         description: "טבעת עמית שחורה",

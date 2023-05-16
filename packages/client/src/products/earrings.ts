@@ -1,5 +1,5 @@
-import { TSingleGalleryProduct } from "../components/ProductsGallerySingleItem";
+import { TProduct } from "../store/types";
 
-const EARRINGS: TSingleGalleryProduct[] = [];
+const EARRINGS: TProduct[] = [];
 
 export default EARRINGS;

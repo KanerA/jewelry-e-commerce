@@ -1,5 +1,5 @@
-import { TSingleGalleryProduct } from "../components/ProductsGallerySingleItem";
+import { TProduct } from "../store/types";
 
-const BRACELETS: TSingleGalleryProduct[] = [];
+const BRACELETS: TProduct[] = [];
 
 export default BRACELETS;

@@ -1,11 +1,12 @@
 import React from 'react';
-import ProductsGallerySingleItem, { TSingleGalleryProduct } from './ProductsGallerySingleItem';
+import ProductsGallerySingleItem from './ProductsGallerySingleItem';
+import { TProduct } from '../store/types';
 
 export type TProductType = "Rings" | "Earrings" | "Necklaces" | "Bracelets";
 
 interface IProductGalleryProps {
     productType: TProductType;
-    products: TSingleGalleryProduct[]
+    products: TProduct[]
 }
 
 const ProductsGallery = (props: IProductGalleryProps) => {
