@@ -9,5 +9,4 @@ export type TProduct = {
 export interface IInitialState {
     favorites: TProduct[]
     cart: TProduct[]
-
 }
