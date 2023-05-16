@@ -3,7 +3,7 @@ import Checkout from "./pages/Checkout";
 import Favorites from "./pages/Favorites";
 import Home from "./pages/Home";
 import ProductType from "./pages/ProductType";
-import RINGS from './products/Rings';
+import RINGS from './products/rings';
 import BRACELETS from "./products/bracelets";
 import EARRINGS from "./products/earrings";
 import NECKLACES from "./products/necklaces";
