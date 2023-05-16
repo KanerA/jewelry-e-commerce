@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+
 import PriceTag from './PriceTag';
-import FavoriteIcon from './FavoriteIcon';
 import AddToCart from './AddToCart';
+import FavoriteIcon from './FavoriteIcon';
+import * as actions from '../store/actionTypes';
 
 export type TSingleGalleryProduct = {
     imageSrc: string; // image path inside src folder
@@ -12,8 +15,12 @@ export type TSingleGalleryProduct = {
 }
 
 const ProductsGallerySingleItem = (props: TSingleGalleryProduct) => {
+    const dispatch = useDispatch();
     const [isFavorite, setIsFavorite] = useState<boolean>(false);
-    const onFavoriteClick = (props: any) => setIsFavorite(prev => !prev);
+    const onFavoriteClick = (e: any) => {
+        !isFavorite ? dispatch({ type: actions.ADD_FAVORITE_ITEM, payload: props }) : dispatch({ type: actions.REMOVE_FAVORITE_ITEM, payload: props });
+        setIsFavorite(prev => !prev);
+    };
     return (
         <div className="gallerySingleItem">
             <div className="imageContainer"> {/* TODO: change alt prop */}

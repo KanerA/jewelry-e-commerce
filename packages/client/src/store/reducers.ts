@@ -5,7 +5,14 @@ import initialState from "./initialState";
 export const productReducer = (state: IInitialState = initialState, action: any) => {
     switch (action.type) {
         case actions.ADD_FAVORITE_ITEM:
-            break;
+            const currentFavorites = [...state.favorites];
+            const item = currentFavorites.find(val => val.name === action.payload.name); // TODO: change to id
+            if (item) return state;
+            currentFavorites.push(action.payload);
+            return {
+                ...state,
+                favorites: currentFavorites
+            }
         case actions.ADD_ITEM_TO_CART:
             break;
         case actions.REMOVE_FAVORITE_ITEM:
