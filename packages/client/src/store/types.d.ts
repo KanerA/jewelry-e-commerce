@@ -3,7 +3,10 @@ export type TProduct = {
     name: string;
     price: number;
     description: string;
+    nameEnglish?: string;
+    sizes?: number[];
     // alt prop 
+    // engravingOption
 }
 
 export interface IInitialState {
