@@ -7,6 +7,7 @@ export type TProduct = {
     sizes?: number[];
     // alt prop 
     // engravingOption
+    // productsImages
 }
 
 export interface IInitialState {

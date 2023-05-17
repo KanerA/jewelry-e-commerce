@@ -18,7 +18,7 @@ const ProductsGallery = (props: IProductGalleryProps) => {
 
     return (
         <div id={props.productType} className="productsGallery">
-            {props.products.map((product, index) => <ProductsGallerySingleItem price={product.price} description={product.description} imageSrc={product.imageSrc} name={product.name} key={`product-${index}`} />)}
+            {props.products.map((product, index) => <ProductsGallerySingleItem price={product.price} description={product.description} imageSrc={product.imageSrc} name={product.name} nameEnglish={product.nameEnglish} key={`product-${index}`} />)}
         </div>
     );
 };

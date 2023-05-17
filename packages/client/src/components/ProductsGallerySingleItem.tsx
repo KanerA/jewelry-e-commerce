@@ -8,6 +8,7 @@ import * as actions from '../store/actionTypes';
 import { getFavorites } from '../store/selectors';
 import { useSelector } from 'react-redux';
 import { TProduct } from '../store/types';
+import { Link } from 'react-router-dom';
 
 const ProductsGallerySingleItem = (props: TProduct) => {
     const dispatch = useDispatch();
@@ -22,20 +23,26 @@ const ProductsGallerySingleItem = (props: TProduct) => {
     };
 
     return (
-        <div className="gallerySingleItem">
-            <div className="imageContainer"> {/* TODO: change alt prop */}
-                <img
-                    className="singleImage"
-                    style={{
-                        width: "150px",
+        <div
+            // dir='rtl'
 
-                    }}
-                    src={require("../" + props.imageSrc)} alt="some picture"
-                />
-                <FavoriteIcon onClick={onFavoriteClick} isFavorite={isFavorite} />
-            </div>
-            <div className="itemName">{props.name}</div>
-            <PriceTag price={props.price} />
+            className="gallerySingleItem">
+            <Link to={`/product/${props.nameEnglish}`}> {/* TODO: change to id */}
+                <div className="imageContainer"> {/* TODO: change alt prop */}
+                    <img
+                        className="singleImage"
+                        style={{
+                            width: "150px",
+
+                        }}
+                        src={require("../" + props.imageSrc)} alt="some picture"
+                    />
+                    <FavoriteIcon onClick={onFavoriteClick} isFavorite={isFavorite} />
+                </div>
+                <div className="itemName">{props.name}</div>
+                <div className="itemDescription">{props.description}</div>
+                <PriceTag price={props.price} />
+            </Link>
             <AddToCart />
         </div>
     );

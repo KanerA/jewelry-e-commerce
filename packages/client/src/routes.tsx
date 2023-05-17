@@ -7,6 +7,7 @@ import RINGS from './products/rings';
 import BRACELETS from "./products/bracelets";
 import EARRINGS from "./products/earrings";
 import NECKLACES from "./products/necklaces";
+import ProductPage from "./pages/ProductPage";
 
 type routeType = {
   path: string;
@@ -54,6 +55,26 @@ const routes: routeType[] = [
     path: "/necklaces",
     main: () => <ProductType productType={"Necklaces"} products={NECKLACES} />,
     sidebar: () => <div>Necklaces!</div>
+  },
+  {
+    path: "/product/:id",
+    main: () => <ProductPage />,
+    sidebar: () => <div>Product</div>
+  },
+  {
+    path: "/product/:id",
+    main: () => <ProductPage />,
+    sidebar: () => <div>Product</div>
+  },
+  {
+    path: "/product/:id",
+    main: () => <ProductPage />,
+    sidebar: () => <div>Product</div>
+  },
+  {
+    path: "/product/:id",
+    main: () => <ProductPage />,
+    sidebar: () => <div>Product</div>
   }
 ]
 
