@@ -6,20 +6,21 @@ interface IFeaturedPicturesContainerProps {
 
 function FeaturedPicturesContainer(props: IFeaturedPicturesContainerProps) {
     const [currentPicture, setCurrentPicture] = useState<number>(0);
-    const time = 3500;
-    const onRightClick = () => setCurrentPicture(prev => prev === props.featuredPictures.length - 1 ? 0 : prev + 1);
+
     const onLeftClick = () => setCurrentPicture(prev => prev === 0 ? props.featuredPictures.length - 1 : prev - 1);
+    const onRightClick = () => setCurrentPicture(prev => prev === props.featuredPictures.length - 1 ? 0 : prev + 1);
+
+    const time = 3500;
 
     const containerStyleImage = {
         backgroundSize: 'contain',
         backgroundRepeat: 'no-repeat',
         backgroundImage: `url(${props.featuredPictures[currentPicture]})`,
-        height: '100vh', // override in css file
-        // width: '1000px', // override in css file
+        height: '40em', // override in css file
+        width: '85em', // override in css file
     }
 
     useEffect(() => {
-        console.log("inside", currentPicture)
         const next = (currentPicture + 1) % props.featuredPictures.length;
         const id = setTimeout(() => setCurrentPicture(next), time);
         return () => clearTimeout(id);
