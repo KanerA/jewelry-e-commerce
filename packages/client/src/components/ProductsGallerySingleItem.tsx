@@ -13,11 +13,12 @@ import { Link } from 'react-router-dom';
 const ProductsGallerySingleItem = (props: any) => {
     const dispatch = useDispatch();
     const favorites = useSelector(getFavorites);
-    const itemInitialFavState = favorites.find((val: TProduct) => val.name === props.name);
+    const itemInitialFavState = favorites.find((val: TProduct) => val.id === props.id);
 
     const [isFavorite, setIsFavorite] = useState<boolean>(!!itemInitialFavState);
 
     const onFavoriteClick = (e: any) => {
+        e.preventDefault();
         !isFavorite ? dispatch({ type: actions.ADD_FAVORITE_ITEM, payload: props }) : dispatch({ type: actions.REMOVE_FAVORITE_ITEM, payload: props });
         setIsFavorite(prev => !prev);
     };

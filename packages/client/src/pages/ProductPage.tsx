@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import ImageCarousel from '../components/ImageCarousel';
 import { IInitialState, TProduct } from '../store/types';
@@ -18,11 +18,14 @@ function ensure<T>(argument: T | undefined | null, message: string = 'This value
 //
 
 const ProductPage = () => {
-    const paramsArr = useLocation().pathname.split("/");
-    const id = paramsArr[paramsArr.length - 1];
+    const id = useLocation().pathname.split("/")[2];
     const products: IInitialState["products"] = useSelector(getProductsData);
-    const spreadProducts = [...products.bracelets, ...products.earrings, ...products.necklaces, ...products.earrings]
-
+    const spreadProducts = [
+        ...products.bracelets,
+        ...products.rings,
+        ...products.necklaces,
+        ...products.earrings
+    ]
     const productById = ensure(spreadProducts.find((val: TProduct) => {
         return val.id === id
     }));
@@ -39,4 +42,4 @@ const ProductPage = () => {
     );
 };
 
-export default ProductPage;
+export default ProductPage; 
