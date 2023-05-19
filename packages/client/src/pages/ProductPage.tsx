@@ -6,6 +6,7 @@ import DescriptionSection from '../components/DescriptionSection';
 import SizeSelector from '../components/SizeSelector';
 import { useSelector } from 'react-redux';
 import { getProductsData } from '../store/selectors';
+import { spreadProductsState } from '../utils/helpersProducts';
 
 // TODO: move this helper func somewhere else
 function ensure<T>(argument: T | undefined | null, message: string = 'This value was promised to be there.'): T {
@@ -20,12 +21,7 @@ function ensure<T>(argument: T | undefined | null, message: string = 'This value
 const ProductPage = () => {
     const id = useLocation().pathname.split("/")[2];
     const products: IInitialState["products"] = useSelector(getProductsData);
-    const spreadProducts = [
-        ...products.bracelets,
-        ...products.rings,
-        ...products.necklaces,
-        ...products.earrings
-    ]
+    const spreadProducts = spreadProductsState(products);
     const productById = ensure(spreadProducts.find((val: TProduct) => {
         return val.id === id
     }));

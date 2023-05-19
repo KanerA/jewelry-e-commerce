@@ -9,9 +9,12 @@ import { getFavorites } from '../store/selectors';
 import { useSelector } from 'react-redux';
 import { TProduct } from '../store/types';
 import { Link } from 'react-router-dom';
+import commerce from '../lib/commerce';
+import useAddToCart from '../hooks/useAddToCart';
 
 const ProductsGallerySingleItem = (props: any) => {
     const dispatch = useDispatch();
+    const addToCartFunc = useAddToCart()
     const favorites = useSelector(getFavorites);
     const itemInitialFavState = favorites.find((val: TProduct) => val.id === props.id);
 
@@ -21,6 +24,11 @@ const ProductsGallerySingleItem = (props: any) => {
         e.preventDefault();
         !isFavorite ? dispatch({ type: actions.ADD_FAVORITE_ITEM, payload: props }) : dispatch({ type: actions.REMOVE_FAVORITE_ITEM, payload: props });
         setIsFavorite(prev => !prev);
+    };
+
+    const onCartClick = () => {
+        const qty = 1; // change to users choice
+        addToCartFunc(props.id, qty)
     };
 
     return (
@@ -44,7 +52,7 @@ const ProductsGallerySingleItem = (props: any) => {
                 <div className="itemDescription">{props.description}</div>
                 <PriceTag price={props.price.formatted_with_symbol} />
             </Link>
-            <AddToCart />
+            <AddToCart onCartClick={onCartClick} />
         </div>
     );
 };
