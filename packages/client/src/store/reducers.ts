@@ -11,7 +11,6 @@ type TProductCategories = {
 export const products = (state: IInitialState = initialState, action: any) => {
     switch (action.type) {
         case actions.SET_PRODUCTS_DATA: {
-            console.log(action.payload);
             const categorizedProducts: IInitialState["products"] = {
                 rings: [],
                 bracelets: [],
@@ -21,7 +20,7 @@ export const products = (state: IInitialState = initialState, action: any) => {
             action.payload.forEach((product: any) => {
                 product.categories.forEach((cat: TProductCategories) => categorizedProducts[cat.slug].push(product))
             });
-            console.log("categorizedProducts", { categorizedProducts, timestamp: new Date() })
+
             return { ...state, products: categorizedProducts }
             // return state
         }

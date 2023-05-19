@@ -1,13 +1,11 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
-import RINGS from '../products/rings';
-import BRACELETS from '../products/bracelets';
-import NECKLACES from '../products/necklaces';
-import EARRINGS from '../products/earrings';
 import ImageCarousel from '../components/ImageCarousel';
-import { TProduct } from '../store/types';
+import { IInitialState, TProduct } from '../store/types';
 import DescriptionSection from '../components/DescriptionSection';
 import SizeSelector from '../components/SizeSelector';
+import { useSelector } from 'react-redux';
+import { getProductsData } from '../store/selectors';
 
 // TODO: move this helper func somewhere else
 function ensure<T>(argument: T | undefined | null, message: string = 'This value was promised to be there.'): T {
@@ -22,15 +20,16 @@ function ensure<T>(argument: T | undefined | null, message: string = 'This value
 const ProductPage = () => {
     const paramsArr = useLocation().pathname.split("/");
     const id = paramsArr[paramsArr.length - 1];
+    const products: IInitialState["products"] = useSelector(getProductsData);
+    const spreadProducts = [...products.bracelets, ...products.earrings, ...products.necklaces, ...products.earrings]
 
-    // replace this code section to use products in a more smart way
-    const products: TProduct[] = [...RINGS, ...BRACELETS, ...NECKLACES, ...EARRINGS];
-    const productById = ensure(products.find(val => val.nameEnglish === id)); // change to id
-    // 
+    const productById = ensure(spreadProducts.find((val: TProduct) => {
+        return val.id === id
+    }));
 
     return (
         <div dir="rtl" className="productPage">
-            < ImageCarousel product={productById} />
+            <ImageCarousel product={productById} />
             <DescriptionSection product={productById} />
             <div className='sizeSelectorContainer' >
                 <div dir="rtl">תבחר/י מידה:</div>

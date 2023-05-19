@@ -1,10 +1,23 @@
 export type TProduct = {
-    imageSrc: string; // image path inside src folder
+    id: string;
     name: string;
-    price: number;
+    price: {
+        "raw": number,
+        "formatted": string,
+        "formatted_with_symbol": string
+        "formatted_with_code": string
+    };
     description: string;
-    nameEnglish?: string;
-    sizes?: number[];
+    meta: {
+        nameEnglish: string;
+        [x: string]: any;
+    };
+    image: {
+        id: string;
+        url: string;
+        [x: string]: any
+    };
+    [x: string]: any;
     // alt prop 
     // engravingOption
     // productsImages
@@ -12,10 +25,10 @@ export type TProduct = {
 
 export interface IInitialState {
     products: {
-        rings: any[],
-        bracelets: any[],
-        necklaces: any[],
-        earrings: any[],
+        rings: TProduct[],
+        bracelets: TProduct[],
+        necklaces: TProduct[],
+        earrings: TProduct[],
     },
     favorites: TProduct[]
     cart: TProduct[]

@@ -3,11 +3,8 @@ import Checkout from "./pages/Checkout";
 import Favorites from "./pages/Favorites";
 import Home from "./pages/Home";
 import ProductType from "./pages/ProductType";
-import RINGS from './products/rings';
-import BRACELETS from "./products/bracelets";
-import EARRINGS from "./products/earrings";
-import NECKLACES from "./products/necklaces";
 import ProductPage from "./pages/ProductPage";
+
 
 type routeType = {
   path: string;
@@ -38,22 +35,22 @@ const routes: routeType[] = [
   },
   {
     path: "/rings",
-    main: () => <ProductType productType={"Rings"} products={RINGS} />,
+    main: () => <ProductType />,
     sidebar: () => <div>Rings!</div>
   },
   {
     path: "/bracelets",
-    main: () => <ProductType productType={"Bracelets"} products={BRACELETS} />,
+    main: () => <ProductType />,
     sidebar: () => <div>Bracelets!</div>
   },
   {
     path: "/earrings",
-    main: () => <ProductType productType={"Earrings"} products={EARRINGS} />,
+    main: () => <ProductType />,
     sidebar: () => <div>Earrings!</div>
   },
   {
     path: "/necklaces",
-    main: () => <ProductType productType={"Necklaces"} products={NECKLACES} />,
+    main: () => <ProductType />,
     sidebar: () => <div>Necklaces!</div>
   },
   {

@@ -10,7 +10,7 @@ import { useSelector } from 'react-redux';
 import { TProduct } from '../store/types';
 import { Link } from 'react-router-dom';
 
-const ProductsGallerySingleItem = (props: TProduct) => {
+const ProductsGallerySingleItem = (props: any) => {
     const dispatch = useDispatch();
     const favorites = useSelector(getFavorites);
     const itemInitialFavState = favorites.find((val: TProduct) => val.name === props.name);
@@ -27,7 +27,7 @@ const ProductsGallerySingleItem = (props: TProduct) => {
             // dir='rtl'
 
             className="gallerySingleItem">
-            <Link to={`/product/${props.nameEnglish}`}> {/* TODO: change to id */}
+            <Link to={`/product/${props.id}`}> {/* TODO: change to id */}
                 <div className="imageContainer"> {/* TODO: change alt prop */}
                     <img
                         className="singleImage"
@@ -35,13 +35,13 @@ const ProductsGallerySingleItem = (props: TProduct) => {
                             width: "150px",
 
                         }}
-                        src={require("../" + props.imageSrc)} alt="some picture"
+                        src={props.imageSrc} alt={props.nameEnglish}
                     />
                     <FavoriteIcon onClick={onFavoriteClick} isFavorite={isFavorite} />
                 </div>
                 <div className="itemName">{props.name}</div>
                 <div className="itemDescription">{props.description}</div>
-                <PriceTag price={props.price} />
+                <PriceTag price={props.price.formatted_with_symbol} />
             </Link>
             <AddToCart />
         </div>
