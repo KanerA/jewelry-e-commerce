@@ -6,7 +6,16 @@ import routes from './routes';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 
+import useFetchProductsData from './hooks/useFetchProductsData';
+
 function App() {
+  const fetchDataFunc = useFetchProductsData();
+  React.useEffect(() => {
+    const a = async () => {
+      fetchDataFunc()
+    };
+    a();
+  })
 
   return (
     <div className="App">

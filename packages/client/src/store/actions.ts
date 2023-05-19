@@ -16,3 +16,8 @@ export const actionRemoveItemFromCart = (itemId: string) => ({
     type: actions.REMOVE_ITEM_FROM_CART,
     payload: itemId
 });
+
+export const setProductsData = (payload: any) => ({
+    type: actions.SET_PRODUCTS_DATA,
+    payload
+})

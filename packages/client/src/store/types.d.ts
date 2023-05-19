@@ -11,6 +11,12 @@ export type TProduct = {
 }
 
 export interface IInitialState {
+    products: {
+        rings: any[],
+        bracelets: any[],
+        necklaces: any[],
+        earrings: any[],
+    },
     favorites: TProduct[]
     cart: TProduct[]
 }
