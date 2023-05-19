@@ -7,12 +7,15 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 
 import useFetchProductsData from './hooks/useFetchProductsData';
+import useFetchCartData from './hooks/useFetchCartData';
 
 function App() {
   const fetchDataFunc = useFetchProductsData();
+  const fetchCartFunc = useFetchCartData();
   React.useEffect(() => {
     const a = async () => {
-      fetchDataFunc()
+      fetchDataFunc();
+      fetchCartFunc();
     };
     a();
   })

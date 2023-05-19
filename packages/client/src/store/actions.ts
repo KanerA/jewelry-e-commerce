@@ -20,4 +20,9 @@ export const actionRemoveItemFromCart = (itemId: string) => ({
 export const setProductsData = (payload: any) => ({
     type: actions.SET_PRODUCTS_DATA,
     payload
-})
+});
+
+export const setCartData = (payload: any) => ({
+    type: actions.SET_CART_DATA,
+    payload
+});

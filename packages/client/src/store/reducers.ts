@@ -24,6 +24,9 @@ export const products = (state: IInitialState = initialState, action: any) => {
             return { ...state, products: categorizedProducts }
             // return state
         }
+        case actions.SET_CART_DATA: {
+            return { ...state, cart: action.payload };
+        }
         case actions.ADD_FAVORITE_ITEM: {
             const currentFavorites = [...state.favorites];
             const item = currentFavorites.find(val => val.name === action.payload.name); // TODO: change to id
