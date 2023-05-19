@@ -1,12 +1,13 @@
+export type Price = {
+    raw: number,
+    formatted: string,
+    formatted_with_symbol: string
+    formatted_with_code: string
+}
 export type TProduct = {
     id: string;
     name: string;
-    price: {
-        "raw": number,
-        "formatted": string,
-        "formatted_with_symbol": string
-        "formatted_with_code": string
-    };
+    price: Price;
     description: string;
     meta: {
         nameEnglish: string;

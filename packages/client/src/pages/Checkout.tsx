@@ -23,7 +23,7 @@ function Checkout(props: any) {
         <div>
             {cart.map((prod: TProduct) => {
 
-                return <CartItem imageSrc={prod.image.url} />
+                return <CartItem id={prod.id} price={prod.price} name={prod.name} imageSrc={prod.image.url} quantity={prod.quantity} />
             })}
         </div>
     );
