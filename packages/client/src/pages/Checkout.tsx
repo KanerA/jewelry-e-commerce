@@ -1,5 +1,4 @@
 import React from 'react';
-import commerce from '../lib/commerce';
 import CartItem from '../components/CartItem';
 import { useSelector } from 'react-redux';
 import { getCartData } from '../store/selectors';
@@ -21,8 +20,8 @@ function Checkout(props: any) {
     }
     return (
         <div>
+            <div className="returnButton">{"<"} Return To Main</div>
             {cart.map((prod: TProduct) => {
-
                 return <CartItem id={prod.id} price={prod.price} name={prod.name} imageSrc={prod.image.url} quantity={prod.quantity} />
             })}
         </div>
