@@ -7,6 +7,8 @@ import SizeSelector from '../components/SizeSelector';
 import { useSelector } from 'react-redux';
 import { getProductsData } from '../store/selectors';
 import { spreadProductsState } from '../utils/helpersProducts';
+import AddToCart from '../components/AddToCart';
+import useAddToCart from '../hooks/useAddToCart';
 
 // TODO: move this helper func somewhere else
 function ensure<T>(argument: T | undefined | null, message: string = 'This value was promised to be there.'): T {
@@ -20,11 +22,18 @@ function ensure<T>(argument: T | undefined | null, message: string = 'This value
 
 const ProductPage = () => {
     const id = useLocation().pathname.split("/")[2];
+    const addToCartFunc = useAddToCart();
     const products: IInitialState["products"] = useSelector(getProductsData);
+
     const spreadProducts = spreadProductsState(products);
     const productById = ensure(spreadProducts.find((val: TProduct) => {
         return val.id === id
     }));
+
+    const onCartClick = () => {
+        const qty = 1; // change to users choice
+        addToCartFunc(id, qty)
+    };
 
     return (
         <div dir="rtl" className="productPage">
@@ -34,6 +43,7 @@ const ProductPage = () => {
                 <div dir="rtl">תבחר/י מידה:</div>
                 <SizeSelector sizes={[20, 21, 22]} placeHolder='בחר/י...' />
             </div>
+            <AddToCart onCartClick={onCartClick} />
         </div >
     );
 };
