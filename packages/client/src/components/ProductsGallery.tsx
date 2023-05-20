@@ -10,6 +10,7 @@ interface IProductGalleryProps {
 }
 
 const ProductsGallery = (props: IProductGalleryProps) => {
+    console.log(props)
     if (props.products.length === 0) {
         return <div>
             No Products To Show At The Moment!

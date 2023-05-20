@@ -9,8 +9,8 @@ import { getFavorites } from '../store/selectors';
 import { useSelector } from 'react-redux';
 import { TProduct } from '../store/types';
 import { Link } from 'react-router-dom';
-import commerce from '../lib/commerce';
 import useAddToCart from '../hooks/useAddToCart';
+import { actionAddFavorite, actionRemoveFavorite } from '../store/actions';
 
 const ProductsGallerySingleItem = (props: any) => {
     const dispatch = useDispatch();
@@ -22,7 +22,7 @@ const ProductsGallerySingleItem = (props: any) => {
 
     const onFavoriteClick = (e: any) => {
         e.preventDefault();
-        !isFavorite ? dispatch({ type: actions.ADD_FAVORITE_ITEM, payload: props }) : dispatch({ type: actions.REMOVE_FAVORITE_ITEM, payload: props });
+        !isFavorite ? dispatch(actionAddFavorite(props.id)) : dispatch(actionRemoveFavorite(props.id));
         setIsFavorite(prev => !prev);
     };
 

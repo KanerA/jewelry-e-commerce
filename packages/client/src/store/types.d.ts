@@ -31,6 +31,6 @@ export interface IInitialState {
         necklaces: TProduct[],
         earrings: TProduct[],
     },
-    favorites: TProduct[]
+    favorites: string[]
     cart: TProduct[]
 }

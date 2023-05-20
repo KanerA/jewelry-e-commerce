@@ -29,7 +29,7 @@ export const products = (state: IInitialState = initialState, action: any) => {
         }
         case actions.ADD_FAVORITE_ITEM: {
             const currentFavorites = [...state.favorites];
-            const item = currentFavorites.find(val => val.name === action.payload.name); // TODO: change to id
+            const item = currentFavorites.find(id => id === action.payload); // TODO: change to id
             if (item) return state;
             currentFavorites.push(action.payload);
             return {
@@ -41,7 +41,7 @@ export const products = (state: IInitialState = initialState, action: any) => {
             break;
         case actions.REMOVE_FAVORITE_ITEM: {
             const currentFavorites = [...state.favorites];
-            const indexToRemove = currentFavorites.findIndex(val => val.name === action.payload.name);
+            const indexToRemove = currentFavorites.findIndex((id: string) => id === action.payload);
             currentFavorites.splice(indexToRemove, 1);
             return {
                 ...state,
