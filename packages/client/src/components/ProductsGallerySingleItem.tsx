@@ -14,7 +14,7 @@ import { actionAddFavorite, actionRemoveFavorite } from '../store/actions';
 
 const ProductsGallerySingleItem = (props: any) => {
     const dispatch = useDispatch();
-    const addToCartFunc = useAddToCart()
+    const addToCartFunc = useAddToCart();
     const favorites = useSelector(getFavorites);
     const itemInitialFavState = favorites.find((val: TProduct) => val.id === props.id);
 
