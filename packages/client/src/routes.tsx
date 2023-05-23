@@ -29,8 +29,8 @@ const routes: routeType[] = [
     main: About
   },
   {
-    path: "/checkout", // TODO: change name of route
-    sidebar: () => <div>checkout!</div>,
+    path: "/cart",
+    sidebar: () => <div>cart!</div>,
     main: Checkout
   },
   {
@@ -72,6 +72,11 @@ const routes: routeType[] = [
     path: "/product/:id",
     main: () => <ProductPage />,
     sidebar: () => <div>Product</div>
+  },
+  {
+    path: "*",
+    main: () => <div>404 Page Not Found</div>,
+    sidebar: () => <div>404</div>,
   }
 ]
 
