@@ -36,8 +36,8 @@ function FeaturedPicturesContainer(props: IFeaturedPicturesContainerProps) {
                 {
                     props.featuredPictures.map((_, index) => {
                         // ? maybe add functionality of choosing which picture to show
-                        if (currentPicture === index) return <>1</> // TODO: change to icons
-                        return <>0</> // TODO: change to icons
+                        if (currentPicture === index) return <span key="shownImage">1</span> // TODO: change to icons
+                        return <span key={`unShownImage-${index}`}>0</span> // TODO: change to icons
                     })
                 }
             </div>
