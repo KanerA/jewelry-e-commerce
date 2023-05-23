@@ -34,3 +34,5 @@ export interface IInitialState {
     favorites: string[]
     cart: TProduct[]
 }
+
+export type TDropdownOptions = number | string;

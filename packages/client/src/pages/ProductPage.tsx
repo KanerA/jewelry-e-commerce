@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 import ImageCarousel from '../components/ImageCarousel';
 import { IInitialState, TProduct } from '../store/types';
 import DescriptionSection from '../components/DescriptionSection';
-import SizeSelector from '../components/SizeSelector';
+import DropdownSelector from '../components/DropdownSelector';
 import { useSelector } from 'react-redux';
 import { getProductsData } from '../store/selectors';
 import { spreadProductsState } from '../utils/helpersProducts';
@@ -41,7 +41,7 @@ const ProductPage = () => {
             <DescriptionSection product={productById} />
             <div className='sizeSelectorContainer' >
                 <div dir="rtl">תבחר/י מידה:</div>
-                <SizeSelector sizes={[20, 21, 22]} placeHolder='בחר/י...' />
+                <DropdownSelector options={[20, 21, 22]} placeHolder='בחר/י...' />
             </div>
             <AddToCart isAdded={false} onCartClick={onCartClick} />
         </div >

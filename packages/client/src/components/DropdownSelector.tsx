@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import "../styles/sizeSelector.css"
+import "../styles/dropdownSelector.css"
+import { TDropdownOptions } from '../store/types';
 
 const Icon = () => {
     return (
@@ -9,9 +10,9 @@ const Icon = () => {
     );
 };
 
-const SizeSelector = ({ sizes, placeHolder }: { sizes: number[], placeHolder: string }) => {
+const DropdownSelector = ({ options, placeHolder }: { options: TDropdownOptions[], placeHolder: string }) => {
     const [showMenu, setShowMenu] = useState<boolean>(false);
-    const [selectedValue, setSelectedValue] = useState<number>(0);
+    const [selectedValue, setSelectedValue] = useState<TDropdownOptions>(0);
 
     const handleInputClick = (e: any) => {
         e.stopPropagation();
@@ -22,13 +23,13 @@ const SizeSelector = ({ sizes, placeHolder }: { sizes: number[], placeHolder: st
         return placeHolder;
     };
 
-    const onItemClick = (size: number) => setSelectedValue(size);
+    const onItemClick = (option: TDropdownOptions) => setSelectedValue(option);
 
-    const isSelected = (size: number) => {
+    const isSelected = (option: TDropdownOptions) => {
         if (!selectedValue) {
             return false;
         }
-        return size === selectedValue;
+        return option === selectedValue;
     }
 
     useEffect(() => {
@@ -48,14 +49,14 @@ const SizeSelector = ({ sizes, placeHolder }: { sizes: number[], placeHolder: st
                 </div>
             </div>
             {showMenu && <div className="dropdown-menu">
-                {sizes.map(size => (
+                {options.map(option => (
                     <div
-                        key={`size-${size}`}
+                        key={`option-${option}`}
                         dir="rtl"
-                        onClick={() => onItemClick(size)}
-                        className={`dropdown-item ${isSelected(size) && "selected"}`}
+                        onClick={() => onItemClick(option)}
+                        className={`dropdown-item ${isSelected(option) && "selected"}`}
                     >
-                        {size}
+                        {option}
                     </div>
                 ))}
             </div>}
@@ -63,4 +64,4 @@ const SizeSelector = ({ sizes, placeHolder }: { sizes: number[], placeHolder: st
     );
 };
 
-export default SizeSelector;
+export default DropdownSelector;
