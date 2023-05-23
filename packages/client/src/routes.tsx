@@ -1,5 +1,5 @@
 import About from "./pages/About";
-import Checkout from "./pages/Checkout";
+import Cart from "./pages/Cart";
 import Favorites from "./pages/Favorites";
 import Home from "./pages/Home";
 import ProductType from "./pages/ProductType";
@@ -31,7 +31,7 @@ const routes: routeType[] = [
   {
     path: "/cart",
     sidebar: () => <div>cart!</div>,
-    main: Checkout
+    main: Cart
   },
   {
     path: "/rings",
