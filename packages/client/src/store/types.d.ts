@@ -31,8 +31,10 @@ export interface IInitialState {
         necklaces: TProduct[],
         earrings: TProduct[],
     },
-    favorites: string[]
-    cart: TProduct[]
+    favorites: string[],
+    cart: TProduct[],
+    cartId: string | null,
+    checkoutToken: string,
 }
 
 export type TDropdownOptions = number | string;

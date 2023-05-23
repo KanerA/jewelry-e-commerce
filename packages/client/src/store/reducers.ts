@@ -10,6 +10,12 @@ type TProductCategories = {
 
 export const products = (state: IInitialState = initialState, action: any) => {
     switch (action.type) {
+        case actions.SET_CART_ID: {
+            return { ...state, cartId: action.payload };
+        }
+        case actions.SET_CHECKOUT_TOKEN: {
+            return { ...state, checkoutToken: action.payload };
+        }
         case actions.SET_PRODUCTS_DATA: {
             const categorizedProducts: IInitialState["products"] = {
                 rings: [],

@@ -8,17 +8,21 @@ import Footer from './components/Footer';
 
 import useFetchProductsData from './hooks/useFetchProductsData';
 import useFetchCartData from './hooks/useFetchCartData';
+import useFetchCartId from './hooks/useFetchCartId';
 
 function App() {
   const fetchDataFunc = useFetchProductsData();
   const fetchCartFunc = useFetchCartData();
+  const fetchCartId = useFetchCartId();
+
   React.useEffect(() => {
     const a = async () => {
-      fetchDataFunc();
-      fetchCartFunc();
+      await fetchDataFunc();
+      await fetchCartFunc();
+      await fetchCartId();
     };
     a();
-  })
+  }, []);
 
   return (
     <div className="App">

@@ -26,3 +26,13 @@ export const setCartData = (payload: any) => ({
     type: actions.SET_CART_DATA,
     payload
 });
+
+export const setCartId = (payload: string) => ({
+    type: actions.SET_CART_ID,
+    payload
+});
+
+export const setCheckoutToken = (payload: string) => ({
+    type: actions.SET_CHECKOUT_TOKEN,
+    payload
+})

@@ -9,6 +9,8 @@ const initialState: IInitialState = {
     },
     favorites: [],
     cart: [],
+    cartId: null,
+    checkoutToken: "",
 };
 
 export default initialState;
