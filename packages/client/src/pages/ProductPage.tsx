@@ -43,7 +43,7 @@ const ProductPage = () => {
                 <div dir="rtl">תבחר/י מידה:</div>
                 <SizeSelector sizes={[20, 21, 22]} placeHolder='בחר/י...' />
             </div>
-            <AddToCart onCartClick={onCartClick} />
+            <AddToCart isAdded={false} onCartClick={onCartClick} />
         </div >
     );
 };

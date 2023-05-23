@@ -52,7 +52,7 @@ const ProductsGallerySingleItem = (props: any) => {
                 <div className="itemDescription">{props.description}</div>
                 <PriceTag price={props.price.formatted_with_symbol} />
             </Link>
-            <AddToCart onCartClick={onCartClick} />
+            <AddToCart isAdded={false} onCartClick={onCartClick} />
         </div>
     );
 };
