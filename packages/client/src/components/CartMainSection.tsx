@@ -11,17 +11,17 @@ const CartMainSection = () => {
     const fetchCartFunc = useFetchCartData();
     const cart = useSelector(getCartData);
     React.useEffect(() => {
-        console.log(cart)
         fetchCartFunc().then(res => {
             setIsLoading(false);
         });
     }, [])
     if (isLoading) {
-        return <main className="cartMainSection"><div id="cartLoader">Loading...</div></main>; {/** change to loader */ }
+        // change to loader
+        return <main className="cartMainSection"><div id="cartLoader">Loading...</div></main>;
     }
     return (
         <main className="cartMainSection">
-            <Link to="/"><div className="returnButton">{"<"} Return To Main</div></Link>
+            <Link to="/"><div className="returnButton">{"<"} Continue shopping</div></Link>
             {cart.map((prod: TProduct) => {
                 return <CartItem id={prod.id} price={prod.price} name={prod.name} imageSrc={prod.image.url} quantity={prod.quantity} />
             })}
