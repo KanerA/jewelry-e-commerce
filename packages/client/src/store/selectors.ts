@@ -6,3 +6,5 @@ export const getProductsData = (state: any = store.getState()) => state.products
 export const getCartData = (state: any = store.getState()) => state.products.cart;
 export const getCartId = (state: any = store.getState()) => state.products.cartId;
 export const getCheckoutToken = (state: any = store.getState()) => state.products.checkoutToken;
+export const getCheckoutCurrentSum = (state: any = store.getState()) => state.products.checkoutCurrentSum;
+export const getCheckoutTotal = (state: any = store.getState()) => state.products.total;

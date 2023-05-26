@@ -1,33 +1,47 @@
-import React from 'react';
+import React, { useState } from 'react';
 import DropdownSelector from './DropdownSelector';
 import { TDropdownOptions } from '../store/types';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { getCartData } from '../store/selectors';
+import { useDispatch } from 'react-redux';
+import { setTotal } from '../store/actions';
+
+const calculateCartSubTotal = (cartProducts: any): number => {
+    let total: number = 0;
+    cartProducts.forEach((val: any) => total += val.price.raw * val.quantity);
+    return total;
+};
 
 
 const CartSummary = (props: any) => {
-    const shipmentOptions: TDropdownOptions[] = [];
-    const calculateCurrentSum = (): number => {
-        return 0;
-    };
+    const [shipmentCost, setShipmentCost] = useState<number>(0);
+    const cartProducts = useSelector(getCartData);
+    const cartSubTotal = calculateCartSubTotal(cartProducts);
+    const dispatch = useDispatch();
 
-    const calculateShipmentCost = (): number => {
-        return 0;
+    const shipmentOptions: TDropdownOptions[] = [];
+
+    const calculateShipmentCost = (): void => {
+        setShipmentCost(0);
     };
 
     const calculateTotalSum = (): number => {
-        return 0;
+        const total: number = shipmentCost + cartSubTotal;
+        dispatch(setTotal(total));
+        return total;
     };
 
     return (
         <aside className="orderSummary">
             <div id="summaryTitle">סיכום הזמנה</div>
             <div id="summaryMain">
-                <div id="currentItemsSumContainer">
-                    <span id="currentItemsSum">{calculateCurrentSum()}</span>
+                <div id="currentSubTotalContainer">
+                    <span id="currentSubTotal">{cartSubTotal}</span>
                     <span id="currentItemsSumTitle">סכום ביניים</span>
                 </div>
                 <div id="shipmentPriceContainer">
-                    <span id="shipmentPrice">{calculateShipmentCost()}</span>
+                    <span id="shipmentCost">{shipmentCost}</span>
                     <span id="shipmentSummaryTitle">משלוח</span>
                 </div>
                 <div id="shipmentOptions">

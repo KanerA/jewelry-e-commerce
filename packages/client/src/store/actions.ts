@@ -35,4 +35,9 @@ export const setCartId = (payload: string) => ({
 export const setCheckoutToken = (payload: string) => ({
     type: actions.SET_CHECKOUT_TOKEN,
     payload
-})
+});
+
+export const setTotal = (payload: number) => ({
+    type: actions.SET_TOTAL,
+    payload
+});

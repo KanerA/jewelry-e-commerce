@@ -11,6 +11,7 @@ const initialState: IInitialState = {
     cart: [],
     cartId: null,
     checkoutToken: "",
+    total: 0
 };
 
 export default initialState;

@@ -43,8 +43,6 @@ export const products = (state: IInitialState = initialState, action: any) => {
                 favorites: currentFavorites
             }
         }
-        case actions.ADD_ITEM_TO_CART:
-            break;
         case actions.REMOVE_FAVORITE_ITEM: {
             const currentFavorites = [...state.favorites];
             const indexToRemove = currentFavorites.findIndex((id: string) => id === action.payload);
@@ -54,6 +52,11 @@ export const products = (state: IInitialState = initialState, action: any) => {
                 favorites: currentFavorites
             }
         }
+        case actions.SET_TOTAL: {
+            return { ...state, total: action.payload as number }
+        }
+        case actions.ADD_ITEM_TO_CART:
+            break;
         case actions.REMOVE_ITEM_FROM_CART:
             break;
         default:

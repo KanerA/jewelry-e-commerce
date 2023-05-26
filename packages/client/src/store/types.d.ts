@@ -35,6 +35,7 @@ export interface IInitialState {
     cart: TProduct[],
     cartId: string | null,
     checkoutToken: string,
+    total: number,
 }
 
 export type TDropdownOptions = number | string;
