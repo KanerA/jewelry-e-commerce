@@ -10,7 +10,7 @@ const initialState: IInitialState = {
     favorites: [],
     cart: [],
     cartId: null,
-    checkoutToken: "",
+    checkoutToken: {},
     total: 0
 };
 

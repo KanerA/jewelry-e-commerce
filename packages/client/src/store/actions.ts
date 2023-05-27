@@ -32,7 +32,7 @@ export const setCartId = (payload: string) => ({
     payload
 });
 
-export const setCheckoutToken = (payload: string) => ({
+export const setCheckoutToken = (payload: any) => ({
     type: actions.SET_CHECKOUT_TOKEN,
     payload
 });

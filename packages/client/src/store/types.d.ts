@@ -34,7 +34,7 @@ export interface IInitialState {
     favorites: string[],
     cart: TProduct[],
     cartId: string | null,
-    checkoutToken: string,
+    checkoutToken: any,
     total: number,
 }
 
