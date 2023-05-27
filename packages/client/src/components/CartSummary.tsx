@@ -32,11 +32,8 @@ const CartSummary = (props: ICartSummaryProps) => {
 
     const calculateTotalSum = (): void => {
         const total: number = shipmentCost + cartSubTotal;
-        // const total: number = 0 + cartSubTotal;
         dispatch(setTotal(total));
     };
-
-    // const total = 
 
     useEffect(() => {
         calculateTotalSum();
@@ -55,7 +52,7 @@ const CartSummary = (props: ICartSummaryProps) => {
                     <span id="shipmentSummaryTitle">משלוח</span>
                 </div>
                 <div id="shipmentOptions">
-                    <DropdownSelector options={shipmentOptions} placeHolder='assaf' />
+                    <DropdownSelector options={shipmentOptions} placeHolder='אופציות משלוח' />
                 </div>
             </div>
             <div id="summaryTotalAndCheckout">
@@ -65,9 +62,12 @@ const CartSummary = (props: ICartSummaryProps) => {
                 </div>
             </div>
             <div id="continueToPaymentContainer">
-                <Link to="/checkout">
-                    <button>Continue To Pay</button>
-                </Link>
+                {
+                    props.cartData.length === 0 ? <button disabled>Cart Is Empty</button> :
+                        <Link to="/checkout" >
+                            <button>Continue To Pay</button>
+                        </Link>
+                }
             </div>
         </aside>
     );
