@@ -8,7 +8,7 @@ const useGenerateCheckoutToken = (identifier: string) => {
         try {
             const res = await commerce.checkout.generateToken(identifier, { type: "cart" });
             console.log(res);
-            dispatch(setCheckoutToken(res.id))
+            dispatch(setCheckoutToken(res));
         } catch (err: any) {
             if (err.statusCode === 422) console.log("Cart is empty")
         }
