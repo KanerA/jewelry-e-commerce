@@ -1,4 +1,4 @@
-import { IInitialState } from "./types";
+import { IInitialState, TProduct } from "./types";
 import * as actions from './actionTypes';
 import initialState from "./initialState";
 
@@ -57,8 +57,14 @@ export const products = (state: IInitialState = initialState, action: any) => {
         }
         case actions.ADD_ITEM_TO_CART:
             break;
-        case actions.REMOVE_ITEM_FROM_CART:
-            break;
+        case actions.REMOVE_ITEM_FROM_CART: {
+            const cartData = state.cart;
+            const updated = cartData.reduce((prev, curr) => {
+                if (curr.id !== action.payload) prev.push(curr);
+                return prev;
+            }, [] as TProduct[]);
+            return { ...state, cart: updated }
+        }
         default:
             return state;
     }

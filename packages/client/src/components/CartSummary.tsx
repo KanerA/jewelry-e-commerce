@@ -1,11 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import DropdownSelector from './DropdownSelector';
-import { TDropdownOptions } from '../store/types';
+import { TDropdownOptions, TProduct } from '../store/types';
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { getCartData } from '../store/selectors';
 import { useDispatch } from 'react-redux';
 import { setTotal } from '../store/actions';
+import { useSelector } from 'react-redux';
+import { getCheckoutTotal } from '../store/selectors';
+
+interface ICartSummaryProps {
+    cartData: TProduct[];
+}
 
 const calculateCartSubTotal = (cartProducts: any): number => {
     let total: number = 0;
@@ -14,23 +18,29 @@ const calculateCartSubTotal = (cartProducts: any): number => {
 };
 
 
-const CartSummary = (props: any) => {
+const CartSummary = (props: ICartSummaryProps) => {
     const [shipmentCost, setShipmentCost] = useState<number>(0);
-    const cartProducts = useSelector(getCartData);
-    const cartSubTotal = calculateCartSubTotal(cartProducts);
+    const cartSubTotal = calculateCartSubTotal(props.cartData);
+    const total = useSelector(getCheckoutTotal);
     const dispatch = useDispatch();
 
     const shipmentOptions: TDropdownOptions[] = [];
 
-    const calculateShipmentCost = (): void => {
-        setShipmentCost(0);
+    // const calculateShipmentCost = (): void => {
+    //     setShipmentCost(0);
+    // };
+
+    const calculateTotalSum = (): void => {
+        const total: number = shipmentCost + cartSubTotal;
+        // const total: number = 0 + cartSubTotal;
+        dispatch(setTotal(total));
     };
 
-    const calculateTotalSum = (): number => {
-        const total: number = shipmentCost + cartSubTotal;
-        dispatch(setTotal(total));
-        return total;
-    };
+    // const total = 
+
+    useEffect(() => {
+        calculateTotalSum();
+    }, [cartSubTotal, shipmentCost]);
 
     return (
         <aside className="orderSummary">
@@ -41,7 +51,7 @@ const CartSummary = (props: any) => {
                     <span id="currentItemsSumTitle">סכום ביניים</span>
                 </div>
                 <div id="shipmentPriceContainer">
-                    <span id="shipmentCost">{shipmentCost}</span>
+                    <span id="shipmentCost">{0}</span>
                     <span id="shipmentSummaryTitle">משלוח</span>
                 </div>
                 <div id="shipmentOptions">
@@ -50,7 +60,7 @@ const CartSummary = (props: any) => {
             </div>
             <div id="summaryTotalAndCheckout">
                 <div id="totalContainer">
-                    <span id="totalSum">{calculateTotalSum()}</span>
+                    <span id="totalSum">{total}</span>
                     <span id="totalTitle">סך הכל</span>
                 </div>
             </div>

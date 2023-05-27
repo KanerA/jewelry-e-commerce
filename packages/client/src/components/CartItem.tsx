@@ -22,7 +22,6 @@ const CartItem = (props: ICartItemProps) => {
 
     const onRemoveClick = () => {
         removeFromCart(props.id);
-        fetchCartFunc();
     };
 
     const updateItemQuantity = async (qty: number) => {
