@@ -4,9 +4,9 @@ import { getCheckoutToken } from "../store/selectors";
 
 const useCheckQuantity = () => {
     const checkoutToken = useSelector(getCheckoutToken);
-    return async (product: any, index: number): Promise<boolean> => {
+    return async (product: any) => {
         const res = await commerce.checkout.checkQuantity(checkoutToken, product.id, { amount: product.quantity, permalink: product.permalink });
-        return res.available;
+        return [product.id, res.available];
     };
 };
 
