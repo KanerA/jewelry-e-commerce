@@ -1,9 +1,8 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 
-const CheckoutForm = () => {
+const CheckoutForm = ({ onSubmit }: { onSubmit: any }) => {
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const onSubmit = (data: any) => console.log("form data", { data, timestamp: new Date() });
 
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -17,9 +16,11 @@ const CheckoutForm = () => {
                 <option value="Miss">Miss</option>
                 <option value="Dr">Dr</option>
             </select>
-            <input type="text" placeholder="Street Name" {...register("StreetName", {})} />
-            <input type="text" placeholder="Apartment Number" {...register("ApartmentNumber", {})} />
+            <input type="text" placeholder="Street Name" {...register("StreetName", { required: true })} />
+            <input type="text" placeholder="Apartment Number" {...register("ApartmentNumber", { required: true, pattern: /^\d+$/ })} />
+            <input type="text" placeholder="City" {...register("City", { required: true })} />
             <input type="text" placeholder="Country" {...register("Country", {})} />
+            <input type="text" placeholder="PostalCode" {...register("PostalCode", {})} />
 
             <input type="submit" />
         </form>
