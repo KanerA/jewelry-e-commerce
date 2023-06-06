@@ -12,7 +12,6 @@ function Navbar() {
                 <li><Link to="/cart">cart</Link></li>
                 <li><Link to="/favorites">favorites</Link></li>
             </ul>
-            <Search />
         </nav>
     );
 }
