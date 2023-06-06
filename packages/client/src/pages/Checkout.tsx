@@ -7,6 +7,7 @@ import CheckoutForm from '../components/CheckoutForm';
 import useCheckQuantity from '../hooks/useCheckQuantity';
 import ShipmentSelection from '../components/ShipmentSelection';
 import CheckoutFormNotEditing from '../components/CheckoutFormNotEditing';
+import PaymentMethods from '../components/Payment';
 
 export interface IFormState {
     ApartmentNumber: string;
@@ -19,16 +20,26 @@ export interface IFormState {
     PostalCode: string;
     StreetName: string;
     Title: string;
-}
+};
+
+export type TShipmentOptions = "selfPickup" | "delivery";
 
 const Checkout = () => {
+    // selectors
     const cartId = useSelector(getCartId);
+    const checkoutToken = useSelector(getCheckoutToken);
+
+    // custom hooks
     const generateChktToken = useGenerateCheckoutToken(cartId);
     const checkItemQuantity = useCheckQuantity();
 
+    // local states
     const [quantityChecks, setQuantityChecks] = useState<any[]>([]);
     const [formData, setFormData] = useState<IFormState | null>(null);
     const [isEditingForm, setIsEditingForm] = useState<boolean>(true);
+    const [isEditingShipment, setIsEditingShipment] = useState<boolean>(false);
+    const [isPayment, setIsPayment] = useState<boolean>(false);
+    const [shipmentOption, setShipmentOption] = useState<TShipmentOptions>('selfPickup');
 
     const onSubmit = (data: any) => {
         console.log("form data", { data, timestamp: new Date() })
@@ -36,8 +47,6 @@ const Checkout = () => {
         setIsEditingForm(false);
     };
 
-    // selectors
-    const checkoutToken = useSelector(getCheckoutToken);
 
     useEffect(() => {
         const a = async () => {
@@ -47,10 +56,6 @@ const Checkout = () => {
             a();
         }
     }, [cartId]);
-
-    useEffect(() => {
-
-    }, [window])
 
     // useEffect(() => {
     //     if (!checkoutToken) return;
@@ -83,8 +88,21 @@ const Checkout = () => {
     return (
         <div className="checkoutPage">
             {isEditingForm && <CheckoutForm onSubmit={onSubmit} />}
-            {!isEditingForm && <CheckoutFormNotEditing formData={formData!} setIsEditingForm={setIsEditingForm} />}
-            {!isEditingForm && <ShipmentSelection />}
+
+            {(!isEditingForm && !isPayment) && <>
+                <CheckoutFormNotEditing formData={formData!} setIsEditingForm={setIsEditingForm} />
+                <ShipmentSelection shippingCostForSelfPickUp={"חינם"} shippingPriceToAddress={0} setShipmentOption={setShipmentOption} setIsPayment={setIsPayment} />
+            </>
+            }
+            {
+                isPayment && <>
+                    <CheckoutFormNotEditing formData={formData!} setIsEditingForm={setIsEditingForm} />
+                    <div>
+                        סוג משלוח: {shipmentOption}
+                    </div>
+                    <PaymentMethods />
+                </>
+            }
         </div>
     );
 };
