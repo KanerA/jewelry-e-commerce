@@ -9,17 +9,26 @@ import { getFavorites } from '../store/selectors';
 import { useSelector } from 'react-redux';
 import { TProduct } from '../store/types';
 import { Link } from 'react-router-dom';
+import useAddToCart from '../hooks/useAddToCart';
+import { actionAddFavorite, actionRemoveFavorite } from '../store/actions';
 
-const ProductsGallerySingleItem = (props: TProduct) => {
+const ProductsGallerySingleItem = (props: any) => {
     const dispatch = useDispatch();
+    const addToCartFunc = useAddToCart();
     const favorites = useSelector(getFavorites);
-    const itemInitialFavState = favorites.find((val: TProduct) => val.name === props.name);
+    const itemInitialFavState = favorites.find((val: TProduct) => val.id === props.id);
 
     const [isFavorite, setIsFavorite] = useState<boolean>(!!itemInitialFavState);
 
     const onFavoriteClick = (e: any) => {
-        !isFavorite ? dispatch({ type: actions.ADD_FAVORITE_ITEM, payload: props }) : dispatch({ type: actions.REMOVE_FAVORITE_ITEM, payload: props });
+        e.preventDefault();
+        !isFavorite ? dispatch(actionAddFavorite(props.id)) : dispatch(actionRemoveFavorite(props.id));
         setIsFavorite(prev => !prev);
+    };
+
+    const onCartClick = () => {
+        const qty = 1; // change to users choice
+        addToCartFunc(props.id, qty)
     };
 
     return (
@@ -27,7 +36,7 @@ const ProductsGallerySingleItem = (props: TProduct) => {
             // dir='rtl'
 
             className="gallerySingleItem">
-            <Link to={`/product/${props.nameEnglish}`}> {/* TODO: change to id */}
+            <Link to={`/product/${props.id}`}> {/* TODO: change to id */}
                 <div className="imageContainer"> {/* TODO: change alt prop */}
                     <img
                         className="singleImage"
@@ -35,15 +44,15 @@ const ProductsGallerySingleItem = (props: TProduct) => {
                             width: "150px",
 
                         }}
-                        src={require("../" + props.imageSrc)} alt="some picture"
+                        src={props.imageSrc} alt={props.nameEnglish}
                     />
                     <FavoriteIcon onClick={onFavoriteClick} isFavorite={isFavorite} />
                 </div>
                 <div className="itemName">{props.name}</div>
                 <div className="itemDescription">{props.description}</div>
-                <PriceTag price={props.price} />
+                <PriceTag price={props.price.formatted_with_symbol} />
             </Link>
-            <AddToCart />
+            <AddToCart isAdded={false} onCartClick={onCartClick} />
         </div>
     );
 };

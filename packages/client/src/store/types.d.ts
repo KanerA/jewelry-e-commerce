@@ -1,16 +1,41 @@
+export type Price = {
+    raw: number,
+    formatted: string,
+    formatted_with_symbol: string
+    formatted_with_code: string
+}
 export type TProduct = {
-    imageSrc: string; // image path inside src folder
+    id: string;
     name: string;
-    price: number;
+    price: Price;
     description: string;
-    nameEnglish?: string;
-    sizes?: number[];
+    meta: {
+        nameEnglish: string;
+        [x: string]: any;
+    };
+    image: {
+        id: string;
+        url: string;
+        [x: string]: any
+    };
+    [x: string]: any;
     // alt prop 
     // engravingOption
     // productsImages
 }
 
 export interface IInitialState {
-    favorites: TProduct[]
-    cart: TProduct[]
+    products: {
+        rings: TProduct[],
+        bracelets: TProduct[],
+        necklaces: TProduct[],
+        earrings: TProduct[],
+    },
+    favorites: string[],
+    cart: TProduct[],
+    cartId: string | null,
+    checkoutToken: any,
+    total: number,
 }
+
+export type TDropdownOptions = number | string;

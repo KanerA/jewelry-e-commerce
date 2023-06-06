@@ -1,13 +1,14 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import RINGS from '../products/rings';
-import BRACELETS from '../products/bracelets';
-import NECKLACES from '../products/necklaces';
-import EARRINGS from '../products/earrings';
 import ImageCarousel from '../components/ImageCarousel';
-import { TProduct } from '../store/types';
+import { IInitialState, TProduct } from '../store/types';
 import DescriptionSection from '../components/DescriptionSection';
-import SizeSelector from '../components/SizeSelector';
+import DropdownSelector from '../components/DropdownSelector';
+import { useSelector } from 'react-redux';
+import { getProductsData } from '../store/selectors';
+import { spreadProductsState } from '../utils/helpersProducts';
+import AddToCart from '../components/AddToCart';
+import useAddToCart from '../hooks/useAddToCart';
 
 // TODO: move this helper func somewhere else
 function ensure<T>(argument: T | undefined | null, message: string = 'This value was promised to be there.'): T {
@@ -20,24 +21,31 @@ function ensure<T>(argument: T | undefined | null, message: string = 'This value
 //
 
 const ProductPage = () => {
-    const paramsArr = useLocation().pathname.split("/");
-    const id = paramsArr[paramsArr.length - 1];
+    const id = useLocation().pathname.split("/")[2];
+    const addToCartFunc = useAddToCart();
+    const products: IInitialState["products"] = useSelector(getProductsData);
 
-    // replace this code section to use products in a more smart way
-    const products: TProduct[] = [...RINGS, ...BRACELETS, ...NECKLACES, ...EARRINGS];
-    const productById = ensure(products.find(val => val.nameEnglish === id)); // change to id
-    // 
+    const spreadProducts = spreadProductsState(products);
+    const productById = ensure(spreadProducts.find((val: TProduct) => {
+        return val.id === id
+    }));
+
+    const onCartClick = () => {
+        const qty = 1; // change to users choice
+        addToCartFunc(id, qty)
+    };
 
     return (
         <div dir="rtl" className="productPage">
-            < ImageCarousel product={productById} />
+            <ImageCarousel product={productById} />
             <DescriptionSection product={productById} />
             <div className='sizeSelectorContainer' >
                 <div dir="rtl">תבחר/י מידה:</div>
-                <SizeSelector sizes={[20, 21, 22]} placeHolder='בחר/י...' />
+                <DropdownSelector options={[20, 21, 22]} placeHolder='בחר/י...' />
             </div>
+            <AddToCart isAdded={false} onCartClick={onCartClick} />
         </div >
     );
 };
 
-export default ProductPage;
+export default ProductPage; 

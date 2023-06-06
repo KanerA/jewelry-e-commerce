@@ -8,7 +8,7 @@ const ImageCarousel = (props: any) => {
 
     return (
         <div id="productCarousel" className="productCarouselContainer">
-            <img src={require("../" + currentPicture)} width={300} />
+            <img src={props.product.image.url} width={300} />
             <div className="rightArrow" onClick={onRightClick}>{"-->"}</div>
             <div className="leftArrow" onClick={onLeftClick}>{"<--"}</div>
             <div className="imageIndicatorContainer">

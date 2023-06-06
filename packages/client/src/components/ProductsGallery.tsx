@@ -2,7 +2,7 @@ import React from 'react';
 import ProductsGallerySingleItem from './ProductsGallerySingleItem';
 import { TProduct } from '../store/types';
 
-export type TProductType = "Rings" | "Earrings" | "Necklaces" | "Bracelets";
+export type TProductType = "rings" | "earrings" | "necklaces" | "bracelets";
 
 interface IProductGalleryProps {
     productType: TProductType;
@@ -10,6 +10,7 @@ interface IProductGalleryProps {
 }
 
 const ProductsGallery = (props: IProductGalleryProps) => {
+    console.log(props)
     if (props.products.length === 0) {
         return <div>
             No Products To Show At The Moment!
@@ -18,7 +19,17 @@ const ProductsGallery = (props: IProductGalleryProps) => {
 
     return (
         <div id={props.productType} className="productsGallery">
-            {props.products.map((product, index) => <ProductsGallerySingleItem price={product.price} description={product.description} imageSrc={product.imageSrc} name={product.name} nameEnglish={product.nameEnglish} key={`product-${index}`} />)}
+            {props.products.map((product, index) =>
+                <ProductsGallerySingleItem
+                    id={product.id}
+                    price={product.price}
+                    description={product.description}
+                    imageSrc={product.image.url}
+                    name={product.name}
+                    nameEnglish={product.meta.nameEnglish}
+                    key={`product-${index}`}
+                />
+            )}
         </div>
     );
 };

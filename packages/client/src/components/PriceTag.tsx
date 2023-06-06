@@ -1,9 +1,9 @@
 import React from 'react';
 
-const PriceTag = ({ price }: { price: number }) => {
-    const defaultCurrencyIcon = <span>&#8362;</span>;
+const PriceTag = ({ price }: { price: string }) => {
+
     return (
-        <div className="itemPrice">{price}{defaultCurrencyIcon}</div>
+        <div className="itemPrice">{price}</div>
     );
 };
 

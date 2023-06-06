@@ -9,7 +9,7 @@ function Navbar() {
             <Link to="/"><Logo /></Link>
             <ul className="pageLinks">
                 <li><Link to="/about">about</Link></li>
-                <li><Link to="/checkout">cart</Link></li>
+                <li><Link to="/cart">cart</Link></li>
                 <li><Link to="/favorites">favorites</Link></li>
             </ul>
             <Search />

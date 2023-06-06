@@ -1,9 +1,9 @@
 import React from 'react';
 
-const AddToCart = () => {
+const AddToCart = (props: { onCartClick: any, isAdded: boolean }) => {
     return (
         <div className="addToCartContainer">
-            <button>Add To Cart</button>
+            <button disabled={props.isAdded} onClick={props.onCartClick}>{props.isAdded ? "Added To Cart" : "Add To Cart"}</button>
         </div>
     );
 };
