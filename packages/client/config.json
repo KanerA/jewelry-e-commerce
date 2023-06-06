@@ -1,0 +1,24 @@
+{
+    "categories": {
+        "rings": {
+            "id": "cat_yA6nldD2MlEWbz",
+            "slug": "rings",
+            "name": "rings"
+        },
+        "necklaces": {
+            "id": "cat_ZM8X5nV2P5pv4q",
+            "slug": "necklaces",
+            "name": "necklaces"
+        },
+        "bracelets": {
+            "id": "cat_mOVKl44n3lprRP",
+            "slug": "bracelets",
+            "name": "bracelets"
+        },
+        "earrings": {
+            "id": "cat_9BAmwJkp9oeXdn",
+            "slug": "earrings",
+            "name": "earrings"
+        }
+    }
+}
