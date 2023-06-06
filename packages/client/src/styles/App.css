@@ -84,3 +84,41 @@ div.mainContainer > * {
   background: cyan;
   width: fit-content;
 }
+
+/* -------------------------- product type --------------------------- */
+
+.pageProductType,
+.favoritesPage {
+  direction: rtl;
+}
+
+.pageTitle {
+  width: 100vw;
+  height: 4rem;
+  margin-top: 4rem;
+  text-align: center;
+  font-size: 3rem;
+  background-color: #f2dbf3;
+  direction: ltr;
+}
+
+.gallerySingleItem {
+  display: flex;
+  justify-content: space-between;
+}
+
+.imageContainer {
+  padding: 5px;
+  position: relative;
+}
+
+.favoriteIcon {
+  position: absolute;
+  top: 75%;
+  right: 85%;
+}
+
+.productContainerLeftSide {
+  display: flex;
+  background-color: aqua;
+}

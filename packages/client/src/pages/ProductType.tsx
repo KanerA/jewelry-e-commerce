@@ -8,7 +8,8 @@ function ProductType() {
     const location = useLocation().pathname.split('/')[1] as unknown as TProductType;
     const allProducts = useSelector(getProductsData);
     return (
-        <div>
+        <div className='pageProductType'>
+            <div className='pageTitle'>{location.toUpperCase()}</div>
             <ProductsGallery productType={location} products={allProducts[location]} key={`gallery-${location}`} />
         </div>
     );

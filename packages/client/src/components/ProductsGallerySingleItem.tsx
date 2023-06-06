@@ -37,20 +37,24 @@ const ProductsGallerySingleItem = (props: any) => {
 
             className="gallerySingleItem">
             <Link to={`/product/${props.id}`}> {/* TODO: change to id */}
-                <div className="imageContainer"> {/* TODO: change alt prop */}
-                    <img
-                        className="singleImage"
-                        style={{
-                            width: "150px",
+                <div className='productContainerLeftSide'>
+                    <div className="imageContainer"> {/* TODO: change alt prop */}
+                        <img
+                            className="singleImage"
+                            style={{
+                                width: "150px",
 
-                        }}
-                        src={props.imageSrc} alt={props.nameEnglish}
-                    />
-                    <FavoriteIcon onClick={onFavoriteClick} isFavorite={isFavorite} />
+                            }}
+                            src={props.imageSrc} alt={props.nameEnglish}
+                        />
+                        <FavoriteIcon onClick={onFavoriteClick} isFavorite={isFavorite} />
+                    </div>
+                    <div className='productDataContainer'>
+                        <div className="itemName">{props.name}</div>
+                        <div className="itemDescription">{props.description}</div>
+                        <PriceTag price={props.price.formatted_with_symbol} />
+                    </div>
                 </div>
-                <div className="itemName">{props.name}</div>
-                <div className="itemDescription">{props.description}</div>
-                <PriceTag price={props.price.formatted_with_symbol} />
             </Link>
             <AddToCart isAdded={false} onCartClick={onCartClick} />
         </div>
