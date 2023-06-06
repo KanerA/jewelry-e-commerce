@@ -1,0 +1,86 @@
+nav {
+  display: flex;
+  align-items: center;
+  width: 100vw;
+  background-color: rgba(224, 201, 236, 0.3);
+  /* background-color: rgba(214, 178, 234, 0.3); */
+  height: 4em;
+  z-index: 1000;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.logoContainer {
+  font-size: x-large;
+  font-weight: 500;
+  padding-left: 1.5em;
+}
+
+ul {
+  display: flex;
+  list-style-type: none;
+  justify-content: space-evenly;
+  width: 40%;
+  margin-left: auto;
+  align-items: center;
+}
+
+/* -------------------------- footer --------------------------- */
+
+.footer {
+  height: 5rem;
+  /* background-color: aliceblue; */
+  text-align: center;
+  font-size: 1.5em;
+}
+
+/* -------------------- image carousel main -------------------- */
+
+.mainContainer {
+  background-repeat: no-repeat;
+  background-size: 100vw;
+  height: 100vh;
+  width: 100vw;
+  /* arrows and indicator */
+  display: flex;
+  justify-content: center;
+  align-items: end;
+  margin-bottom: 2em;
+}
+
+div.mainContainer > * {
+  padding: 15px;
+}
+
+.imageIndicatorContainer > div {
+  display: inline;
+  padding: 2px;
+}
+
+.collections {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.collectionsTitle {
+  font-size: xx-large;
+}
+
+.collectionsLinksContainer {
+  display: grid;
+  grid-template-columns: 80%;
+}
+
+.clickable {
+  background: cyan;
+  width: fit-content;
+}
