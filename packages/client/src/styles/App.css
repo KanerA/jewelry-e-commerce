@@ -103,22 +103,25 @@ div.mainContainer > * {
 }
 
 .gallerySingleItem {
+  background-color: rgb(247, 240, 232);
+}
+
+.tripleImageContainer {
   display: flex;
-  justify-content: space-between;
+  width: 100vw;
+  padding-bottom: 9px;
 }
 
-.imageContainer {
-  padding: 5px;
-  position: relative;
+.tripletItem {
+  width: calc(100% / 3);
 }
 
-.favoriteIcon {
-  position: absolute;
-  top: 75%;
-  right: 85%;
+.itemName {
+  font-size: 25px;
+  font-weight: 600;
 }
 
-.productContainerLeftSide {
-  display: flex;
-  background-color: aqua;
+.productDataContainer {
+  text-align: center;
+  font-weight: 600;
 }
