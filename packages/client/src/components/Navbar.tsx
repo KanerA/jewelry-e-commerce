@@ -11,6 +11,7 @@ function Navbar() {
                 <li><Link to="/about">about</Link></li>
                 <li><Link to="/cart">cart</Link></li>
                 <li><Link to="/favorites">favorites</Link></li>
+                <li><div onMouseOver={() => { }}>categories</div></li>
             </ul>
         </nav>
     );
