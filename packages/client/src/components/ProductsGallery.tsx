@@ -25,7 +25,7 @@ const ProductsGallery = (props: IProductGalleryProps) => {
                     description={product.description}
                     imageSrc={product.image.url}
                     name={product.name}
-                    nameEnglish={product.meta.nameEnglish}
+                    nameEnglish={product.meta?.nameEnglish}
                     key={`product-${index}`}
                 />
             )}

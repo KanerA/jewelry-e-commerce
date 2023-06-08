@@ -41,6 +41,12 @@ const ProductsGallerySingleItem = (props: any) => {
         setHoveredItem(false);
     };
 
+    const removePTag = (text: string): string => {
+        const temp = text?.split("<p>");
+        const temp2 = temp?.[0] == "" ? temp?.[1] : temp?.[0];
+        return temp2?.split("</p>")?.[0];
+    };
+
 
     return (
         <div
@@ -52,7 +58,7 @@ const ProductsGallerySingleItem = (props: any) => {
                         src={props.imageSrc} alt={props.nameEnglish}
                     /> : <SingleItemDetails
                         name={props.name}
-                        description={props.description}
+                        description={removePTag(props.description)}
                         price={props.price.formatted_with_symbol}
                         onCartClick={onCartClick}
                         isFavorite={isFavorite}

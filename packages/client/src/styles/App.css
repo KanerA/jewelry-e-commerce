@@ -102,13 +102,22 @@ div.mainContainer > * {
   direction: ltr;
 }
 
+.productsGallery {
+  width: 85vw;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .gallerySingleItem {
   background-color: rgb(247, 240, 232);
 }
 
 .tripleImageContainer {
   display: flex;
-  width: 100vw;
+  width: 100%;
   padding-bottom: 9px;
 }
 
