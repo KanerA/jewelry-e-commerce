@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
 import { FaDotCircle, FaRegCircle } from 'react-icons/fa';
+import LeftArrow from './LeftArrow';
+import RightArrow from './RightArrow';
 
 interface IFeaturedPicturesContainerProps {
     featuredPictures: string[];
@@ -30,7 +32,7 @@ function FeaturedPicturesContainer(props: IFeaturedPicturesContainerProps) {
     return (
         <div id="main" className="mainContainer" style={containerStyleImage}>
 
-            <div className="leftArrow" onClick={onLeftClick}><IoIosArrowBack size={20} color={iconsColor} /></div>
+            <LeftArrow iconsColor={iconsColor} onLeftClick={onLeftClick} />
             <div className="imageIndicatorContainer">
                 {
                     props.featuredPictures.map((_, index) => {
@@ -40,7 +42,7 @@ function FeaturedPicturesContainer(props: IFeaturedPicturesContainerProps) {
                     })
                 }
             </div>
-            <div className="rightArrow" onClick={onRightClick}><IoIosArrowForward size={20} color={iconsColor} /></div>
+            <RightArrow iconsColor={iconsColor} onRightClick={onRightClick} />
         </div>
     );
 }

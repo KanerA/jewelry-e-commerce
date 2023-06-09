@@ -35,7 +35,7 @@ ul {
 
 .footer {
   height: 5rem;
-  /* background-color: aliceblue; */
+  background-color: rgba(224, 201, 236, 0.3);
   text-align: center;
   font-size: 1.5em;
 }
@@ -133,4 +133,49 @@ div.mainContainer > * {
 .productDataContainer {
   text-align: center;
   font-weight: 600;
+}
+
+/* -------------------------- product page --------------------------- */
+
+.productPage {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+}
+
+.productDetailsContainer {
+  background-color: rgba(224, 201, 236, 0.3);
+  display: flex;
+  direction: rtl;
+  margin-top: 5rem;
+  width: 85%;
+  height: 80%;
+  padding: 1.5em;
+  border-radius: 10px;
+}
+
+.productPageRightSide {
+  width: 45%;
+  background-color: beige;
+}
+
+.productCarouselContainer {
+  width: 55%;
+  margin-right: 1em;
+  background-color: beige;
+  height: fit-content;
+}
+
+.productCarouselSingleImage {
+  width: 100%;
+  z-index: 1;
+}
+
+.imageControlsContainer {
+  z-index: 1000;
+}
+
+.rightArrow,
+.leftArrow {
+  cursor: pointer;
 }

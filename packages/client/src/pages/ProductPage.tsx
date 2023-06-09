@@ -36,14 +36,18 @@ const ProductPage = () => {
     };
 
     return (
-        <div dir="rtl" className="productPage">
-            <ImageCarousel product={productById} />
-            <DescriptionSection product={productById} />
-            <div className='sizeSelectorContainer' >
-                <div dir="rtl">תבחר/י מידה:</div>
-                <DropdownSelector options={[20, 21, 22]} placeHolder='בחר/י...' />
+        <div className="productPage">
+            <div className="productDetailsContainer">
+                <div className="productPageRightSide">
+                    <DescriptionSection product={productById} />
+                    <div className='sizeSelectorContainer' >
+                        <div dir="rtl">תבחר/י מידה:</div>
+                        <DropdownSelector options={[20, 21, 22]} placeHolder='בחר/י...' />
+                    </div>
+                    <AddToCart isAdded={false} onCartClick={onCartClick} />
+                </div>
+                <ImageCarousel product={productById} />
             </div>
-            <AddToCart isAdded={false} onCartClick={onCartClick} />
         </div >
     );
 };
