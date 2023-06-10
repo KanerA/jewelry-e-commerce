@@ -19,7 +19,6 @@ const ProductsGallerySingleItem = (props: any) => {
     const itemInitialFavState = favorites.find((val: TProduct) => val.id === props.id);
 
     const [isFavorite, setIsFavorite] = useState<boolean>(!!itemInitialFavState);
-    const [hoveredItem, setHoveredItem] = useState<boolean>(false);
 
     const onFavoriteClick = (e: any) => {
         e.preventDefault();
@@ -33,14 +32,6 @@ const ProductsGallerySingleItem = (props: any) => {
         addToCartFunc(props.id, qty)
     };
 
-    const onMouseOver = (e: any) => {
-        setHoveredItem(true);
-    };
-
-    const onMouseOut = () => {
-        setHoveredItem(false);
-    };
-
     const removePTag = (text: string): string => {
         const temp = text?.split("<p>");
         const temp2 = temp?.[0] == "" ? temp?.[1] : temp?.[0];
@@ -52,25 +43,18 @@ const ProductsGallerySingleItem = (props: any) => {
         <div
             className="gallerySingleItem">
             <Link to={`/product/${props.id}`}>
-                <div className="tripleImageContainer" onMouseOver={onMouseOver} onMouseOut={onMouseOut}> {/* TODO: change alt prop */}
-                    {!hoveredItem ? <img
-                        className="tripletItem"
+                <div className="itemContainer"> {/* TODO: change alt prop */}
+                    <img
+                        className="itemImage"
                         src={props.imageSrc} alt={props.nameEnglish}
-                    /> : <SingleItemDetails
+                    />
+                    <SingleItemDetails
                         name={props.name}
                         description={removePTag(props.description)}
                         price={props.price.formatted_with_symbol}
                         onCartClick={onCartClick}
                         isFavorite={isFavorite}
                         onFavoriteClick={onFavoriteClick}
-                    />}
-                    <img
-                        className="tripletItem"
-                        src={props.imageSrc} alt={props.nameEnglish}
-                    />
-                    <img
-                        className="tripletItem"
-                        src={props.imageSrc} alt={props.nameEnglish}
                     />
                 </div>
 
@@ -80,10 +64,9 @@ const ProductsGallerySingleItem = (props: any) => {
 };
 
 export const SingleItemDetails = (props: any) => {
-    return <div className='tripletItem'>
+    return <div className='itemDetails center'>
         <div className='productDataContainer'>
             <div className="itemName">{props.name}</div>
-            <div className="itemDescription">{props.description}</div>
             <PriceTag price={props.price} />
         </div>
         <FavoriteIcon onClick={props.onFavoriteClick} isFavorite={props.isFavorite} />
