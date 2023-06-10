@@ -1,3 +1,9 @@
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 nav {
   display: flex;
   align-items: center;
@@ -38,6 +44,7 @@ ul {
   background-color: rgba(224, 201, 236, 0.3);
   text-align: center;
   font-size: 1.5em;
+  margin-top: 10rem;
 }
 
 /* -------------------- image carousel main -------------------- */
@@ -64,7 +71,7 @@ div.mainContainer > * {
 }
 
 .collections {
-  height: 100vh;
+  height: 130vh;
   width: 100vw;
   display: flex;
   flex-direction: column;
@@ -73,16 +80,40 @@ div.mainContainer > * {
 
 .collectionsTitle {
   font-size: xx-large;
+  margin-bottom: 2rem;
 }
 
 .collectionsLinksContainer {
   display: grid;
-  grid-template-columns: 80%;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  width: 80%;
 }
 
-.clickable {
-  background: cyan;
-  width: fit-content;
+.coverImageContainer {
+  width: 100%;
+  position: relative;
+  text-align: center;
+}
+
+.textOverlay {
+  background-color: rgba(224, 201, 236, 0.1);
+  border-radius: 20%;
+  padding: 1%;
+  font-size: xx-large;
+  position: absolute;
+  top: 70%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.coverImages {
+  width: 90%;
+  transition: transform 0.2s; /* Animation */
+}
+
+.coverImages:hover {
+  transform: scale(1.1);
 }
 
 /* -------------------------- product type --------------------------- */
