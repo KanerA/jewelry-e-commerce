@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import useGetCategoriesData from '../hooks/useGetCategoriesData';
+import { Skeleton } from '@mui/material';
 
 const ShopNow = () => {
     const [categories, setCategories] = useState<any>([]);
@@ -29,7 +30,13 @@ const ShopNow = () => {
             <div className='collectionsTitle'>MY COLLECTION</div>
             <div className="collectionsLinksContainer">
                 {
-                    !categories.length && <div>LOADING!!</div>
+                    !categories.length && [1, 2, 3, 4].map((category: any) => {
+                        return <Link className='center' to={`/${category.catName}`}>
+                            <div id={`${category.catName}`} className="coverImageContainer center">
+                                <Skeleton className='coverImages' height={100} animation="wave" />
+                            </div>
+                        </Link>
+                    })
                 }
                 {
                     !!categories.length && categories.map((category: any) => {
