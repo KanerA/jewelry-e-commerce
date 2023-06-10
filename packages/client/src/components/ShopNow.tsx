@@ -31,11 +31,11 @@ const ShopNow = () => {
             <div className="collectionsLinksContainer">
                 {
                     !categories.length && [1, 2, 3, 4].map((category: any) => {
-                        return <Link className='center' to={`/${category.catName}`}>
+                        return <div className='center'>
                             <div id={`${category.catName}`} className="coverImageContainer center">
                                 <Skeleton className='coverImages' height={100} animation="wave" />
                             </div>
-                        </Link>
+                        </div>
                     })
                 }
                 {
