@@ -1,20 +1,46 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-
-
-
-// each category gets a row, displays 3-4 images, when hovering the container of the category, one of the images of the same
-// category will slide and reveal the name of the category, each time random image
+import useGetCategoriesData from '../hooks/useGetCategoriesData';
 
 const ShopNow = () => {
+    const [categories, setCategories] = useState<any>([]);
+    const fetchCategories = useGetCategoriesData();
+
+    useEffect(() => {
+        const a = async () => {
+            const { data } = await fetchCategories();
+            const tempData = data.map((val: any) => {
+                return {
+                    id: val.id,
+                    catName: val.slug,
+                    coverImageUrl: val?.assets?.[0]?.url,
+                    size: val?.assets?.[0]?.image_dimensions?.width
+                }
+            });
+
+            tempData.sort((a: any, b: any) => a.size - b.size);
+            setCategories(tempData);
+        };
+        a();
+    }, []);
+
     return (
         <div id="collections" className="collections">
             <div className='collectionsTitle'>MY COLLECTION</div>
             <div className="collectionsLinksContainer">
-                <div className="rings clickable expandable"><Link to="/rings">RINGS</Link></div> {/* BG-image name featured-3 */}
-                <div className="necklaces clickable expandable"><Link to="/necklaces">NECKLACES</Link></div> {/* BG-image name necklace-cover*/}
-                <div className="bracelets clickable expandable"><Link to="/bracelets">BRACELETS</Link></div> {/* BG-image name bracelet-cover*/}
-                <div className="earrings clickable expandable"><Link to="/earrings">EARRINGS</Link></div> {/* BG-image name featured-4 */}
+                {
+                    !categories.length && <div>LOADING!!</div>
+                }
+                {
+                    !!categories.length && categories.map((category: any) => {
+                        return <Link className='center' to={`/${category.catName}`}>
+                            <div id={`${category.catName}`} className="coverImageContainer center">
+                                <img className="coverImages center" src={category.coverImageUrl} />
+                                <div className="textOverlay">{category.catName.toUpperCase()}</div>
+                            </div>
+                        </Link>
+                    })
+                }
             </div>
         </div>
     );
