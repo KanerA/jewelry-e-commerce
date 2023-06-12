@@ -5,7 +5,7 @@ const RightArrow = ({ onRightClick, iconsColor }: any) => {
     return (
         <div
             className="rightArrow"
-            onClick={onRightClick}
+            onClick={onRightClick ? onRightClick : () => { }}
         ><IoIosArrowForward size={20} color={iconsColor} /></div>
     );
 };
