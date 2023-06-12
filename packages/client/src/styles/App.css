@@ -249,3 +249,13 @@ div.mainContainer > * {
 .productPageLeftSide .imageControlsContainer {
   margin-top: 1rem;
 }
+
+/* -------------------------- about page --------------------------- */
+
+.about {
+  height: 100vh;
+  text-align: center;
+  font-size: 1.5rem;
+  line-height: 2rem;
+  padding: 3rem;
+}
