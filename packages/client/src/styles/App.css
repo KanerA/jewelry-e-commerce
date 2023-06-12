@@ -113,8 +113,8 @@ div.mainContainer > * {
   transition: transform 0.2s; /* Animation */
 }
 
-.coverImages:hover {
-  transform: scale(1.1);
+.expandable:hover {
+  transform: scale(1.05);
 }
 
 /* -------------------------- product type --------------------------- */
@@ -164,10 +164,6 @@ div.mainContainer > * {
 .productDataContainer {
   text-align: center;
   font-weight: 600;
-}
-
-.itemImage:hover {
-  transform: scale(1.05); /*  TODO: make sure with Shaked that she likes it */
 }
 
 .addToCartContainer button {

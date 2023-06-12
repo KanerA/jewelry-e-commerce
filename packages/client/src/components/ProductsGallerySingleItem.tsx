@@ -45,7 +45,7 @@ const ProductsGallerySingleItem = (props: any) => {
             <Link to={`/product/${props.id}`}>
                 <div className="itemContainer"> {/* TODO: change alt prop */}
                     <img
-                        className="itemImage"
+                        className="itemImage expandable"
                         src={props.imageSrc} alt={props.nameEnglish}
                     />
                     <SingleItemDetails

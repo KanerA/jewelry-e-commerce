@@ -42,7 +42,7 @@ const ShopNow = () => {
                     !!categories.length && categories.map((category: any) => {
                         return <Link className='center' to={`/${category.catName}`}>
                             <div id={`${category.catName}`} className="coverImageContainer center">
-                                <img className="coverImages center" src={category.coverImageUrl} />
+                                <img className="coverImages expandable center" src={category.coverImageUrl} />
                                 <div className="textOverlay">{category.catName.toUpperCase()}</div>
                             </div>
                         </Link>
