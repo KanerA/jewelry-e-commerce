@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { MdDeleteOutline } from 'react-icons/md';
+import { BiShekel } from 'react-icons/bi';
 
 import { Price } from '../store/types';
 import PriceTag from './PriceTag';
@@ -59,24 +60,22 @@ const CartItem = (props: ICartItemProps) => {
     return (
         <div className="cartItem">
             <main>
-                <div className="imageContainer"> {/* TODO: change alt prop */}
+                <div className="imageContainer">
                     <img
                         className="singleImage"
-                        style={{
-                            width: "150px",
-
-                        }}
                         src={props.imageSrc} alt={props.name}
                     />
-                    <div>{props.name}</div>
-                    <PriceTag price={props.price.formatted_with_symbol} />
+                    <div className="namePriceContainer">
+                        <div className="itemName">{props.name}</div>
+                        <PriceTag price={props.price.formatted_with_symbol} />
+                    </div>
                 </div>
             </main>
             <aside>
-                <div className="totalPrice">{props.quantity * props.price.raw}</div>
                 <CartItemQuantity quantity={quantity} onAddClick={onAddClick} onLessClick={onLessClick} />
+                <div className="totalPrice center"><span>{props.quantity * props.price.raw}</span><BiShekel /></div>
                 <div className="removeFromCart">
-                    <button onClick={onRemoveClick}><MdDeleteOutline /></button>
+                    <button onClick={onRemoveClick}><MdDeleteOutline size={25} /></button>
                 </div>
             </aside>
         </div>

@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { TProduct } from '../store/types';
 import CartItem from './CartItem';
 import useFetchCartData from '../hooks/useFetchCartData';
+import LeftArrow from './LeftArrow';
+import RightArrow from './RightArrow';
 
 interface ICartMainSectionProps {
     cartData: TProduct[];
@@ -27,20 +29,22 @@ const CartMainSection = (props: ICartMainSectionProps) => {
         } else {
             setIsLoading(false)
         }
-    }, [fetchCartFunc])
+    }, [fetchCartFunc]);
     if (isLoading) {
         // change to loader
         return <main className="cartMainSection"><div id="cartLoader">Loading...</div></main>;
     }
 
-    if (props.cartData.length === 0) return <div className="cartMainSection">Your Cart is Empty, Go Add Some Stuff ;)</div>
+    if (props.cartData.length === 0) return <div className="cartMainSection center bigFont">Your Cart is Empty, Go Add Some Stuff ;)</div>
     return (
-        <main className="cartMainSection">
-            <Link to="/"><div className="returnButton">{"<"} Continue shopping</div></Link>
-            {dataToDisplay(props.cartData).map((prod: TProduct) => {
-                return <CartItem id={prod.id} price={prod.price} name={prod.name} imageSrc={prod.image.url} quantity={prod.quantity} />
-            })}
-        </main>
+        <div>
+            <Link to="/"><div className="returnButton"><span>המשיכו לרכישה באתר</span><LeftArrow iconsColor="#000000" /></div></Link>
+            <main className="cartMainSection">
+                {dataToDisplay(props.cartData).map((prod: TProduct) => {
+                    return <CartItem id={prod.id} price={prod.price} name={prod.name} imageSrc={prod.image.url} quantity={prod.quantity} />
+                })}
+            </main>
+        </div>
     );
 };
 

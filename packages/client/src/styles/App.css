@@ -264,13 +264,20 @@ div.mainContainer > * {
 
 .cartPage {
   direction: rtl;
-  background-color: antiquewhite;
-  justify-content: space-evenly;
+  /* background-color: antiquewhite; */
+  position: relative;
+  height: 100vh;
 }
 
 .cartMainSection {
   display: flex;
   flex-direction: column;
+  width: 60%;
+  height: 90%;
+  overflow-y: scroll;
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 
 .cartItem,
@@ -278,15 +285,138 @@ div.mainContainer > * {
   display: flex;
 }
 
-.cartItem main div {
+.cartItem {
+  padding: 1rem;
+  border-bottom: 1px solid #2c2a2a;
+}
+
+.singleImage {
+  width: 200px;
+}
+
+.namePriceContainer {
+  display: flex;
+  flex-direction: column;
+  margin-right: 1rem;
+  margin-top: 0.5rem;
+}
+
+.namePriceContainer .itemName {
+  margin-bottom: 0.5rem;
+}
+
+.cartItem main {
   margin-left: auto;
+}
+
+.cartItem aside {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 30%;
+}
+
+.qtyContainer {
+  display: flex;
+  justify-content: space-evenly;
+  width: 4rem;
 }
 
 .removeFromCart button {
   background: none;
   border: none;
+  cursor: pointer;
 }
 
 .cartQuantityButton {
   cursor: pointer;
+}
+
+.returnButton {
+  display: flex;
+  width: fit-content;
+  margin-right: auto;
+}
+
+.returnButton span {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.orderSummary {
+  width: 30%;
+  height: 20rem;
+  position: absolute;
+  top: 0;
+  left: 2rem;
+  margin-top: 4rem;
+}
+
+.orderSummary > * {
+  padding-right: 0.8rem;
+}
+
+#summaryTitle {
+  font-size: 1.7rem;
+  border-bottom: 1px solid #2c2a2a;
+}
+
+#summaryMain {
+  padding: 1.2rem;
+}
+
+#currentSubTotalContainer,
+#shipmentPriceContainer,
+#summaryTotalAndCheckout {
+  display: flex;
+  justify-content: space-between;
+}
+
+#summaryMain > div {
+  margin-bottom: 1rem;
+}
+
+#summaryTotalAndCheckout {
+  padding: 0 1.2rem 1.2rem 1.2rem;
+}
+
+.checkoutButton {
+  width: 90%;
+  height: 2rem;
+  margin: auto;
+  border: 1px solid #2c2a2a;
+  background: rgba(197, 171, 211, 0.3);
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.disabled {
+  opacity: 0.7;
+  cursor: default;
+}
+
+.bigFont {
+  font-size: 2rem;
+}
+
+/* -------------scroll bar----------------- */
+
+/* width */
+::-webkit-scrollbar {
+  width: 7px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }

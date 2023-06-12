@@ -44,31 +44,30 @@ const CartSummary = (props: ICartSummaryProps) => {
             <div id="summaryTitle">סיכום הזמנה</div>
             <div id="summaryMain">
                 <div id="currentSubTotalContainer">
-                    <span id="currentSubTotal">{cartSubTotal}</span>
                     <span id="currentItemsSumTitle">סכום ביניים</span>
+                    <span id="currentSubTotal">{cartSubTotal}</span>
                 </div>
                 <div id="shipmentPriceContainer">
-                    <span id="shipmentCost">{0}</span>
                     <span id="shipmentSummaryTitle">משלוח</span>
+                    <span id="shipmentCost">{0}</span>
                 </div>
                 <div id="shipmentOptions">
                     <DropdownSelector options={shipmentOptions} placeHolder='אופציות משלוח' />
                 </div>
             </div>
             <div id="summaryTotalAndCheckout">
-                <div id="totalContainer">
-                    <span id="totalSum">{total}</span>
-                    <span id="totalTitle">סך הכל</span>
-                </div>
+                <span id="totalTitle">סך הכל</span>
+                <span id="totalSum">{total}</span>
+
             </div>
-            <div id="continueToPaymentContainer">
-                {
-                    props.cartData.length === 0 ? <button disabled>Cart Is Empty</button> :
+            {
+                props.cartData.length === 0 ? <div className="checkoutButton center disabled">העגלה ריקה</div> :
+                    <div className="checkoutButton center">
                         <Link to="/checkout" >
-                            <button>Continue To Pay</button>
+                            מעבר לתשלום
                         </Link>
-                }
-            </div>
+                    </div>
+            }
         </aside>
     );
 };
