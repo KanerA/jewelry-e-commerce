@@ -69,8 +69,10 @@ export const SingleItemDetails = (props: any) => {
             <div className="itemName">{props.name}</div>
             <PriceTag price={props.price} />
         </div>
-        <FavoriteIcon onClick={props.onFavoriteClick} isFavorite={props.isFavorite} />
-        <AddToCart isAdded={false} onCartClick={props.onCartClick} />
+        <div className="actionButtons">
+            <FavoriteIcon onClick={props.onFavoriteClick} isFavorite={props.isFavorite} />
+            <AddToCart isAdded={false} onCartClick={props.onCartClick} />
+        </div>
     </div>
 };
 

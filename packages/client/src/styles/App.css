@@ -144,7 +144,7 @@ div.mainContainer > * {
 }
 
 .gallerySingleItem {
-  background-color: rgb(247, 240, 232);
+  background-color: rgba(224, 201, 236, 0.3);
 }
 
 .itemImage {
@@ -153,6 +153,7 @@ div.mainContainer > * {
 
 .itemDetails {
   flex-direction: column;
+  padding-bottom: 0.5rem;
 }
 
 .itemName {
@@ -163,6 +164,28 @@ div.mainContainer > * {
 .productDataContainer {
   text-align: center;
   font-weight: 600;
+}
+
+.itemImage:hover {
+  transform: scale(1.05); /*  TODO: make sure with Shaked that she likes it */
+}
+
+.addToCartContainer button {
+  background: none;
+  cursor: pointer;
+  border: 1px rgb(129, 82, 156) solid;
+  padding: 0.25rem;
+}
+
+.actionButtons {
+  width: 30%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: 0.2rem;
+}
+.favoriteIcon {
+  margin-top: 0.2rem;
 }
 
 /* -------------------------- product page --------------------------- */
