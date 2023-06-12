@@ -260,7 +260,7 @@ div.mainContainer > * {
   padding: 3rem;
 }
 
-/* -------------------------- about page --------------------------- */
+/* -------------------------- cart page --------------------------- */
 
 .cartPage {
   direction: rtl;
@@ -419,4 +419,10 @@ div.mainContainer > * {
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
+}
+
+/* -------------------------- about page --------------------------- */
+
+.noProductsToShow {
+  height: 70vh;
 }

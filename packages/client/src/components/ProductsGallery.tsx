@@ -11,7 +11,7 @@ interface IProductGalleryProps {
 
 const ProductsGallery = (props: IProductGalleryProps) => {
     if (props.products.length === 0) {
-        return <div className="noProductsToShow">
+        return <div className="noProductsToShow center">
             No Products To Show At The Moment!
         </div>;
     }
