@@ -259,3 +259,34 @@ div.mainContainer > * {
   line-height: 2rem;
   padding: 3rem;
 }
+
+/* -------------------------- about page --------------------------- */
+
+.cartPage {
+  direction: rtl;
+  background-color: antiquewhite;
+  justify-content: space-evenly;
+}
+
+.cartMainSection {
+  display: flex;
+  flex-direction: column;
+}
+
+.cartItem,
+.cartItem main div {
+  display: flex;
+}
+
+.cartItem main div {
+  margin-left: auto;
+}
+
+.removeFromCart button {
+  background: none;
+  border: none;
+}
+
+.cartQuantityButton {
+  cursor: pointer;
+}

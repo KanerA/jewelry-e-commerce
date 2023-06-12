@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import { MdDeleteOutline } from 'react-icons/md';
+
 import { Price } from '../store/types';
 import PriceTag from './PriceTag';
 import useRemoveFromCart from '../hooks/useRemoveFromCart';
@@ -74,7 +76,7 @@ const CartItem = (props: ICartItemProps) => {
                 <div className="totalPrice">{props.quantity * props.price.raw}</div>
                 <CartItemQuantity quantity={quantity} onAddClick={onAddClick} onLessClick={onLessClick} />
                 <div className="removeFromCart">
-                    <button onClick={onRemoveClick}>X</button>
+                    <button onClick={onRemoveClick}><MdDeleteOutline /></button>
                 </div>
             </aside>
         </div>
