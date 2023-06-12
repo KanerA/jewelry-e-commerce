@@ -2,14 +2,11 @@ import React, { useState } from 'react';
 import { IoIosArrowForward } from 'react-icons/io';
 
 const RightArrow = ({ onRightClick, iconsColor }: any) => {
-    const [size, setSize] = useState(20);
     return (
         <div
             className="rightArrow"
             onClick={onRightClick}
-            onMouseOver={() => setSize(25)}
-            onMouseLeave={() => setSize(20)}
-        ><IoIosArrowForward size={size} color={iconsColor} /></div>
+        ><IoIosArrowForward size={20} color={iconsColor} /></div>
     );
 };
 
