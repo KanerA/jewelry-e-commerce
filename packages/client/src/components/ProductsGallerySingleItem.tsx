@@ -16,7 +16,7 @@ const ProductsGallerySingleItem = (props: any) => {
     const dispatch = useDispatch();
     const addToCartFunc = useAddToCart();
     const favorites = useSelector(getFavorites);
-    const itemInitialFavState = favorites.find((val: TProduct) => val.id === props.id);
+    const itemInitialFavState = favorites.find((val: TProduct) => val === props.id);
 
     const [isFavorite, setIsFavorite] = useState<boolean>(!!itemInitialFavState);
 

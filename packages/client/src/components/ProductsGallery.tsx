@@ -6,7 +6,7 @@ export type TProductType = "rings" | "earrings" | "necklaces" | "bracelets";
 
 interface IProductGalleryProps {
     productType: TProductType;
-    products: TProduct[]
+    products: TProduct[];
 }
 
 const ProductsGallery = (props: IProductGalleryProps) => {
