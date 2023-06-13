@@ -109,7 +109,7 @@ div.mainContainer > * {
 }
 
 .textOverlay {
-  background-color: rgba(224, 201, 236, 0.1);
+  background-color: rgba(224, 201, 236, 0.5);
   border-radius: 20%;
   padding: 1%;
   font-size: xx-large;
