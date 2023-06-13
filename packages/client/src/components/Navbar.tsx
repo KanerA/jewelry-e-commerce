@@ -12,9 +12,9 @@ function Navbar() {
             <Link to="/"><Logo /></Link>
             <ul className="pageLinks">
                 <li><Link to="/about">about</Link></li>
-                <li><Link to="/cart"><AiOutlineShoppingCart /></Link></li>
-                <li><Link to="/favorites"><MdFavorite /></Link></li>
-                <li><div onMouseOver={() => { }}><GiHamburgerMenu /></div></li>
+                <li><Link to="/cart"><AiOutlineShoppingCart size={20} /></Link></li>
+                <li><Link to="/favorites"><MdFavorite size={20} /></Link></li>
+                <li><div onMouseOver={() => { }}><GiHamburgerMenu size={20} /></div></li>
             </ul>
         </nav>
     );

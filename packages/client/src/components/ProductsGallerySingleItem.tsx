@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { Skeleton } from '@mui/material';
+import { useDispatch, useSelector } from 'react-redux';
 
 import PriceTag from './PriceTag';
 import AddToCart from './AddToCart';
-import FavoriteIcon from './FavoriteIcon';
-import * as actions from '../store/actionTypes';
-import { getFavorites } from '../store/selectors';
-import { useSelector } from 'react-redux';
 import { TProduct } from '../store/types';
-import { Link } from 'react-router-dom';
+import FavoriteIcon from './FavoriteIcon';
 import useAddToCart from '../hooks/useAddToCart';
+import { getFavorites } from '../store/selectors';
 import { actionAddFavorite, actionRemoveFavorite } from '../store/actions';
 
 const ProductsGallerySingleItem = (props: any) => {
@@ -19,6 +18,7 @@ const ProductsGallerySingleItem = (props: any) => {
     const itemInitialFavState = favorites.find((val: TProduct) => val === props.id);
 
     const [isFavorite, setIsFavorite] = useState<boolean>(!!itemInitialFavState);
+    const [imageLoaded, setImageLoaded] = useState<boolean>(false);
 
     const onFavoriteClick = (e: any) => {
         e.preventDefault();
@@ -44,9 +44,14 @@ const ProductsGallerySingleItem = (props: any) => {
             className="gallerySingleItem">
             <Link to={`/product/${props.id}`}>
                 <div className="itemContainer"> {/* TODO: change alt prop */}
+                    {
+                        !imageLoaded && <Skeleton className="itemImage" style={{ height: "15rem" }} animation="wave" />
+                    }
                     <img
                         className="itemImage expandable"
-                        src={props.imageSrc} alt={props.nameEnglish}
+                        src={props.imageSrc}
+                        alt={props.nameEnglish}
+                        onLoad={() => setImageLoaded(true)}
                     />
                     <SingleItemDetails
                         name={props.name}
