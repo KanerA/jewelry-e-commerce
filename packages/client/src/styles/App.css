@@ -422,3 +422,72 @@ div.mainContainer > * {
 .noProductsToShow {
   height: 70vh;
 }
+
+/* -------------------- checkout -------------------- */
+
+.checkoutPage {
+  height: 100vh;
+  direction: rtl;
+}
+
+.checkoutPageContainer {
+  width: 70%;
+  height: 80%;
+  position: relative;
+}
+
+.checkoutPageContainer aside {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 38%;
+  display: flex;
+}
+
+.checkoutPageContainer main {
+  height: 100%;
+}
+
+.firstStep form input,
+.firstStep form select {
+  background: none;
+  padding: 0.5rem;
+}
+
+.firstStep {
+  width: 58%;
+  height: 100%;
+  min-width: 15rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.firstStep form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.firstStep form > div {
+  margin-bottom: 1.5rem;
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+  > input {
+    flex-grow: 1;
+  }
+
+  :nth-child(even) {
+    margin: 0 0.25rem 0 0;
+  }
+}
+
+.emailInputContainer input {
+  margin: 0;
+}
+
+input[type="submit"] {
+  width: 80%;
+}

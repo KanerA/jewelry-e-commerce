@@ -86,23 +86,34 @@ const Checkout = () => {
 
 
     return (
-        <div className="checkoutPage">
-            {isEditingForm && <CheckoutForm onSubmit={onSubmit} />}
+        <div className="checkoutPage center">
+            <div className="checkoutPageContainer">
+                <main>
+                    {isEditingForm && <div className="firstStep">
+                        <span>פרטי משלוח</span>
+                        <CheckoutForm onSubmit={onSubmit} />
+                    </div>}
 
-            {(!isEditingForm && !isPayment) && <>
-                <CheckoutFormNotEditing formData={formData!} setIsEditingForm={setIsEditingForm} />
-                <ShipmentSelection shippingCostForSelfPickUp={"חינם"} shippingPriceToAddress={0} setShipmentOption={setShipmentOption} setIsPayment={setIsPayment} />
-            </>
-            }
-            {
-                isPayment && <>
-                    <CheckoutFormNotEditing formData={formData!} setIsEditingForm={setIsEditingForm} />
-                    <div>
-                        סוג משלוח: {shipmentOption}
-                    </div>
-                    <PaymentMethods />
-                </>
-            }
+                    {(!isEditingForm && !isPayment) && <>
+                        <CheckoutFormNotEditing formData={formData!} setIsEditingForm={setIsEditingForm} />
+                        <ShipmentSelection shippingCostForSelfPickUp={"חינם"} shippingPriceToAddress={0} setShipmentOption={setShipmentOption} setIsPayment={setIsPayment} />
+                    </>
+                    }
+                    {
+                        isPayment && <>
+                            <CheckoutFormNotEditing formData={formData!} setIsEditingForm={setIsEditingForm} />
+                            <div>
+                                סוג משלוח: {shipmentOption}
+                            </div>
+                            <PaymentMethods />
+                        </>
+                    }
+                </main>
+                <aside>
+                    סיכום הזמנה
+                    {/* TODO: finish this part*/}
+                </aside>
+            </div>
         </div>
     );
 };
