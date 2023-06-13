@@ -1,16 +1,3 @@
-// import React from 'react';
-
-// const PaymentMethods = () => {
-//     return (
-//         <div className="paymentMethodsContainer">
-//             <div id="methodOne" className="methodContainer">paypal</div>
-//             <div id="methodTwo" className="methodContainer">credit card</div>
-//         </div>
-//     );
-// };
-
-// export default PaymentMethods;
-
 import React, { useState, useEffect } from "react";
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import { useSelector } from "react-redux";
@@ -23,8 +10,6 @@ const PaymentMethods = () => {
     const [ErrorMessage, setErrorMessage] = useState("");
     const [orderID, setOrderID] = useState(false);
     const cart = useSelector(getCartData);
-
-    console.log(cart);
 
     // creates a paypal order
     const createOrder = (data: any, actions: any) => {
@@ -71,7 +56,7 @@ const PaymentMethods = () => {
 
     return (
         <PayPalScriptProvider options={{ "client-id": CLIENT_ID }}>
-            <div>
+            <div className="paypalContainer">
                 <PayPalButtons
                     style={{ layout: "vertical" }}
                     createOrder={createOrder}

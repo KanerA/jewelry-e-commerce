@@ -62,11 +62,11 @@ const CartSummary = (props: ICartSummaryProps) => {
             </div>
             {
                 props.cartData.length === 0 ? <div className="checkoutButton center disabled">העגלה ריקה</div> :
-                    <div className="checkoutButton center">
-                        <Link to="/checkout" >
+                    <Link to="/checkout" >
+                        <div className="checkoutButton center">
                             מעבר לתשלום
-                        </Link>
-                    </div>
+                        </div>
+                    </Link>
             }
         </aside>
     );

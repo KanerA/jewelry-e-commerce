@@ -90,23 +90,27 @@ const Checkout = () => {
             <div className="checkoutPageContainer">
                 <main>
                     {isEditingForm && <div className="firstStep">
-                        <span>פרטי משלוח</span>
+                        <span className="stepTitle firstStepTitle">פרטי משלוח</span>
                         <CheckoutForm onSubmit={onSubmit} />
                     </div>}
 
-                    {(!isEditingForm && !isPayment) && <>
+                    {(!isEditingForm && !isPayment) && <div className="secondStep">
+                        <span className="stepTitle">פרטי משלוח</span>
                         <CheckoutFormNotEditing formData={formData!} setIsEditingForm={setIsEditingForm} />
+                        <span className="stepTitle">אופן המשלוח</span>
                         <ShipmentSelection shippingCostForSelfPickUp={"חינם"} shippingPriceToAddress={0} setShipmentOption={setShipmentOption} setIsPayment={setIsPayment} />
-                    </>
+                    </div>
                     }
                     {
-                        isPayment && <>
+                        isPayment && <div className="thirdStep">
+                            <span className="stepTitle">פרטי משלוח</span>
                             <CheckoutFormNotEditing formData={formData!} setIsEditingForm={setIsEditingForm} />
-                            <div>
-                                סוג משלוח: {shipmentOption}
+                            <div className="shipmentOptionsNotEditing">
+                                <span className="stepTitle">אופן המשלוח</span>
+                                <div>{shipmentOption}</div>
                             </div>
                             <PaymentMethods />
-                        </>
+                        </div>
                     }
                 </main>
                 <aside>

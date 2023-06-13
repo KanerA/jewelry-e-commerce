@@ -19,7 +19,7 @@ const CheckoutForm = ({ onSubmit }: { onSubmit: any }) => {
             </div>
             <div className="cityInputContainer">
                 <input type="text" placeholder="עיר" {...register("City", { required: true })} />
-                <select>
+                <select {...register("Country")}>
                     <option>ישראל</option>
                 </select>
             </div>
