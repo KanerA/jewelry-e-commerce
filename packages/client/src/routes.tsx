@@ -5,6 +5,7 @@ import Checkout from "./pages/Checkout";
 import Favorites from "./pages/Favorites";
 import ProductType from "./pages/ProductType";
 import ProductPage from "./pages/ProductPage";
+import ThankYou from "./pages/ThankYou";
 
 
 type routeType = {
@@ -78,6 +79,11 @@ const routes: routeType[] = [
     path: "/product/:id",
     main: () => <ProductPage />,
     sidebar: () => <div>Product</div>
+  },
+  {
+    path: "/thankyou",
+    main: () => <ThankYou />,
+    sidebar: () => <div>Thank you</div>
   },
   {
     path: "*",
