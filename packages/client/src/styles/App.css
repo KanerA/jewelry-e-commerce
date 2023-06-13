@@ -8,7 +8,7 @@ nav {
   display: flex;
   align-items: center;
   width: 100vw;
-  background-color: rgba(224, 201, 236, 0.3);
+  background-color: rgba(224, 201, 236, 0.8);
   /* background-color: rgba(214, 178, 234, 0.3); */
   height: 4em;
   z-index: 1000;
@@ -47,6 +47,21 @@ ul {
   margin-top: 10rem;
   padding-top: 0.5em;
 }
+
+.footerLinksContainer {
+  display: flex;
+  width: 30rem;
+  margin: auto;
+}
+
+.footerLinksContainer > * {
+  padding-top: 0.2rem;
+  margin: 0 0.5rem;
+}
+
+/* .whatsappIcon {
+  color: green;
+} */
 
 /* -------------------- image carousel main -------------------- */
 
