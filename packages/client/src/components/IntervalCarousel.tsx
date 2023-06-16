@@ -19,7 +19,7 @@ function FeaturedPicturesContainer(props: IFeaturedPicturesContainerProps) {
 
     const containerStyleImage = {
         backgroundImage: `url(${props.featuredPictures[currentPicture]})`,
-
+        backgroundPosition: 'center'
     }
 
     useEffect(() => {
@@ -31,7 +31,6 @@ function FeaturedPicturesContainer(props: IFeaturedPicturesContainerProps) {
 
     return (
         <div id="main" className="mainContainer" style={containerStyleImage}>
-
             <LeftArrow iconsColor={iconsColor} onLeftClick={onLeftClick} />
             <div className="imageIndicatorContainer">
                 {
