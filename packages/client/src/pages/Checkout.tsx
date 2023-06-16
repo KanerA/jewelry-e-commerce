@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 
-import { getCartId, getCheckoutToken } from '../store/selectors';
+import { getCartData, getCartId, getCheckoutToken } from '../store/selectors';
 import useGenerateCheckoutToken from '../hooks/useGenerateCheckoutToken';
 import CheckoutForm from '../components/CheckoutForm';
 import useCheckQuantity from '../hooks/useCheckQuantity';
 import ShipmentSelection from '../components/ShipmentSelection';
 import CheckoutFormNotEditing from '../components/CheckoutFormNotEditing';
 import PaymentMethods from '../components/Payment';
+import CheckoutSummaryCard from '../components/CheckoutSummaryCard';
 
 export interface IFormState {
     ApartmentNumber: string;
@@ -114,8 +115,7 @@ const Checkout = () => {
                     }
                 </main>
                 <aside>
-                    סיכום הזמנה
-                    {/* TODO: finish this part*/}
+                    <CheckoutSummaryCard />
                 </aside>
             </div>
         </div>
