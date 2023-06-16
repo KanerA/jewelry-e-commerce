@@ -97,7 +97,7 @@ const Checkout = () => {
 
                     {(!isEditingForm && !isPayment) && <div className="secondStep">
                         <span className="stepTitle">פרטי משלוח</span>
-                        <CheckoutFormNotEditing formData={formData!} setIsEditingForm={setIsEditingForm} />
+                        <CheckoutFormNotEditing formData={formData!} setIsEditingForm={setIsEditingForm} setIsPayment={setIsPayment} />
                         <span className="stepTitle">אופן המשלוח</span>
                         <ShipmentSelection shippingCostForSelfPickUp={"חינם"} shippingPriceToAddress={0} setShipmentOption={setShipmentOption} setIsPayment={setIsPayment} />
                     </div>
@@ -105,7 +105,7 @@ const Checkout = () => {
                     {
                         isPayment && <div className="thirdStep">
                             <span className="stepTitle">פרטי משלוח</span>
-                            <CheckoutFormNotEditing formData={formData!} setIsEditingForm={setIsEditingForm} />
+                            <CheckoutFormNotEditing formData={formData!} setIsEditingForm={setIsEditingForm} setIsPayment={setIsPayment} />
                             <div className="shipmentOptionsNotEditing">
                                 <span className="stepTitle">אופן המשלוח</span>
                                 <div>{shipmentOption}</div>
