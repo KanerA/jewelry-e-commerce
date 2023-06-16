@@ -141,7 +141,8 @@ div.mainContainer > * {
   margin-top: 4rem;
   text-align: center;
   font-size: 3rem;
-  background-color: #f2dbf3;
+  background-color: #413f45;
+  color: #f4f0f5;
   direction: ltr;
 }
 
