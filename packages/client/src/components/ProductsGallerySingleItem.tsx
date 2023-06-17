@@ -54,7 +54,7 @@ const ProductsGallerySingleItem = (props: any) => {
                         onLoad={() => setImageLoaded(true)}
                     />
                     <SingleItemDetails
-                        name={props.name}
+                        name={props.nameEnglish}
                         description={removePTag(props.description)}
                         price={props.price.formatted_with_symbol}
                         onCartClick={onCartClick}

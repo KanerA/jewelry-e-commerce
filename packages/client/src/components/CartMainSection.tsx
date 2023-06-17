@@ -41,7 +41,13 @@ const CartMainSection = (props: ICartMainSectionProps) => {
             <Link to="/"><div className="returnButton"><span>המשיכו לרכישה באתר</span><LeftArrow iconsColor="#000000" /></div></Link>
             <main className="cartMainSection">
                 {dataToDisplay(props.cartData).map((prod: TProduct) => {
-                    return <CartItem id={prod.id} price={prod.price} name={prod.name} imageSrc={prod.image.url} quantity={prod.quantity} />
+                    return <CartItem
+                        id={prod.id}
+                        price={prod.price}
+                        name={prod.product_meta.nameEnglish}
+                        imageSrc={prod.image.url}
+                        quantity={prod.quantity}
+                    />
                 })}
             </main>
         </div>
