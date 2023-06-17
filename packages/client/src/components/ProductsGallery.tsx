@@ -6,13 +6,12 @@ export type TProductType = "rings" | "earrings" | "necklaces" | "bracelets";
 
 interface IProductGalleryProps {
     productType: TProductType;
-    products: TProduct[]
+    products: TProduct[];
 }
 
 const ProductsGallery = (props: IProductGalleryProps) => {
-    console.log(props)
     if (props.products.length === 0) {
-        return <div>
+        return <div className="noProductsToShow center">
             No Products To Show At The Moment!
         </div>;
     }
@@ -26,7 +25,7 @@ const ProductsGallery = (props: IProductGalleryProps) => {
                     description={product.description}
                     imageSrc={product.image.url}
                     name={product.name}
-                    nameEnglish={product.meta.nameEnglish}
+                    nameEnglish={product.meta?.nameEnglish}
                     key={`product-${index}`}
                 />
             )}

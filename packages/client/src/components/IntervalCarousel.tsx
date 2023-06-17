@@ -1,10 +1,15 @@
 import React, { useState, useEffect } from 'react';
+import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
+import { FaDotCircle, FaRegCircle } from 'react-icons/fa';
+import LeftArrow from './LeftArrow';
+import RightArrow from './RightArrow';
 
 interface IFeaturedPicturesContainerProps {
     featuredPictures: string[];
 }
 
 function FeaturedPicturesContainer(props: IFeaturedPicturesContainerProps) {
+    const iconsColor = '#d6b2ea';
     const [currentPicture, setCurrentPicture] = useState<number>(0);
 
     const onLeftClick = () => setCurrentPicture(prev => prev === 0 ? props.featuredPictures.length - 1 : prev - 1);
@@ -13,11 +18,8 @@ function FeaturedPicturesContainer(props: IFeaturedPicturesContainerProps) {
     const time = 3500;
 
     const containerStyleImage = {
-        backgroundSize: 'contain',
-        backgroundRepeat: 'no-repeat',
         backgroundImage: `url(${props.featuredPictures[currentPicture]})`,
-        height: '40em', // override in css file
-        width: '85em', // override in css file
+        backgroundPosition: 'center'
     }
 
     useEffect(() => {
@@ -29,18 +31,17 @@ function FeaturedPicturesContainer(props: IFeaturedPicturesContainerProps) {
 
     return (
         <div id="main" className="mainContainer" style={containerStyleImage}>
-            <div className="rightArrow" onClick={onRightClick}>{"-->"}</div>
-            KAMA Jewelry
-            <div className="leftArrow" onClick={onLeftClick}>{"<--"}</div>
+            <LeftArrow iconsColor={iconsColor} onLeftClick={onLeftClick} />
             <div className="imageIndicatorContainer">
                 {
                     props.featuredPictures.map((_, index) => {
                         // ? maybe add functionality of choosing which picture to show
-                        if (currentPicture === index) return <span key="shownImage">1</span> // TODO: change to icons
-                        return <span key={`unShownImage-${index}`}>0</span> // TODO: change to icons
+                        if (currentPicture === index) return <div key="shownImage"><FaDotCircle size={20} color={iconsColor} /></div> // TODO: change to icons
+                        return <div key={`unShownImage-${index}`}><FaRegCircle size={20} color={iconsColor} /></div> // TODO: change to icons
                     })
                 }
             </div>
+            <RightArrow iconsColor={iconsColor} onRightClick={onRightClick} />
         </div>
     );
 }

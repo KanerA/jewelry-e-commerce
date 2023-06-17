@@ -15,7 +15,7 @@ function Favorites(props: any) {
 
     return (
         <div className="favoritesPage">
-            Your Favorite Choices!
+            <div className="pageTitle">מוצרים שאהבת</div>
             <ProductsGallery productType={props.productType} products={favoritesData} key={`favorites`} />
         </div>
     );

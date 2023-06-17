@@ -7,10 +7,13 @@ import { getCartData } from '../store/selectors';
 function Cart(props: any) {
     const cartData = useSelector(getCartData);
     return (
-        <div className="cartPage">
-            <CartMainSection cartData={cartData} />
-            <CartSummary cartData={cartData} />
-        </div>
+        <>
+            <div className="pageTitle">עגלת הקניות שלך</div>
+            <div className="cartPage">
+                <CartMainSection cartData={cartData} />
+                <CartSummary cartData={cartData} />
+            </div>
+        </>
     );
 }
 

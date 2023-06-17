@@ -30,20 +30,26 @@ const ProductPage = () => {
         return val.id === id
     }));
 
+    const productImages = productById.assets.map((val: TProduct) => val.url);
+
     const onCartClick = () => {
-        const qty = 1; // change to users choice
+        const qty = 1; // TODO: change to users choice
         addToCartFunc(id, qty)
     };
 
     return (
-        <div dir="rtl" className="productPage">
-            <ImageCarousel product={productById} />
-            <DescriptionSection product={productById} />
-            <div className='sizeSelectorContainer' >
-                <div dir="rtl">תבחר/י מידה:</div>
-                <DropdownSelector options={[20, 21, 22]} placeHolder='בחר/י...' />
+        <div className="productPage">
+            <div className="productDetailsContainer">
+                <div className="productPageRightSide center">
+                    <DescriptionSection product={productById} />
+                    <div className='sizeSelectorContainer center' >
+                        <div dir="rtl">תבחר/י מידה:</div>
+                        <DropdownSelector options={[20, 21, 22]} placeHolder='בחר/י...' />
+                    </div>
+                    <AddToCart isAdded={false} onCartClick={onCartClick} />
+                </div>
+                <ImageCarousel productImages={productImages} />
             </div>
-            <AddToCart isAdded={false} onCartClick={onCartClick} />
         </div >
     );
 };

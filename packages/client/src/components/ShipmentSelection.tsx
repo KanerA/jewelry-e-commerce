@@ -1,5 +1,6 @@
 import React from 'react';
 import { TShipmentOptions } from '../pages/Checkout';
+import { BiShekel } from 'react-icons/bi';
 
 interface IShipmentSelectionProps {
     shippingPriceToAddress: number,
@@ -15,22 +16,34 @@ const ShipmentSelection = ({ shippingPriceToAddress, shippingCostForSelfPickUp, 
 
     return (
         <div onChange={onRadioChange} className="shippingOptionsContainer">
-
-            <input type='radio' id='selfPickup' name='shipmentOption' value='selfPickup' />
-            <label htmlFor='selfPickup'>
-                <div className='shipmentOptionTitle'>איסוף עצמי</div>
-                <div className='timeRangeForShipment'>כתובת לאיסוף עצמי</div>
+            <div className="shipmentOptionContainer">
+                <div className="shipmentInputContainer">
+                    <input type='radio' id='selfPickup' name='shipmentOption' value='selfPickup' />
+                    <label htmlFor='selfPickup'>
+                        <div className='shipmentOptionTitle'>איסוף עצמי</div>
+                        <div className='timeRangeForShipment'>כתובת לאיסוף עצמי</div>
+                    </label>
+                </div>
                 <div className='shipmentOptionPrice'>{shippingCostForSelfPickUp}</div>
-            </label>
+            </div>
 
 
-            <input type='radio' id='delivery' name='shipmentOption' value='delivery' />
-            <label htmlFor='delivery'>
-                <div className='shipmentOptionTitle'>משלוח</div>
-                <div className='timeRangeForShipment'>3-5 ימי עסקים</div>
-                <div className='shipmentOptionPrice'>{shippingPriceToAddress}</div>
-            </label>
-            <div onClick={() => setIsPayment(true)}>המשך</div>
+            <div className="shipmentOptionContainer">
+                <div className="shipmentInputContainer">
+                    <input type='radio' id='delivery' name='shipmentOption' value='delivery' />
+                    <label htmlFor='delivery'>
+                        <div className='shipmentOptionTitle'>משלוח</div>
+                        <div className='timeRangeForShipment'>3-5 ימי עסקים</div>
+                    </label>
+                </div>
+                <div className='shipmentOptionPrice center'>{shippingPriceToAddress}<BiShekel /></div>
+            </div>
+            <div
+                className="stepTwoContinueButton center"
+                onClick={() => setIsPayment(true)
+                }>
+                <span className="stepTwoContinueText">המשך</span>
+            </div>
         </div>
     );
 };

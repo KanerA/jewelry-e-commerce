@@ -1,14 +1,54 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import useGetCategoriesData from '../hooks/useGetCategoriesData';
+import { Skeleton } from '@mui/material';
 
 const ShopNow = () => {
+    const [categories, setCategories] = useState<any>([]);
+    const fetchCategories = useGetCategoriesData();
+
+    useEffect(() => {
+        const a = async () => {
+            const { data } = await fetchCategories();
+            const tempData = data.map((val: any) => {
+                return {
+                    id: val.id,
+                    catName: val.slug,
+                    coverImageUrl: val?.assets?.[0]?.url,
+                    size: val?.assets?.[0]?.image_dimensions?.width
+                }
+            });
+
+            tempData.sort((a: any, b: any) => a.size - b.size);
+            setCategories(tempData);
+        };
+        a();
+    }, []);
+
     return (
         <div id="collections" className="collections">
-            <div>MY COLLECTION</div>
-            <Link to="/rings"><div className="rings clickable expandable">RINGS</div></Link> {/* BG-image name featured-3 */}
-            <Link to="/necklaces"><div className="necklaces clickable expandable">NECKLACES</div></Link> {/* BG-image name necklace-cover*/}
-            <Link to="/bracelets"><div className="bracelets clickable expandable">BRACELETS</div></Link> {/* BG-image name bracelet-cover*/}
-            <Link to="/earrings"><div className="earrings clickable expandable">EARRINGS</div></Link> {/* BG-image name featured-4 */}
+            <div className='collectionsTitle'>MY COLLECTION</div>
+            <div className="collectionsLinksContainer">
+                {
+                    !categories.length && [1, 2, 3, 4].map((category: any) => {
+                        return <div className='center'>
+                            <div id={`${category.catName}`} className="coverImageContainer center">
+                                <Skeleton className='coverImages' height={100} animation="wave" />
+                            </div>
+                        </div>
+                    })
+                }
+                {
+                    !!categories.length && categories.map((category: any) => {
+                        return <Link className='center' to={`/${category.catName}`}>
+                            <div id={`${category.catName}`} className="coverImageContainer center">
+                                <img className="coverImages expandable center" src={category.coverImageUrl} />
+                                <div className="textOverlay">{category.catName.toUpperCase()}</div>
+                            </div>
+                        </Link>
+                    })
+                }
+            </div>
         </div>
     );
 };

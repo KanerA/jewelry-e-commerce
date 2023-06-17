@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 
-import { getCartId, getCheckoutToken } from '../store/selectors';
+import { getCartData, getCartId, getCheckoutToken } from '../store/selectors';
 import useGenerateCheckoutToken from '../hooks/useGenerateCheckoutToken';
 import CheckoutForm from '../components/CheckoutForm';
 import useCheckQuantity from '../hooks/useCheckQuantity';
 import ShipmentSelection from '../components/ShipmentSelection';
 import CheckoutFormNotEditing from '../components/CheckoutFormNotEditing';
 import PaymentMethods from '../components/Payment';
+import CheckoutSummaryCard from '../components/CheckoutSummaryCard';
 
 export interface IFormState {
     ApartmentNumber: string;
@@ -86,23 +87,37 @@ const Checkout = () => {
 
 
     return (
-        <div className="checkoutPage">
-            {isEditingForm && <CheckoutForm onSubmit={onSubmit} />}
+        <div className="checkoutPage center">
+            <div className="checkoutPageContainer">
+                <main>
+                    {isEditingForm && <div className="firstStep">
+                        <span className="stepTitle firstStepTitle">פרטי משלוח</span>
+                        <CheckoutForm onSubmit={onSubmit} />
+                    </div>}
 
-            {(!isEditingForm && !isPayment) && <>
-                <CheckoutFormNotEditing formData={formData!} setIsEditingForm={setIsEditingForm} />
-                <ShipmentSelection shippingCostForSelfPickUp={"חינם"} shippingPriceToAddress={0} setShipmentOption={setShipmentOption} setIsPayment={setIsPayment} />
-            </>
-            }
-            {
-                isPayment && <>
-                    <CheckoutFormNotEditing formData={formData!} setIsEditingForm={setIsEditingForm} />
-                    <div>
-                        סוג משלוח: {shipmentOption}
+                    {(!isEditingForm && !isPayment) && <div className="secondStep">
+                        <span className="stepTitle">פרטי משלוח</span>
+                        <CheckoutFormNotEditing formData={formData!} setIsEditingForm={setIsEditingForm} setIsPayment={setIsPayment} />
+                        <span className="stepTitle">אופן המשלוח</span>
+                        <ShipmentSelection shippingCostForSelfPickUp={"חינם"} shippingPriceToAddress={0} setShipmentOption={setShipmentOption} setIsPayment={setIsPayment} />
                     </div>
-                    <PaymentMethods />
-                </>
-            }
+                    }
+                    {
+                        isPayment && <div className="thirdStep">
+                            <span className="stepTitle">פרטי משלוח</span>
+                            <CheckoutFormNotEditing formData={formData!} setIsEditingForm={setIsEditingForm} setIsPayment={setIsPayment} />
+                            <div className="shipmentOptionsNotEditing">
+                                <span className="stepTitle">אופן המשלוח</span>
+                                <div>{shipmentOption}</div>
+                            </div>
+                            <PaymentMethods />
+                        </div>
+                    }
+                </main>
+                <aside>
+                    <CheckoutSummaryCard />
+                </aside>
+            </div>
         </div>
     );
 };

@@ -6,23 +6,28 @@ const CheckoutForm = ({ onSubmit }: { onSubmit: any }) => {
 
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
-            <input type="text" placeholder="First name" {...register("FirstName", { required: true, maxLength: 30 })} />
-            <input type="text" placeholder="Last name" {...register("LastName", { required: true, maxLength: 30 })} />
-            <input type="text" placeholder="Email" {...register("Email", { required: true, pattern: /^\S+@\S+$/i })} />
-            <input type="tel" placeholder="Mobile number" {...register("MobileNumber", { required: true, maxLength: 10 })} />
-            <select {...register("Title", { required: true })}>
-                <option value="Mr">Mr</option>
-                <option value="Mrs">Mrs</option>
-                <option value="Miss">Miss</option>
-                <option value="Dr">Dr</option>
-            </select>
-            <input type="text" placeholder="Street Name" {...register("StreetName", { required: true })} />
-            <input type="text" placeholder="Apartment Number" {...register("ApartmentNumber", { required: true, pattern: /^\d+$/ })} />
-            <input type="text" placeholder="City" {...register("City", { required: true })} />
-            <input type="text" placeholder="Country" {...register("Country", {})} />
-            <input type="text" placeholder="PostalCode" {...register("PostalCode", {})} />
-
-            <input type="submit" />
+            <div className='fullNameInputsContainer'>
+                <input type="text" placeholder="שם" {...register("FirstName", { required: true, maxLength: 30 })} />
+                <input type="text" placeholder="שם משפחה" {...register("LastName", { required: true, maxLength: 30 })} />
+            </div>
+            <div className="emailInputContainer">
+                <input type="email" placeholder="אימייל" {...register("Email", { required: true, pattern: /^\S+@\S+$/i })} />
+            </div>
+            <div className='addressInputsContainer'>
+                <input type="text" placeholder="שם רחוב" {...register("StreetName", { required: true })} />
+                <input type="text" placeholder="מספר בית / דירה" {...register("ApartmentNumber", { required: true, pattern: /^\d+$/ })} />
+            </div>
+            <div className="cityInputContainer">
+                <input type="text" placeholder="עיר" {...register("City", { required: true })} />
+                <select {...register("Country")}>
+                    <option>ישראל</option>
+                </select>
+            </div>
+            <div className='postalCellphoneContainer'>
+                <input type="text" placeholder="מיקוד" {...register("PostalCode", {})} />
+                <input type="tel" placeholder="מספר טלפון" {...register("MobileNumber", { required: true, maxLength: 10 })} />
+            </div>
+            <input type="submit" value='המשך' />
         </form>
     );
 };

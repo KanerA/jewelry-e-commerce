@@ -5,7 +5,7 @@ import { TProduct } from '../store/types';
 
 const DescriptionSection = ({ product }: { product: TProduct }) => {
     return (
-        <div className='productDescriptionSection'>
+        <div className='productDescriptionSection center'>
             <ProductTitle name={product.name} />
             <ProductDescription text={product.description} />
         </div>
