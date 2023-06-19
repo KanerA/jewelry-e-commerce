@@ -65,6 +65,11 @@ export const products = (state: IInitialState = initialState, action: any) => {
             }, [] as TProduct[]);
             return { ...state, cart: updated }
         }
+        case actions.SET_ORDER_DETAILS: {
+            const currentOrderDetails = state.orderDetails;
+            const updatedOrderDetails = { ...currentOrderDetails, ...action.payload }
+            return { ...state, orderDetails: updatedOrderDetails }
+        }
         default:
             return state;
     }

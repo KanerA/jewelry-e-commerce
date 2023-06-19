@@ -7,6 +7,16 @@ const initialState: IInitialState = {
         necklaces: [],
         earrings: [],
     },
+    orderDetails: {
+        client: {
+            address: "",
+            city: "",
+            fullName: "",
+            phoneNumber: "",
+        },
+        products: {},
+        shippingMethod: "selfPickup"
+    },
     favorites: [],
     cart: [],
     cartId: null,

@@ -41,3 +41,8 @@ export const setTotal = (payload: number) => ({
     type: actions.SET_TOTAL,
     payload
 });
+
+export const setOrderDetails = (payload: any) => ({
+    type: actions.SET_ORDER_DETAILS,
+    payload
+})
