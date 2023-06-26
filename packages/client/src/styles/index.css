@@ -9,4 +9,5 @@ body {
   overflow-x: hidden;
   color: #2c2a2a;
   cursor: default;
+  position: relative;
 }

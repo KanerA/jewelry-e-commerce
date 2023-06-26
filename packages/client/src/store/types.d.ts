@@ -53,6 +53,23 @@ export interface IInitialState {
     cartId: string | null,
     checkoutToken: any,
     total: number,
+    showReturnPolicy: boolean
 }
+
+export interface IOrderDetailsUpdate {
+    client?: {
+        fullName: string,
+        address: string,
+        city: string,
+        phoneNumber: string,
+    },
+    products?: {
+        [item: string]: {
+            quantity: number,
+        }
+    },
+    shippingMethod?: TShipmentOptions
+}
+
 
 export type TDropdownOptions = number | string;

@@ -70,6 +70,9 @@ export const products = (state: IInitialState = initialState, action: any) => {
             const updatedOrderDetails = { ...currentOrderDetails, ...action.payload }
             return { ...state, orderDetails: updatedOrderDetails }
         }
+        case actions.SET_RETURN_POLICY_STATE: {
+            return { ...state, showReturnPolicy: action.payload }
+        }
         default:
             return state;
     }

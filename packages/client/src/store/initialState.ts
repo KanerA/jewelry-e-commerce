@@ -21,7 +21,8 @@ const initialState: IInitialState = {
     cart: [],
     cartId: null,
     checkoutToken: {},
-    total: 0
+    total: 0,
+    showReturnPolicy: false
 };
 
 export default initialState;
