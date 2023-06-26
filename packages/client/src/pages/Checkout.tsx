@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 
-import { getCartData, getCartId, getCheckoutToken } from '../store/selectors';
+
+import { getCartId, getCheckoutToken } from '../store/selectors';
 import useGenerateCheckoutToken from '../hooks/useGenerateCheckoutToken';
 import CheckoutForm from '../components/CheckoutForm';
 import useCheckQuantity from '../hooks/useCheckQuantity';
@@ -9,6 +10,10 @@ import ShipmentSelection from '../components/ShipmentSelection';
 import CheckoutFormNotEditing from '../components/CheckoutFormNotEditing';
 import PaymentMethods from '../components/Payment';
 import CheckoutSummaryCard from '../components/CheckoutSummaryCard';
+import { useDispatch } from 'react-redux';
+import { setOrderDetails } from '../store/actions';
+import { IOrderDetailsUpdate } from '../store/types';
+import ShipmentOptionsNotEditing from './ShipmentOptionsNotEditing';
 
 export interface IFormState {
     ApartmentNumber: string;
@@ -26,6 +31,8 @@ export interface IFormState {
 export type TShipmentOptions = "selfPickup" | "delivery";
 
 const Checkout = () => {
+    const dispatch = useDispatch();
+
     // selectors
     const cartId = useSelector(getCartId);
     const checkoutToken = useSelector(getCheckoutToken);
@@ -42,12 +49,26 @@ const Checkout = () => {
     const [isPayment, setIsPayment] = useState<boolean>(false);
     const [shipmentOption, setShipmentOption] = useState<TShipmentOptions>('selfPickup');
 
+    const shipmentCost = 35; // shipment  cost to clients address
+
     const onSubmit = (data: any) => {
-        console.log("form data", { data, timestamp: new Date() })
+        console.log(data)
         setFormData(data);
         setIsEditingForm(false);
-    };
 
+        const formatOrderDetails = (): IOrderDetailsUpdate => {
+            return {
+                client: {
+                    fullName: data.FirstName + " " + data.LastName,
+                    address: data.StreetName + " " + data.ApartmentNumber + " " + data.PostalCode,
+                    city: data.City,
+                    phoneNumber: data.MobileNumber
+                }
+            }
+        };
+
+        dispatch(setOrderDetails(formatOrderDetails()))
+    };
 
     useEffect(() => {
         const a = async () => {
@@ -99,23 +120,20 @@ const Checkout = () => {
                         <span className="stepTitle">פרטי משלוח</span>
                         <CheckoutFormNotEditing formData={formData!} setIsEditingForm={setIsEditingForm} setIsPayment={setIsPayment} />
                         <span className="stepTitle">אופן המשלוח</span>
-                        <ShipmentSelection shippingCostForSelfPickUp={"חינם"} shippingPriceToAddress={0} setShipmentOption={setShipmentOption} setIsPayment={setIsPayment} />
+                        <ShipmentSelection shippingCostForSelfPickUp={"חינם"} shippingPriceToAddress={shipmentCost} setShipmentOption={setShipmentOption} setIsPayment={setIsPayment} />
                     </div>
                     }
                     {
                         isPayment && <div className="thirdStep">
                             <span className="stepTitle">פרטי משלוח</span>
                             <CheckoutFormNotEditing formData={formData!} setIsEditingForm={setIsEditingForm} setIsPayment={setIsPayment} />
-                            <div className="shipmentOptionsNotEditing">
-                                <span className="stepTitle">אופן המשלוח</span>
-                                <div>{shipmentOption}</div>
-                            </div>
-                            <PaymentMethods />
+                            <ShipmentOptionsNotEditing setIsEditingForm={setIsEditingForm} setIsPayment={setIsPayment} shipmentOption={shipmentOption} />
+                            <PaymentMethods shippingCost={shipmentOption === 'delivery' ? shipmentCost : 0} />
                         </div>
                     }
                 </main>
                 <aside>
-                    <CheckoutSummaryCard />
+                    <CheckoutSummaryCard shipmentOption={shipmentOption} shipmentCost={shipmentCost} />
                 </aside>
             </div>
         </div>

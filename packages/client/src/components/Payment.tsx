@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 const CLIENT_ID = process.env.REACT_APP_CLIENT_ID || "";
 
-const PaymentMethods = () => {
+const PaymentMethods = ({ shippingCost }: { shippingCost: number }) => {
     const navigate = useNavigate();
 
     const [success, setSuccess] = useState(false);
@@ -22,7 +22,8 @@ const PaymentMethods = () => {
         const orderTotal = cart.reduce((prev: number, cartItem: any) => {
             const a = cartItem.quantity * cartItem.price.raw;
             return a + prev;
-        }, 0);
+        }, shippingCost);
+
         return actions.order.create({
             currency: "ILS",
             purchase_units: [
