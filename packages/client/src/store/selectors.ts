@@ -9,3 +9,4 @@ export const getCheckoutToken = (state: any = store.getState()) => state.product
 export const getCheckoutCurrentSum = (state: any = store.getState()) => state.products.checkoutCurrentSum;
 export const getCheckoutTotal = (state: any = store.getState()) => state.products.total;
 export const getReturnPolicyState = (state: any = store.getState()) => state.products.showReturnPolicy;
+export const getOrderDetails = (state: any = store.getState()) => state.products.orderDetails;

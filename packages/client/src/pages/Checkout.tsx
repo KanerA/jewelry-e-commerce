@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 
 
-import { getCartId, getCheckoutToken } from '../store/selectors';
+import { getCartData, getCartId, getCheckoutToken } from '../store/selectors';
 import useGenerateCheckoutToken from '../hooks/useGenerateCheckoutToken';
 import CheckoutForm from '../components/CheckoutForm';
 import useCheckQuantity from '../hooks/useCheckQuantity';
@@ -12,7 +12,7 @@ import PaymentMethods from '../components/Payment';
 import CheckoutSummaryCard from '../components/CheckoutSummaryCard';
 import { useDispatch } from 'react-redux';
 import { setOrderDetails } from '../store/actions';
-import { IOrderDetailsUpdate } from '../store/types';
+import { IOrderDetailsUpdate, TProduct } from '../store/types';
 import ShipmentOptionsNotEditing from './ShipmentOptionsNotEditing';
 
 export interface IFormState {
@@ -35,6 +35,7 @@ const Checkout = () => {
 
     // selectors
     const cartId = useSelector(getCartId);
+    const cart = useSelector(getCartData);
     const checkoutToken = useSelector(getCheckoutToken);
 
     // custom hooks
@@ -55,19 +56,6 @@ const Checkout = () => {
         console.log(data)
         setFormData(data);
         setIsEditingForm(false);
-
-        const formatOrderDetails = (): IOrderDetailsUpdate => {
-            return {
-                client: {
-                    fullName: data.FirstName + " " + data.LastName,
-                    address: data.StreetName + " " + data.ApartmentNumber + " " + data.PostalCode,
-                    city: data.City,
-                    phoneNumber: data.MobileNumber
-                }
-            }
-        };
-
-        dispatch(setOrderDetails(formatOrderDetails()))
     };
 
     useEffect(() => {
@@ -78,6 +66,36 @@ const Checkout = () => {
             a();
         }
     }, [cartId]);
+
+    useEffect(() => {
+        const formatClientOrderDetails = (): IOrderDetailsUpdate["client"] => {
+            return {
+                fullName: formData?.FirstName + " " + formData?.LastName,
+                address: formData?.StreetName + " " + formData?.ApartmentNumber + " " + formData?.PostalCode,
+                city: formData?.City ?? "",
+                phoneNumber: formData?.MobileNumber ?? ""
+
+            }
+        };
+
+        const formatProductsOrderDetails = (): IOrderDetailsUpdate["products"] => {
+            const objects: IOrderDetailsUpdate["products"] = {};
+            cart.forEach((item: TProduct) => {
+                objects[item.product_meta.nameEnglish] = {
+                    quantity: item.quantity
+                }
+            });
+            return objects;
+        }
+
+        const finalOrderFormat: IOrderDetailsUpdate = {
+            client: formatClientOrderDetails(),
+            products: formatProductsOrderDetails(),
+            shippingMethod: shipmentOption
+        }
+
+        dispatch(setOrderDetails(finalOrderFormat))
+    }, [formData, cart])
 
     // useEffect(() => {
     //     if (!checkoutToken) return;
