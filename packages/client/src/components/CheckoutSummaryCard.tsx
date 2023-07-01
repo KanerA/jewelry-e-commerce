@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 
 import { getCartData, getCheckoutTotal } from '../store/selectors';
@@ -6,10 +6,20 @@ import CheckoutSummaryItem from './CheckoutSummaryItem';
 import { TProduct } from '../store/types';
 import { BiShekel } from 'react-icons/bi';
 import { Link } from 'react-router-dom';
+import { TShipmentOptions } from '../pages/Checkout';
 
-const CheckoutSummaryCard = () => {
+const CheckoutSummaryCard = ({ shipmentOption, shipmentCost }: { shipmentOption: TShipmentOptions, shipmentCost: number }) => {
     const cartData = useSelector(getCartData);
     const total = useSelector(getCheckoutTotal);
+
+    const [totalPlusShipment, setTotalPlusShipment] = useState(total);
+
+
+    useEffect(() => {
+        shipmentOption === 'delivery' ?
+            setTotalPlusShipment(shipmentCost + total) :
+            setTotalPlusShipment(total)
+    }, [shipmentOption]);
 
     return (
         <div className="checkoutSummaryContainer">
@@ -31,12 +41,12 @@ const CheckoutSummaryCard = () => {
                 </div>
                 <div id="shipmentPriceContainer">
                     <span id="shipmentSummaryTitle">משלוח</span>
-                    <span id="shipmentCost" className='center'>{0}<BiShekel /></span>
+                    <span id="shipmentCost" className='center'>{shipmentOption === 'delivery' ? shipmentCost : 0}<BiShekel /></span>
                 </div>
             </div>
             <div className="checkoutTotal">
                 <span className="checkoutTotalTitle">סך הכל:</span>
-                <span className="checkoutTotalValue center">{total}<BiShekel /></span>
+                <span className="checkoutTotalValue center">{totalPlusShipment}<BiShekel /></span>
             </div>
         </div>
     );

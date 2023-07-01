@@ -65,6 +65,14 @@ export const products = (state: IInitialState = initialState, action: any) => {
             }, [] as TProduct[]);
             return { ...state, cart: updated }
         }
+        case actions.SET_ORDER_DETAILS: {
+            const currentOrderDetails = state.orderDetails;
+            const updatedOrderDetails = { ...currentOrderDetails, ...action.payload }
+            return { ...state, orderDetails: updatedOrderDetails }
+        }
+        case actions.SET_RETURN_POLICY_STATE: {
+            return { ...state, showReturnPolicy: action.payload }
+        }
         default:
             return state;
     }

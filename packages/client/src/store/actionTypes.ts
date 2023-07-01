@@ -7,3 +7,7 @@ export const SET_CART_DATA = "SET_CART_DATA";
 export const SET_CART_ID = "SET_CART_ID";
 export const SET_CHECKOUT_TOKEN = "SET_CHECKOUT_TOKEN";
 export const SET_TOTAL = "SET_TOTAL";
+
+export const SET_ORDER_DETAILS = "SET_ORDER_DETAILS";
+
+export const SET_RETURN_POLICY_STATE = "SET_RETURN_POLICY_STATE";

@@ -247,6 +247,10 @@ div.mainContainer > * {
 
 .productCarouselSingleImage {
   width: 100%;
+  > img {
+    max-width: 50%;
+    /* max-height: 80%; */
+  }
 }
 
 .rightArrow,
@@ -260,7 +264,8 @@ div.mainContainer > * {
 
 /* -------------------------- about page --------------------------- */
 
-.about {
+.about,
+.thankyouPage {
   height: 100vh;
   text-align: center;
   font-size: 1.5rem;
@@ -656,4 +661,47 @@ input[type="submit"] {
   .checkoutTotalValue {
     font-size: 22px;
   }
+}
+
+/* -------------------------- return policy --------------------------- */
+
+.returnPolicyFloat {
+  width: 90vw;
+  height: 70em;
+  position: absolute;
+  top: 5em;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  background-color: rgba(224, 201, 236, 0.9);
+  font-size: 20px;
+  line-height: 2rem;
+  padding: 5% 20%;
+  direction: rtl;
+  > #title {
+    font-size: 30px;
+    text-align: center;
+  }
+  > span {
+    position: absolute;
+    top: 0.5rem;
+    left: 1rem;
+  }
+}
+
+/* -------------------------- thank you page --------------------------- */
+
+.thankyouPage {
+  direction: rtl;
+  flex-direction: column;
+}
+
+.thankYouTitle {
+  font-size: 32px;
+}
+
+/* -------------------------- utility classes --------------------------- */
+
+.cursor {
+  cursor: pointer;
 }
