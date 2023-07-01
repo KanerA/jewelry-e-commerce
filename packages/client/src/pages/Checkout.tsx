@@ -149,9 +149,6 @@ const Checkout = () => {
                             <PaymentMethods
                                 key="paymentButtons"
                                 shippingCost={shipmentOption === 'delivery' ? shipmentCost : 0}
-                                clientName={`${formData?.FirstName} ${formData?.LastName}`}
-                                phoneNumber={`${formData?.MobileNumber}`}
-                                address={`${formData?.StreetName} ${formData?.ApartmentNumber}, ${formData?.City}`}
                             />
                         </div>
                     }

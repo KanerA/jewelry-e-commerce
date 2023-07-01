@@ -7,20 +7,23 @@ import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 
 import { getCartData, getOrderDetails } from "../store/selectors";
 import { TProduct } from "../store/types";
+import useEmptyCart from "../hooks/useEmptyCart";
 
 const CLIENT_ID = process.env.REACT_APP_CLIENT_ID || "";
 
-const PaymentMethods = ({ shippingCost, clientName, phoneNumber, address }: { shippingCost: number, clientName: string, phoneNumber: string, address: string }) => {
+const PaymentMethods = ({ shippingCost }: { shippingCost: number }) => {
     const navigate = useNavigate();
 
+    const emptyCart = useEmptyCart();
+
+    const cart = useSelector(getCartData);
     const orderDetails = useSelector(getOrderDetails);
 
     const [success, setSuccess] = useState(false);
     const [ErrorMessage, setErrorMessage] = useState("");
-    const [orderID, setOrderID] = useState(false);
+    const [orderID, setOrderID] = useState("");
     const [transactionID, setTransactionID] = useState<string>("");
     const [orderTotal, setOrderTotal] = useState<number>(0);
-    const cart = useSelector(getCartData);
 
     const paypalScriptOptions = { "client-id": CLIENT_ID, currency: "ILS" };
     emailjs.init("publicKey");
@@ -49,6 +52,7 @@ const PaymentMethods = ({ shippingCost, clientName, phoneNumber, address }: { sh
     const onApprove = (data: any, actions: any) => {
         return actions.order.capture().then(function (details: any) {
             let orderString = "";
+            const transactionId = details.purchase_units?.[0]?.payments?.captures?.[0]?.id;
             cart.map((item: TProduct) => orderString += `${item.product_meta.nameEnglish} - ${item.quantity} \n`);
             try {
                 // send mail with {orderDetails}
@@ -56,14 +60,18 @@ const PaymentMethods = ({ shippingCost, clientName, phoneNumber, address }: { sh
                     "service",
                     "template",
                     {
-                        client_name: clientName,
-                        client_address: address,
-                        phone_number: phoneNumber,
+                        client_name: orderDetails.client.fullName,
+                        client_address: orderDetails.client.address + ", " + orderDetails.client.city,
+                        phone_number: orderDetails.client.phoneNumber,
                         order_total: orderTotal,
-                        order_products: orderString
+                        order_products: orderString,
+                        shipping_method: orderDetails.shippingMethod,
+                        order_id: orderID,
+                        transaction_id: transactionId
                     })
                 setSuccess(true);
-                setTransactionID(details.purchase_units?.[0]?.payments?.captures?.[0]?.id);
+                setTransactionID(transactionId);
+                emptyCart();
             } catch (err) {
                 console.log(err);
             }
