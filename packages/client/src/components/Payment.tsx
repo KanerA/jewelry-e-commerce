@@ -26,7 +26,7 @@ const PaymentMethods = ({ shippingCost }: { shippingCost: number }) => {
     const [orderTotal, setOrderTotal] = useState<number>(0);
 
     const paypalScriptOptions = { "client-id": CLIENT_ID, currency: "ILS" };
-    emailjs.init("publicKey");
+    emailjs.init("-vZorVfC1fpO_apTn");
 
     // creates a paypal order
     const createOrder = (data: any, actions: any) => {
@@ -57,8 +57,8 @@ const PaymentMethods = ({ shippingCost }: { shippingCost: number }) => {
             try {
                 // send mail with {orderDetails}
                 emailjs.send(
-                    "service",
-                    "template",
+                    "service_agkbf8f",
+                    "template_zrn6mbs",
                     {
                         client_name: orderDetails.client.fullName,
                         client_address: orderDetails.client.address + ", " + orderDetails.client.city,
