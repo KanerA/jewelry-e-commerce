@@ -7,9 +7,16 @@ const ThankYou = () => {
         console.log(location.state);
     }, [location])
     return (
-        <div className="thankyouPage">
-            <div>{location?.state?.orderID}</div>
-            <div>{location?.state?.transactionID}</div>
+        <div className="thankyouPage center">
+            <div className='thankYouTitle'>תודה רבה על רכישתכם!</div>
+            <div>
+                <p>קוד ההזמנה שלך הוא:</p>
+                <p>{location?.state?.orderID}</p>
+            </div>
+            <div>
+                <p>מספר הזמנה לאיתור בפייפאל הוא:</p>
+                <p>{location?.state?.transactionID}</p>
+            </div>
         </div>
     );
 };

@@ -247,6 +247,10 @@ div.mainContainer > * {
 
 .productCarouselSingleImage {
   width: 100%;
+  > img {
+    max-width: 50%;
+    /* max-height: 80%; */
+  }
 }
 
 .rightArrow,
@@ -260,7 +264,8 @@ div.mainContainer > * {
 
 /* -------------------------- about page --------------------------- */
 
-.about {
+.about,
+.thankyouPage {
   height: 100vh;
   text-align: center;
   font-size: 1.5rem;
@@ -682,6 +687,17 @@ input[type="submit"] {
     top: 0.5rem;
     left: 1rem;
   }
+}
+
+/* -------------------------- thank you page --------------------------- */
+
+.thankyouPage {
+  direction: rtl;
+  flex-direction: column;
+}
+
+.thankYouTitle {
+  font-size: 32px;
 }
 
 /* -------------------------- utility classes --------------------------- */
