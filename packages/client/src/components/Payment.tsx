@@ -6,10 +6,11 @@ import emailjs from '@emailjs/browser';
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 
 import { getCartData, getOrderDetails } from "../store/selectors";
+import { TProduct } from "../store/types";
 
 const CLIENT_ID = process.env.REACT_APP_CLIENT_ID || "";
 
-const PaymentMethods = ({ shippingCost }: { shippingCost: number }) => {
+const PaymentMethods = ({ shippingCost, clientName, phoneNumber, address }: { shippingCost: number, clientName: string, phoneNumber: string, address: string }) => {
     const navigate = useNavigate();
 
     const orderDetails = useSelector(getOrderDetails);
@@ -18,6 +19,7 @@ const PaymentMethods = ({ shippingCost }: { shippingCost: number }) => {
     const [ErrorMessage, setErrorMessage] = useState("");
     const [orderID, setOrderID] = useState(false);
     const [transactionID, setTransactionID] = useState<string>("");
+    const [orderTotal, setOrderTotal] = useState<number>(0);
     const cart = useSelector(getCartData);
 
     const paypalScriptOptions = { "client-id": CLIENT_ID, currency: "ILS" };
@@ -25,10 +27,6 @@ const PaymentMethods = ({ shippingCost }: { shippingCost: number }) => {
 
     // creates a paypal order
     const createOrder = (data: any, actions: any) => {
-        const orderTotal = cart.reduce((prev: number, cartItem: any) => {
-            const a = cartItem.quantity * cartItem.price.raw;
-            return a + prev;
-        }, shippingCost);
 
         return actions.order.create({
             currency: "ILS",
@@ -50,9 +48,20 @@ const PaymentMethods = ({ shippingCost }: { shippingCost: number }) => {
     // check Approval
     const onApprove = (data: any, actions: any) => {
         return actions.order.capture().then(function (details: any) {
+            let orderString = "";
+            cart.map((item: TProduct) => orderString += `${item.product_meta.nameEnglish} - ${item.quantity} \n`);
             try {
                 // send mail with {orderDetails}
-                // emailjs.send("service_agkbf8f", "template_ismf58i", { from_name: "assaf", to_name: "assaf", message: "asasfafdfdfagfghfd" }).then((res: any) => console.log("SUCCESS", res)).catch((err: any) => console.log("ERROR", err))
+                emailjs.send(
+                    "service",
+                    "template",
+                    {
+                        client_name: clientName,
+                        client_address: address,
+                        phone_number: phoneNumber,
+                        order_total: orderTotal,
+                        order_products: orderString
+                    })
                 setSuccess(true);
                 setTransactionID(details.purchase_units?.[0]?.payments?.captures?.[0]?.id);
             } catch (err) {
@@ -80,6 +89,14 @@ const PaymentMethods = ({ shippingCost }: { shippingCost: number }) => {
             alert("An error has occured, refresh and try again")
         }
     });
+
+    useEffect(() => {
+        const temp = cart.reduce((prev: number, cartItem: any) => {
+            const a = cartItem.quantity * cartItem.price.raw;
+            return a + prev;
+        }, shippingCost);
+        setOrderTotal(temp);
+    }, [cart])
 
     return (
         <PayPalScriptProvider options={paypalScriptOptions}>

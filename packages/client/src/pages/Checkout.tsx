@@ -146,7 +146,13 @@ const Checkout = () => {
                             <span className="stepTitle">פרטי משלוח</span>
                             <CheckoutFormNotEditing formData={formData!} setIsEditingForm={setIsEditingForm} setIsPayment={setIsPayment} />
                             <ShipmentOptionsNotEditing setIsEditingForm={setIsEditingForm} setIsPayment={setIsPayment} shipmentOption={shipmentOption} />
-                            <PaymentMethods shippingCost={shipmentOption === 'delivery' ? shipmentCost : 0} />
+                            <PaymentMethods
+                                key="paymentButtons"
+                                shippingCost={shipmentOption === 'delivery' ? shipmentCost : 0}
+                                clientName={`${formData?.FirstName} ${formData?.LastName}`}
+                                phoneNumber={`${formData?.MobileNumber}`}
+                                address={`${formData?.StreetName} ${formData?.ApartmentNumber}, ${formData?.City}`}
+                            />
                         </div>
                     }
                 </main>
