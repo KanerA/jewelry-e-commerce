@@ -28,7 +28,7 @@ function App() {
       await fetchCartId();
     };
     a();
-  }, []);
+  }, [fetchDataFunc, fetchCartFunc, fetchCartId]);
 
   return (
     <div className="App">

@@ -23,7 +23,7 @@ const ShopNow = () => {
             setCategories(tempData);
         };
         a();
-    }, []);
+    }, [fetchCategories]);
 
     return (
         <div id="collections" className="collections">
@@ -40,7 +40,7 @@ const ShopNow = () => {
                 }
                 {
                     !!categories.length && categories.map((category: any) => {
-                        return <Link className='center' to={`/${category.catName}`}>
+                        return <Link className='center' to={`/${category.catName}`} key={`${category.catName}`}>
                             <div id={`${category.catName}`} className="coverImageContainer center">
                                 <img className="coverImages expandable center" src={category.coverImageUrl} />
                                 <div className="textOverlay">{category.catName.toUpperCase()}</div>
