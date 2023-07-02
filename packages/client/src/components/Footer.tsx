@@ -1,8 +1,11 @@
 import React from 'react';
 import { BsInstagram, BsWhatsapp } from 'react-icons/bs'
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { setReturnPolicyState } from '../store/actions';
 
 const Footer = () => {
+    const dispatch = useDispatch();
     return (
         <div className="footer">
             <div className='footerText'>KAMA JEWELRY - FOLLOW me on social media for updates!</div>
@@ -34,6 +37,9 @@ const Footer = () => {
                         <BsWhatsapp style={{ fill: "url(#whatsappIcon)" }} size={"30px"} />
                     </Link>
                 </div>
+            </div>
+            <div className="returnPolicyFooter cursor" onClick={(e) => dispatch(setReturnPolicyState(true))}>
+                מדיניות החזרת פריטים
             </div>
         </div>
     );
