@@ -10,7 +10,13 @@ const Icon = () => {
     );
 };
 
-const DropdownSelector = ({ options, placeHolder }: { options: TDropdownOptions[], placeHolder: string }) => {
+interface IDropDownSelectorProps {
+    options: TDropdownOptions[],
+    placeHolder: string,
+    setSelectedFromDropDown: (value: number | ((prevVar: number) => number)) => void
+}
+
+const DropdownSelector = ({ options, placeHolder, setSelectedFromDropDown }: IDropDownSelectorProps) => {
     const [showMenu, setShowMenu] = useState<boolean>(false);
     const [selectedValue, setSelectedValue] = useState<TDropdownOptions>(0);
 
@@ -23,7 +29,11 @@ const DropdownSelector = ({ options, placeHolder }: { options: TDropdownOptions[
         return placeHolder;
     };
 
-    const onItemClick = (option: TDropdownOptions) => setSelectedValue(option);
+    const onItemClick = (option: TDropdownOptions) => {
+        console.log("CLICKED", option)
+        setSelectedValue(option);
+        setSelectedFromDropDown(option as number);
+    };
 
     const isSelected = (option: TDropdownOptions) => {
         if (!selectedValue) {

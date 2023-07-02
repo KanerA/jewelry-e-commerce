@@ -30,7 +30,6 @@ const PaymentMethods = ({ shippingCost }: { shippingCost: number }) => {
 
     // creates a paypal order
     const createOrder = (data: any, actions: any) => {
-
         return actions.order.create({
             currency: "ILS",
             purchase_units: [
@@ -53,7 +52,9 @@ const PaymentMethods = ({ shippingCost }: { shippingCost: number }) => {
         return actions.order.capture().then(function (details: any) {
             let orderString = "";
             const transactionId = details.purchase_units?.[0]?.payments?.captures?.[0]?.id;
-            cart.map((item: TProduct) => orderString += `${item.product_meta.nameEnglish} - ${item.quantity} \n`);
+
+            cart.map((item: TProduct) =>
+                orderString += `${item.product_meta.nameEnglish} - ${item.quantity} - size: ${item.selected_options[0]?.option_name} \n`);
             try {
                 // send mail with {orderDetails}
                 emailjs.send(
@@ -97,6 +98,10 @@ const PaymentMethods = ({ shippingCost }: { shippingCost: number }) => {
             alert("An error has occured, refresh and try again")
         }
     });
+
+    useEffect(() => {
+        console.log("cart", { cart, timestamp: new Date() })
+    }, [cart]);
 
     useEffect(() => {
         const temp = cart.reduce((prev: number, cartItem: any) => {

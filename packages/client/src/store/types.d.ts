@@ -11,6 +11,8 @@ export type TProduct = {
     name: string;
     price: Price;
     description: string;
+    quantity: number;
+    variant_groups: any[];
     meta: {
         nameEnglish: string;
         sizes?: number[];
