@@ -95,7 +95,7 @@ const Checkout = () => {
         }
 
         dispatch(setOrderDetails(finalOrderFormat))
-    }, [formData, cart])
+    }, [formData, cart, shipmentOption]);
 
     // useEffect(() => {
     //     if (!checkoutToken) return;
