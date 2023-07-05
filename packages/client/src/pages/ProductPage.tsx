@@ -33,12 +33,15 @@ const ProductPage = () => {
     const [sizeOptions, setSizeOptions] = useState<number[]>([]);
     const [selectedVariantOption, setSelectedVariantOption] = useState<string>("");
     const [selectedVariantGroup, setSelectedVariantGroup] = useState<string>("");
+    const [isAddingToCart, setIsAddingToCart] = useState<boolean>(false);
 
-    const onCartClick = () => {
+    const onCartClick = async () => {
         if (!!selectedVariantOption && !!selectedVariantGroup) {
-            addToCartFunc(id, 1, {
+            setIsAddingToCart(true);
+            const res = await addToCartFunc(id, 1, {
                 [selectedVariantGroup]: selectedVariantOption
             });
+            setIsAddingToCart(!res?.success);
         } else {
             alert("Please Choose A Size")
         }
@@ -104,7 +107,7 @@ const ProductPage = () => {
                                 setSelectedFromDropDown={setSelectedFromDropDown}
                                 placeHolder='בחר/י...' />
                         </div>
-                        <AddToCart isAdded={false} onCartClick={onCartClick} />
+                        <AddToCart isAddingToCart={isAddingToCart} onCartClick={onCartClick} />
                     </div>
                     <ImageCarousel productImages={productImages} />
                 </div>

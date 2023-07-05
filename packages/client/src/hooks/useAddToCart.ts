@@ -4,7 +4,7 @@ import commerce from "../lib/commerce";
 const useAddToCart = () => {
     const dispatch = useDispatch();
     return async (id: string, qty: number, variant?: any /* for example size of ring */) => {
-        await commerce.cart.add(id, qty, variant);
+        return await commerce.cart.add(id, qty, variant);
     }
 };
 
