@@ -283,6 +283,13 @@ div.mainContainer > * {
   margin-top: 1rem;
 }
 
+.productPageLoader {
+  flex-direction: column;
+  > :first-child {
+    font-size: 30px;
+  }
+}
+
 /* -------------------------- about page --------------------------- */
 
 .about,
