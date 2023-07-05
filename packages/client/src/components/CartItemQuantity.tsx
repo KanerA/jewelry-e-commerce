@@ -1,12 +1,34 @@
+import { CircularProgress } from '@mui/material';
 import React from 'react';
-import { AiOutlinePlusCircle, AiOutlineMinusCircle } from 'react-icons/ai'
+import { AiOutlinePlusCircle, AiOutlineMinusCircle } from 'react-icons/ai';
 
-const CartItemQuantity = ({ onAddClick, onLessClick, quantity }: { onAddClick: any, onLessClick: any, quantity: number }) => {
+interface ICartItemQuantityProps {
+    onAddClick: any,
+    onLessClick: any,
+    quantity: number,
+    isLoadingQuantity: boolean
+}
+
+const CartItemQuantity = ({ onAddClick, onLessClick, quantity, isLoadingQuantity }: ICartItemQuantityProps) => {
     return (
         <div className="qtyContainer">
-            <div className="cartQuantityButton" onClick={onAddClick}><AiOutlinePlusCircle /></div>
-            <div>{quantity}</div>
-            <div className="cartQuantityButton" onClick={onLessClick}><AiOutlineMinusCircle /></div>
+            <div
+                className="cartQuantityButton"
+                onClick={onAddClick}
+            >
+                <AiOutlinePlusCircle />
+            </div>
+            {
+                isLoadingQuantity
+                    ? <CircularProgress size={20} color="inherit" />
+                    : <div>{quantity}</div>
+            }
+            <div
+                className="cartQuantityButton"
+                onClick={onLessClick}
+            >
+                <AiOutlineMinusCircle />
+            </div>
         </div>
     );
 };

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Skeleton } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
@@ -45,7 +45,12 @@ const ProductsGallerySingleItem = (props: any) => {
             <Link to={`/product/${props.id}`}>
                 <div className="itemContainer"> {/* TODO: change alt prop */}
                     {
-                        !imageLoaded && <Skeleton className="itemImage" style={{ height: "15rem" }} animation="wave" />
+                        !imageLoaded &&
+                        <Skeleton
+                            className="itemImage"
+                            style={{ height: "15rem" }}
+                            animation="wave"
+                        />
                     }
                     <img
                         className="itemImage expandable"

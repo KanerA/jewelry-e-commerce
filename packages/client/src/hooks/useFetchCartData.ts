@@ -5,8 +5,12 @@ import { setCartData } from "../store/actions";
 const useFetchCartData = () => {
     const dispatch = useDispatch();
     return async () => {
-        const cartProducts = await commerce.cart.contents();
-        dispatch(setCartData(cartProducts));
+        try {
+            const cartProducts = await commerce.cart.contents();
+            dispatch(setCartData(cartProducts));
+        } catch (err) {
+            console.log(err);
+        }
     }
 };
 
