@@ -30,7 +30,6 @@ const DropdownSelector = ({ options, placeHolder, setSelectedFromDropDown }: IDr
     };
 
     const onItemClick = (option: TDropdownOptions) => {
-        console.log("CLICKED", option)
         setSelectedValue(option);
         setSelectedFromDropDown(option as number);
     };

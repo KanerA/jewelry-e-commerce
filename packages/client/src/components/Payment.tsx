@@ -100,10 +100,6 @@ const PaymentMethods = ({ shippingCost }: { shippingCost: number }) => {
     });
 
     useEffect(() => {
-        console.log("cart", { cart, timestamp: new Date() })
-    }, [cart]);
-
-    useEffect(() => {
         const temp = cart.reduce((prev: number, cartItem: any) => {
             const a = cartItem.quantity * cartItem.price.raw;
             return a + prev;
