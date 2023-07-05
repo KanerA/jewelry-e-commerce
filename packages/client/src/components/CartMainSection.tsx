@@ -1,10 +1,11 @@
 import React, { useEffect } from 'react';
+
 import { Link } from 'react-router-dom';
-import { TProduct } from '../store/types';
+
 import CartItem from './CartItem';
-import useFetchCartData from '../hooks/useFetchCartData';
 import LeftArrow from './LeftArrow';
-import RightArrow from './RightArrow';
+import { TProduct } from '../store/types';
+import useFetchCartData from '../hooks/useFetchCartData';
 
 interface ICartMainSectionProps {
     cartData: TProduct[];
@@ -41,7 +42,15 @@ const CartMainSection = (props: ICartMainSectionProps) => {
             <Link to="/"><div className="returnButton"><span>המשיכו לרכישה באתר</span><LeftArrow iconsColor="#000000" /></div></Link>
             <main className="cartMainSection">
                 {dataToDisplay(props.cartData).map((prod: TProduct) => {
-                    return <CartItem id={prod.id} price={prod.price} name={prod.name} imageSrc={prod.image.url} quantity={prod.quantity} />
+                    console.log(prod)
+                    return <CartItem
+                        id={prod.id}
+                        price={prod.price}
+                        name={prod.name}
+                        imageSrc={prod.image.url}
+                        quantity={prod.quantity}
+                        sizes={prod.selected_options.map((val: any) => val?.option_name)}
+                    />
                 })}
             </main>
         </div>
