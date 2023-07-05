@@ -8,7 +8,7 @@ const ShipmentOptionsNotEditing = ({ setIsEditingForm, setIsPayment, shipmentOpt
                 setIsEditingForm(false);
                 setIsPayment(false);
             }}>לעריכה</span>
-            <div>{shipmentOption}</div>
+            <div>{shipmentOption === "selfPickup" ? "איסוף עצמי" : shipmentOption === "delivery" ? "משלוח לכתובת" : ""}</div>
         </div>
     );
 };

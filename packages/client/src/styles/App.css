@@ -600,8 +600,15 @@ input[type="submit"] {
 }
 
 .shipmentOptionsNotEditing {
+  position: relative;
   height: 6rem;
   border-bottom: 1px solid black;
+}
+
+.shipmentOptionsNotEditing > span:nth-child(2) {
+  position: absolute;
+  top: 0;
+  left: 2rem;
 }
 
 .paypalContainer {
