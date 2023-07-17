@@ -45,7 +45,7 @@ const CartMainSection = (props: ICartMainSectionProps) => {
                     return <CartItem
                         id={prod.id}
                         price={prod.price}
-                        name={prod.name}
+                        name={prod.product_meta.nameEnglish}
                         imageSrc={prod.image.url}
                         quantity={prod.quantity}
                         sizes={prod.selected_options.map((val: any) => val?.option_name)}
