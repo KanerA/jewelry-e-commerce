@@ -44,8 +44,8 @@ ul {
   background-color: rgba(224, 201, 236, 0.3);
   text-align: center;
   font-size: 1.5em;
-  margin-top: 10rem;
   padding: 0.5em 0;
+  margin-top: 3rem;
 }
 
 .footerLinksContainer {
@@ -87,7 +87,7 @@ div.mainContainer > * {
 }
 
 .collections {
-  height: 130vh;
+  height: fit-content;
   width: 100vw;
   display: flex;
   flex-direction: column;
@@ -766,6 +766,7 @@ input[type="submit"] {
 
   .footer {
     font-size: 14px;
+    margin-top: 3rem;
   }
 
   .footerLinksContainer {
@@ -782,10 +783,6 @@ input[type="submit"] {
 
   .imageIndicatorContainer > div {
     font-size: 12px;
-  }
-
-  .collections {
-    height: 150vh;
   }
 
   .collectionsTitle {
@@ -848,10 +845,6 @@ input[type="submit"] {
     font-size: 14px;
   }
 
-  .collections {
-    height: 120vh;
-  }
-
   .collectionsTitle {
     font-size: 20px;
   }
@@ -910,10 +903,6 @@ input[type="submit"] {
 
   .imageIndicatorContainer > div {
     font-size: 16px;
-  }
-
-  .collections {
-    height: 100vh;
   }
 
   .collectionsTitle {
@@ -976,10 +965,6 @@ input[type="submit"] {
     font-size: 18px;
   }
 
-  .collections {
-    height: 80vh;
-  }
-
   .collectionsTitle {
     font-size: 26px;
   }
@@ -1040,10 +1025,6 @@ input[type="submit"] {
     font-size: 20px;
   }
 
-  .collections {
-    height: 60vh;
-  }
-
   .collectionsTitle {
     font-size: 28px;
   }
@@ -1066,11 +1047,3 @@ input[type="submit"] {
   .expandable:hover {
   }
 }
-
-/* For example:
-@media (min-width: 1200px) and (max-width: 1399.98px) {
-  Adjust styles for specific large devices
-}
-*/
-
-/* Continue adding more media queries as needed for specific breakpoints */
