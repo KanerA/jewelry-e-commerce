@@ -1,4 +1,5 @@
 import * as actions from './actionTypes';
+import { IOrderDetailsUpdate } from './types';
 
 export const actionAddFavorite = (itemId: string) => ({
     type: actions.ADD_FAVORITE_ITEM,
@@ -41,3 +42,13 @@ export const setTotal = (payload: number) => ({
     type: actions.SET_TOTAL,
     payload
 });
+
+export const setOrderDetails = (payload: IOrderDetailsUpdate) => ({
+    type: actions.SET_ORDER_DETAILS,
+    payload
+});
+
+export const setReturnPolicyState = (payload: boolean) => ({
+    type: actions.SET_RETURN_POLICY_STATE,
+    payload
+})

@@ -1,3 +1,5 @@
+import { TShipmentOptions } from "../pages/Checkout";
+
 export type Price = {
     raw: number,
     formatted: string,
@@ -9,8 +11,11 @@ export type TProduct = {
     name: string;
     price: Price;
     description: string;
+    quantity: number;
+    variant_groups: any[];
     meta: {
         nameEnglish: string;
+        sizes?: number[];
         [x: string]: any;
     };
     image: {
@@ -31,11 +36,42 @@ export interface IInitialState {
         necklaces: TProduct[],
         earrings: TProduct[],
     },
+    orderDetails: {
+        client: {
+            fullName: string,
+            address: string,
+            city: string,
+            phoneNumber: string,
+        },
+        products: {
+            [item: string]: {
+                quantity: number,
+            }
+        },
+        shippingMethod: TShipmentOptions
+    },
     favorites: string[],
     cart: TProduct[],
     cartId: string | null,
     checkoutToken: any,
     total: number,
+    showReturnPolicy: boolean
 }
+
+export interface IOrderDetailsUpdate {
+    client?: {
+        fullName: string,
+        address: string,
+        city: string,
+        phoneNumber: string,
+    },
+    products?: {
+        [item: string]: {
+            quantity: number,
+        }
+    },
+    shippingMethod?: TShipmentOptions
+}
+
 
 export type TDropdownOptions = number | string;

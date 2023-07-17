@@ -1,28 +1,35 @@
 import React, { useState, useEffect } from "react";
-import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
+
 import { useSelector } from "react-redux";
-import { getCartData } from "../store/selectors";
 import { useNavigate } from "react-router-dom";
+import emailjs from '@emailjs/browser';
+import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
+
+import { getCartData, getOrderDetails } from "../store/selectors";
+import { TProduct } from "../store/types";
+import useEmptyCart from "../hooks/useEmptyCart";
 
 const CLIENT_ID = process.env.REACT_APP_CLIENT_ID || "";
 
-const PaymentMethods = () => {
+const PaymentMethods = ({ shippingCost }: { shippingCost: number }) => {
     const navigate = useNavigate();
+
+    const emptyCart = useEmptyCart();
+
+    const cart = useSelector(getCartData);
+    const orderDetails = useSelector(getOrderDetails);
 
     const [success, setSuccess] = useState(false);
     const [ErrorMessage, setErrorMessage] = useState("");
-    const [orderID, setOrderID] = useState(false);
+    const [orderID, setOrderID] = useState("");
     const [transactionID, setTransactionID] = useState<string>("");
-    const cart = useSelector(getCartData);
+    const [orderTotal, setOrderTotal] = useState<number>(0);
 
-    const paypalScriptOptions = { "client-id": CLIENT_ID, currency: "ILS" }
+    const paypalScriptOptions = { "client-id": CLIENT_ID, currency: "ILS" };
+    emailjs.init("-vZorVfC1fpO_apTn");
 
     // creates a paypal order
     const createOrder = (data: any, actions: any) => {
-        const orderTotal = cart.reduce((prev: number, cartItem: any) => {
-            const a = cartItem.quantity * cartItem.price.raw;
-            return a + prev;
-        }, 0);
         return actions.order.create({
             currency: "ILS",
             purchase_units: [
@@ -43,8 +50,33 @@ const PaymentMethods = () => {
     // check Approval
     const onApprove = (data: any, actions: any) => {
         return actions.order.capture().then(function (details: any) {
-            setSuccess(true);
-            setTransactionID(details.purchase_units?.[0]?.payments?.captures?.[0]?.id);
+            let orderString = "";
+            const transactionId = details.purchase_units?.[0]?.payments?.captures?.[0]?.id;
+
+            cart.map((item: TProduct) =>
+                orderString += `${item.product_meta.nameEnglish} - ${item.quantity} - size: ${item.selected_options[0]?.option_name} \n`);
+            try {
+                // send mail with {orderDetails}
+                emailjs.send(
+                    "service_agkbf8f",
+                    "template_zrn6mbs",
+                    {
+                        client_name: orderDetails.client.fullName,
+                        client_address: orderDetails.client.address + ", " + orderDetails.client.city,
+                        phone_number: orderDetails.client.phoneNumber,
+                        order_total: orderTotal,
+                        order_products: orderString,
+                        shipping_method: orderDetails.shippingMethod,
+                        order_id: orderID,
+                        transaction_id: transactionId
+                    })
+                setSuccess(true);
+                setTransactionID(transactionId);
+                emptyCart();
+            } catch (err) {
+                console.log(err);
+            }
+
         });
     };
 
@@ -67,6 +99,14 @@ const PaymentMethods = () => {
         }
     });
 
+    useEffect(() => {
+        const temp = cart.reduce((prev: number, cartItem: any) => {
+            const a = cartItem.quantity * cartItem.price.raw;
+            return a + prev;
+        }, shippingCost);
+        setOrderTotal(temp);
+    }, [cart])
+
     return (
         <PayPalScriptProvider options={paypalScriptOptions}>
             <div className="paypalContainer">
@@ -81,4 +121,4 @@ const PaymentMethods = () => {
     );
 }
 
-export default PaymentMethods
+export default PaymentMethods;

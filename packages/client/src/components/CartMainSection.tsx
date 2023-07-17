@@ -1,10 +1,11 @@
 import React, { useEffect } from 'react';
+
 import { Link } from 'react-router-dom';
-import { TProduct } from '../store/types';
+
 import CartItem from './CartItem';
-import useFetchCartData from '../hooks/useFetchCartData';
 import LeftArrow from './LeftArrow';
-import RightArrow from './RightArrow';
+import { TProduct } from '../store/types';
+import useFetchCartData from '../hooks/useFetchCartData';
 
 interface ICartMainSectionProps {
     cartData: TProduct[];
@@ -47,6 +48,7 @@ const CartMainSection = (props: ICartMainSectionProps) => {
                         name={prod.product_meta.nameEnglish}
                         imageSrc={prod.image.url}
                         quantity={prod.quantity}
+                        sizes={prod.selected_options.map((val: any) => val?.option_name)}
                     />
                 })}
             </main>

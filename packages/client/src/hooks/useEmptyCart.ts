@@ -2,16 +2,16 @@ import { useDispatch } from "react-redux";
 import commerce from "../lib/commerce";
 import { setCartData } from "../store/actions";
 
-const useFetchCartData = () => {
+const useEmptyCart = () => {
     const dispatch = useDispatch();
     return async () => {
         try {
-            const cartProducts = await commerce.cart.contents();
-            dispatch(setCartData(cartProducts));
+            await commerce.cart.empty();
+            dispatch(setCartData([]));
         } catch (err) {
             console.log(err);
         }
     }
-};
+}
 
-export default useFetchCartData;
+export default useEmptyCart;

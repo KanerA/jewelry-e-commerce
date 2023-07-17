@@ -11,8 +11,12 @@ const ImageCarousel = ({ productImages }: IProps) => {
     const [currentPicture, setCurrentPicture] = useState<number>(0);
     const iconsColor = '#d6b2ea';
 
-    const onRightClick = () => setCurrentPicture(prev => prev === 0 ? productImages.length - 1 : prev - 1);
-    const onLeftClick = () => setCurrentPicture(prev => prev === productImages.length - 1 ? 0 : prev + 1);
+    const onRightClick = () => {
+        setCurrentPicture(prev => prev === 0 ? productImages.length - 1 : prev - 1);
+    }
+    const onLeftClick = () => {
+        setCurrentPicture(prev => prev === productImages.length - 1 ? 0 : prev + 1);
+    }
 
     return (
         <div id="productCarousel" className="productCarouselContainer productPageLeftSide">

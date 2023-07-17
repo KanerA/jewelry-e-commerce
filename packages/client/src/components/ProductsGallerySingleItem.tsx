@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Skeleton } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
@@ -19,6 +19,7 @@ const ProductsGallerySingleItem = (props: any) => {
 
     const [isFavorite, setIsFavorite] = useState<boolean>(!!itemInitialFavState);
     const [imageLoaded, setImageLoaded] = useState<boolean>(false);
+    const [isAddingToCart, setIsAddingToCart] = useState<boolean>(false);
 
     const onFavoriteClick = (e: any) => {
         e.preventDefault();
@@ -26,10 +27,12 @@ const ProductsGallerySingleItem = (props: any) => {
         setIsFavorite(prev => !prev);
     };
 
-    const onCartClick = (e: any) => {
+    const onCartClick = async (e: any) => {
         e.preventDefault()
         const qty = 1; // change to users choice
-        addToCartFunc(props.id, qty)
+        setIsAddingToCart(true);
+        const res = await addToCartFunc(props.id, qty);
+        setIsAddingToCart(!res?.success);
     };
 
     const removePTag = (text: string): string => {
@@ -45,7 +48,12 @@ const ProductsGallerySingleItem = (props: any) => {
             <Link to={`/product/${props.id}`}>
                 <div className="itemContainer"> {/* TODO: change alt prop */}
                     {
-                        !imageLoaded && <Skeleton className="itemImage" style={{ height: "15rem" }} animation="wave" />
+                        !imageLoaded &&
+                        <Skeleton
+                            className="itemImage"
+                            style={{ height: "15rem" }}
+                            animation="wave"
+                        />
                     }
                     <img
                         className="itemImage expandable"
@@ -60,6 +68,7 @@ const ProductsGallerySingleItem = (props: any) => {
                         onCartClick={onCartClick}
                         isFavorite={isFavorite}
                         onFavoriteClick={onFavoriteClick}
+                        isAddingToCart={isAddingToCart}
                     />
                 </div>
 
@@ -76,7 +85,7 @@ export const SingleItemDetails = (props: any) => {
         </div>
         <div className="actionButtons">
             <FavoriteIcon onClick={props.onFavoriteClick} isFavorite={props.isFavorite} />
-            <AddToCart isAdded={false} onCartClick={props.onCartClick} />
+            <AddToCart isAddingToCart={props.isAddingToCart} onCartClick={props.onCartClick} />
         </div>
     </div>
 };

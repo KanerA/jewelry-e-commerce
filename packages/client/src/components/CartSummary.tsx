@@ -20,6 +20,9 @@ const calculateCartSubTotal = (cartProducts: any): number => {
 
 const CartSummary = (props: ICartSummaryProps) => {
     const [shipmentCost, setShipmentCost] = useState<number>(0);
+    //  TODO: dispatch after change to orderDetails.shippingMethod
+    const [selectedFromDropDown, setSelectedFromDropDown] = useState<number>(0);
+
     const cartSubTotal = calculateCartSubTotal(props.cartData);
     const total = useSelector(getCheckoutTotal);
     const dispatch = useDispatch();
@@ -52,7 +55,10 @@ const CartSummary = (props: ICartSummaryProps) => {
                     <span id="shipmentCost">{0}</span>
                 </div>
                 <div id="shipmentOptions">
-                    <DropdownSelector options={shipmentOptions} placeHolder='אופציות משלוח' />
+                    <DropdownSelector
+                        options={shipmentOptions}
+                        setSelectedFromDropDown={setSelectedFromDropDown}
+                        placeHolder='אופציות משלוח' />
                 </div>
             </div>
             <div id="summaryTotalAndCheckout">
