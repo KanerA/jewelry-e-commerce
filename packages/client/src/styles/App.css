@@ -746,3 +746,331 @@ input[type="submit"] {
 .cursor {
   cursor: pointer;
 }
+
+@media (max-width: 575.98px) {
+  .center {
+  }
+
+  nav {
+  }
+
+  a {
+  }
+
+  .logoContainer {
+    font-size: 16px;
+  }
+
+  ul {
+  }
+
+  .footer {
+    font-size: 14px;
+  }
+
+  .footerLinksContainer {
+    width: 90%;
+  }
+
+  .returnPolicyFooter {
+    font-size: 16px;
+  }
+
+  .mainContainer {
+    height: 50vh;
+  }
+
+  .imageIndicatorContainer > div {
+    font-size: 12px;
+  }
+
+  .collections {
+    height: 150vh;
+  }
+
+  .collectionsTitle {
+    font-size: 18px;
+  }
+
+  .collectionsLinksContainer {
+    grid-template-columns: 1fr;
+  }
+
+  .coverImageContainer {
+  }
+
+  .textOverlay {
+    font-size: 20px;
+  }
+
+  .coverImages {
+    width: 95%;
+  }
+
+  .expandable:hover {
+  }
+}
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+  .center {
+  }
+
+  nav {
+  }
+
+  a {
+  }
+
+  .logoContainer {
+    font-size: 18px;
+  }
+
+  ul {
+  }
+
+  .footer {
+    font-size: 16px;
+  }
+
+  .footerLinksContainer {
+    width: 80%;
+  }
+
+  .returnPolicyFooter {
+    font-size: 18px;
+  }
+
+  .mainContainer {
+    height: 50vh;
+  }
+
+  .imageIndicatorContainer > div {
+    font-size: 14px;
+  }
+
+  .collections {
+    height: 120vh;
+  }
+
+  .collectionsTitle {
+    font-size: 20px;
+  }
+
+  .collectionsLinksContainer {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .coverImageContainer {
+  }
+
+  .textOverlay {
+    font-size: 22px;
+  }
+
+  .coverImages {
+    width: 90%;
+  }
+
+  .expandable:hover {
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .center {
+  }
+
+  nav {
+  }
+
+  a {
+  }
+
+  .logoContainer {
+    font-size: 20px;
+  }
+
+  ul {
+  }
+
+  .footer {
+    font-size: 18px;
+  }
+
+  .footerLinksContainer {
+    width: 70%;
+  }
+
+  .returnPolicyFooter {
+    font-size: 20px;
+  }
+
+  .mainContainer {
+    height: 80vh;
+  }
+
+  .imageIndicatorContainer > div {
+    font-size: 16px;
+  }
+
+  .collections {
+    height: 100vh;
+  }
+
+  .collectionsTitle {
+    font-size: 24px;
+  }
+
+  .collectionsLinksContainer {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .coverImageContainer {
+  }
+
+  .textOverlay {
+    font-size: 26px;
+  }
+
+  .coverImages {
+    width: 85%;
+  }
+
+  .expandable:hover {
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  .center {
+  }
+
+  nav {
+  }
+
+  a {
+  }
+
+  .logoContainer {
+    font-size: 22px;
+  }
+
+  ul {
+  }
+
+  .footer {
+    font-size: 20px;
+  }
+
+  .footerLinksContainer {
+    width: 60%;
+  }
+
+  .returnPolicyFooter {
+    font-size: 22px;
+  }
+
+  .mainContainer {
+    height: 100vh;
+  }
+
+  .imageIndicatorContainer > div {
+    font-size: 18px;
+  }
+
+  .collections {
+    height: 80vh;
+  }
+
+  .collectionsTitle {
+    font-size: 26px;
+  }
+
+  .collectionsLinksContainer {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .coverImageContainer {
+  }
+
+  .textOverlay {
+    font-size: 28px;
+  }
+
+  .coverImages {
+    width: 80%;
+  }
+
+  .expandable:hover {
+  }
+}
+
+@media (min-width: 1200px) {
+  .center {
+  }
+
+  nav {
+  }
+
+  a {
+  }
+
+  .logoContainer {
+    font-size: 24px;
+  }
+
+  ul {
+  }
+
+  .footer {
+    font-size: 22px;
+  }
+
+  .footerLinksContainer {
+    width: 50%;
+  }
+
+  .returnPolicyFooter {
+    font-size: 24px;
+  }
+
+  .mainContainer {
+    height: 100vh;
+  }
+
+  .imageIndicatorContainer > div {
+    font-size: 20px;
+  }
+
+  .collections {
+    height: 60vh;
+  }
+
+  .collectionsTitle {
+    font-size: 28px;
+  }
+
+  .collectionsLinksContainer {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .coverImageContainer {
+  }
+
+  .textOverlay {
+    font-size: 30px;
+  }
+
+  .coverImages {
+    width: 75%;
+  }
+
+  .expandable:hover {
+  }
+}
+
+/* For example:
+@media (min-width: 1200px) and (max-width: 1399.98px) {
+  Adjust styles for specific large devices
+}
+*/
+
+/* Continue adding more media queries as needed for specific breakpoints */
