@@ -810,6 +810,34 @@ input[type="submit"] {
   .productsGallery {
     grid-template-columns: 1fr;
   }
+
+  .cartItem aside {
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 15%;
+  }
+
+  .firstStep form > div {
+    flex-direction: column;
+    flex-grow: 1;
+
+    > :first-child {
+      margin-bottom: 1.5rem;
+    }
+
+    > :last-child {
+      margin-right: 0;
+    }
+  }
+
+  .checkoutSummaryItem {
+    justify-content: space-between;
+  }
+
+  .checkoutSummaryItemImage {
+    display: none;
+  }
 }
 
 @media (min-width: 576px) and (max-width: 767.98px) {
@@ -873,6 +901,34 @@ input[type="submit"] {
 
   .productsGallery {
     grid-template-columns: 1fr;
+  }
+
+  .cartItem aside {
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 15%;
+  }
+
+  .firstStep form > div {
+    flex-direction: column;
+    flex-grow: 1;
+
+    > :first-child {
+      margin-bottom: 1.5rem;
+    }
+
+    > :last-child {
+      margin-right: 0;
+    }
+  }
+
+  .checkoutSummaryItem {
+    justify-content: space-evenly;
+  }
+
+  .checkoutSummaryItemImage {
+    display: none;
   }
 }
 
@@ -938,6 +994,34 @@ input[type="submit"] {
   .productsGallery {
     grid-template-columns: 1fr 1fr;
   }
+
+  .cartItem aside {
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 15%;
+  }
+
+  .firstStep form > div {
+    flex-direction: column;
+    flex-grow: 1;
+
+    > :first-child {
+      margin-bottom: 1.5rem;
+    }
+
+    > :last-child {
+      margin-right: 0;
+    }
+  }
+
+  .checkoutSummaryItem {
+    justify-content: space-between;
+  }
+
+  .checkoutSummaryItemImage {
+    display: none;
+  }
 }
 
 @media (min-width: 992px) and (max-width: 1199.98px) {
@@ -1001,6 +1085,27 @@ input[type="submit"] {
   }
 
   .expandable:hover {
+  }
+
+  .firstStep form > div {
+    flex-direction: column;
+    flex-grow: 1;
+
+    > :first-child {
+      margin-bottom: 1.5rem;
+    }
+
+    > :last-child {
+      margin-right: 0;
+    }
+  }
+
+  .checkoutSummaryItem {
+    justify-content: space-between;
+  }
+
+  .checkoutSummaryItemImage {
+    display: none;
   }
 }
 
