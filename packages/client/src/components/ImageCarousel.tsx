@@ -19,7 +19,7 @@ const ImageCarousel = ({ productImages }: IProps) => {
     }
 
     return (
-        <div id="productCarousel" className="productCarouselContainer productPageLeftSide">
+        <div id="productCarousel" className="productCarouselContainer productPageLeftSide center">
             <img className="productCarouselSingleImage" src={productImages[currentPicture]} />
             <div className="imageControlsContainer center">
                 <RightArrow onRightClick={onRightClick} iconsColor={iconsColor} />

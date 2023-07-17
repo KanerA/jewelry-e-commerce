@@ -9,6 +9,7 @@ import CartItemQuantity from './CartItemQuantity';
 import useFetchCartData from '../hooks/useFetchCartData';
 import useRemoveFromCart from '../hooks/useRemoveFromCart';
 import useUpdateCartItemQuantity from '../hooks/useUpdateCartItemQuantity';
+import ImageComponent from './ImageComponent';
 
 interface ICartItemProps {
     id: string;
@@ -68,10 +69,10 @@ const CartItem = (props: ICartItemProps) => {
         <div className="cartItem">
             <main>
                 <div className="imageContainer">
-                    <img
+                    <ImageComponent
                         className="singleImage"
-                        src={props.imageSrc} alt={props.name}
-                    />
+                        src={props.imageSrc}
+                        alt={props.name} />
                     <div className="namePriceContainer">
                         <div className="itemName">{props.name}</div>
                         <PriceTag price={props.price.formatted_with_symbol} />
