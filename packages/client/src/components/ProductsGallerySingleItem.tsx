@@ -43,9 +43,8 @@ const ProductsGallerySingleItem = (props: any) => {
 
 
     return (
-        <div
-            className="gallerySingleItem">
-            <Link to={`/product/${props.id}`}>
+        <Link to={`/product/${props.id}`}>
+            <div className="gallerySingleItem center ">
                 <div className="itemContainer"> {/* TODO: change alt prop */}
                     {
                         !imageLoaded &&
@@ -72,8 +71,8 @@ const ProductsGallerySingleItem = (props: any) => {
                     />
                 </div>
 
-            </Link>
-        </div>
+            </div>
+        </Link>
     );
 };
 

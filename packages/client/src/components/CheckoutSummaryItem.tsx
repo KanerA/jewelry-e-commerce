@@ -1,6 +1,7 @@
 import React from 'react';
 import { TProduct } from '../store/types';
 import { BiShekel } from 'react-icons/bi';
+import ImageComponent from './ImageComponent';
 
 interface IProps {
     item: TProduct;
@@ -12,7 +13,7 @@ const CheckoutSummaryItem = ({ item, qty }: IProps) => {
         <div className="checkoutSummaryItem">
             <div className='itemMain'>
                 <div className="checkoutSummaryItemImage">
-                    <img src={item?.image?.url} alt={item?.product_meta.nameEnglish} />
+                    <ImageComponent className='' src={item?.image?.url} alt={item?.product_meta.nameEnglish} />
                 </div>
                 <div className="checkoutSummaryItemData">
                     <div className="checkoutSummaryItemName">{item?.product_meta.nameEnglish}</div>
