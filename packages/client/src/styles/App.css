@@ -831,6 +831,10 @@ input[type="submit"] {
     }
   }
 
+  .singleImage {
+    width: 120px;
+  }
+
   .checkoutSummaryItem {
     justify-content: space-between;
   }
@@ -921,6 +925,10 @@ input[type="submit"] {
     > :last-child {
       margin-right: 0;
     }
+  }
+
+  .singleImage {
+    width: 140px;
   }
 
   .checkoutSummaryItem {
@@ -1015,6 +1023,10 @@ input[type="submit"] {
     }
   }
 
+  .singleImage {
+    width: 160px;
+  }
+
   .checkoutSummaryItem {
     justify-content: space-between;
   }
@@ -1098,6 +1110,10 @@ input[type="submit"] {
     > :last-child {
       margin-right: 0;
     }
+  }
+
+  .singleImage {
+    width: 180px;
   }
 
   .checkoutSummaryItem {
