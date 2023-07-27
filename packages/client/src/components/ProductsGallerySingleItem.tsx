@@ -31,8 +31,18 @@ const ProductsGallerySingleItem = (props: any) => {
         e.preventDefault()
         const qty = 1; // change to users choice
         setIsAddingToCart(true);
-        const res = await addToCartFunc(props.id, qty);
-        setIsAddingToCart(!res?.success);
+        const size = prompt(`choose a size: ${props.sizes.toString()}`);
+        if (size) {
+            const variantOptionId = props.findVariant(size, props.variantGroup);
+            const res = await addToCartFunc(props.id, qty, {
+                [props.variantGroup.id]: variantOptionId
+            });
+            setIsAddingToCart(!res?.success);
+
+        } else {
+            new Error("no size where chosen");
+            setIsAddingToCart(false)
+        }
     };
 
     const removePTag = (text: string): string => {

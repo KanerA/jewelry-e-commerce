@@ -13,7 +13,7 @@ const CheckoutSummaryItem = ({ item, qty }: IProps) => {
         <div className="checkoutSummaryItem">
             <div className='itemMain'>
                 <div className="checkoutSummaryItemImage">
-                    <ImageComponent className='' src={item?.image?.url} alt={item?.product_meta.nameEnglish} />
+                    <img className='' src={item?.image?.url} alt={item?.product_meta.nameEnglish} />
                 </div>
                 <div className="checkoutSummaryItemData">
                     <div className="checkoutSummaryItemName">{item?.product_meta.nameEnglish}</div>

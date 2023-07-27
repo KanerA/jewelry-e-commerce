@@ -49,14 +49,14 @@ const ProductPage = () => {
 
     const formatVariantsToSizes = () => {
         const variantGroup = productById?.variant_groups?.find((group: any) => group.name === "Size");
-        setSelectedVariantGroup(variantGroup?.id ?? []);
-        const options = variantGroup?.options.map((option: any) => Number(option.name)) ?? [];
+        setSelectedVariantGroup(variantGroup?.id ?? "");
+        const options = variantGroup?.options.map((option: any) => option.name) ?? [];
         setSizeOptions(options);
     };
 
     const findVariant = (size: number) => {
         const variantGroup = productById?.variant_groups?.find((group: any) => group.name === "Size");
-        const variantOptionId = variantGroup?.options?.find((option: any) => Number(option.name) === size)?.id;
+        const variantOptionId = variantGroup?.options?.find((option: any) => option.name === size)?.id;
         setSelectedVariantOption(variantOptionId);
     };
 

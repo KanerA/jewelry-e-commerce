@@ -46,6 +46,7 @@ export interface IInitialState {
         products: {
             [item: string]: {
                 quantity: number,
+                size: string | number
             }
         },
         shippingMethod: TShipmentOptions
