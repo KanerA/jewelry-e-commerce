@@ -54,33 +54,34 @@ const ProductsGallerySingleItem = (props: any) => {
 
     return (
         <Link to={`/product/${props.id}`}>
-            <div className="gallerySingleItem center ">
+            <div className="gallerySingleItem ">
                 <div className="itemContainer center"> {/* TODO: change alt prop */}
-                    {
-                        !imageLoaded &&
-                        <Skeleton
-                            className="itemImage"
-                            style={{ height: "15rem" }}
-                            animation="wave"
+                    <div className='itemAndImageContainer center'>
+                        {
+                            !imageLoaded &&
+                            <Skeleton
+                                className="itemImage"
+                                style={{ height: "15rem" }}
+                                animation="wave"
+                            />
+                        }
+                        <img
+                            className="itemImage expandable"
+                            src={props.imageSrc}
+                            alt={props.nameEnglish}
+                            onLoad={() => setImageLoaded(true)}
                         />
-                    }
-                    <img
-                        className="itemImage expandable"
-                        src={props.imageSrc}
-                        alt={props.nameEnglish}
-                        onLoad={() => setImageLoaded(true)}
-                    />
-                    <SingleItemDetails
-                        name={props.nameEnglish}
-                        description={removePTag(props.description)}
-                        price={props.price.formatted_with_symbol}
-                        onCartClick={onCartClick}
-                        isFavorite={isFavorite}
-                        onFavoriteClick={onFavoriteClick}
-                        isAddingToCart={isAddingToCart}
-                    />
+                        <SingleItemDetails
+                            name={props.nameEnglish}
+                            description={removePTag(props.description)}
+                            price={props.price.formatted_with_symbol}
+                            onCartClick={onCartClick}
+                            isFavorite={isFavorite}
+                            onFavoriteClick={onFavoriteClick}
+                            isAddingToCart={isAddingToCart}
+                        />
+                    </div>
                 </div>
-
             </div>
         </Link>
     );
