@@ -55,7 +55,7 @@ const ProductsGallerySingleItem = (props: any) => {
     return (
         <Link to={`/product/${props.id}`}>
             <div className="gallerySingleItem center ">
-                <div className="itemContainer"> {/* TODO: change alt prop */}
+                <div className="itemContainer center"> {/* TODO: change alt prop */}
                     {
                         !imageLoaded &&
                         <Skeleton
