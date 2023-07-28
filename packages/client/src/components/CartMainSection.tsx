@@ -36,7 +36,7 @@ const CartMainSection = (props: ICartMainSectionProps) => {
         return <main className="cartMainSection"><div id="cartLoader">Loading...</div></main>;
     }
 
-    if (props.cartData.length === 0) return <div className="cartMainSection center bigFont">Your Cart is Empty, Go Add Some Stuff ;)</div>
+    if (props.cartData.length === 0) return <div className="cartMainSection center bigFont emptyCartText">Your Cart is Empty, Go Add Some Stuff ;)</div>
     return (
         <div>
             <Link to="/"><div className="returnButton"><span>המשיכו לרכישה באתר</span><LeftArrow iconsColor="#000000" /></div></Link>

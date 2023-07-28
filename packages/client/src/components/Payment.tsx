@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import emailjs from '@emailjs/browser';
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 
-import { getCartData, getOrderDetails } from "../store/selectors";
+import { getCartData, getCheckoutTotal, getOrderDetails } from "../store/selectors";
 import { TProduct } from "../store/types";
 import useEmptyCart from "../hooks/useEmptyCart";
 
@@ -18,12 +18,12 @@ const PaymentMethods = ({ shippingCost }: { shippingCost: number }) => {
 
     const cart = useSelector(getCartData);
     const orderDetails = useSelector(getOrderDetails);
+    const checkoutTotal = useSelector(getCheckoutTotal);
 
     const [success, setSuccess] = useState(false);
     const [ErrorMessage, setErrorMessage] = useState("");
     const [orderID, setOrderID] = useState("");
     const [transactionID, setTransactionID] = useState<string>("");
-    const [orderTotal, setOrderTotal] = useState<number>(0);
 
     const paypalScriptOptions = { "client-id": CLIENT_ID, currency: "ILS" };
     emailjs.init("-vZorVfC1fpO_apTn");
@@ -37,7 +37,7 @@ const PaymentMethods = ({ shippingCost }: { shippingCost: number }) => {
                     description: "kama jewelry",
                     amount: {
                         currency_code: "ILS",
-                        value: orderTotal,
+                        value: checkoutTotal + shippingCost,
                     },
                 },
             ],
@@ -64,7 +64,7 @@ const PaymentMethods = ({ shippingCost }: { shippingCost: number }) => {
                         client_name: orderDetails.client.fullName,
                         client_address: orderDetails.client.address + ", " + orderDetails.client.city,
                         phone_number: orderDetails.client.phoneNumber,
-                        order_total: orderTotal,
+                        order_total: checkoutTotal + shippingCost,
                         order_products: orderString,
                         shipping_method: orderDetails.shippingMethod,
                         order_id: orderID,
@@ -98,14 +98,6 @@ const PaymentMethods = ({ shippingCost }: { shippingCost: number }) => {
             alert("An error has occured, refresh and try again")
         }
     });
-
-    useEffect(() => {
-        const temp = cart.reduce((prev: number, cartItem: any) => {
-            const a = cartItem.quantity * cartItem.price.raw;
-            return a + prev;
-        }, shippingCost);
-        setOrderTotal(temp);
-    }, [cart])
 
     return (
         <PayPalScriptProvider options={paypalScriptOptions}>
