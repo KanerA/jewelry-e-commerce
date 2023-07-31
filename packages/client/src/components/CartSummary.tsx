@@ -54,12 +54,12 @@ const CartSummary = (props: ICartSummaryProps) => {
                     <span id="shipmentSummaryTitle">משלוח</span>
                     <span id="shipmentCost">{0}</span>
                 </div>
-                <div id="shipmentOptions">
+                {/* <div id="shipmentOptions">
                     <DropdownSelector
                         options={shipmentOptions}
                         setSelectedFromDropDown={setSelectedFromDropDown}
                         placeHolder='אופציות משלוח' />
-                </div>
+                </div> */}
             </div>
             <div id="summaryTotalAndCheckout">
                 <span id="totalTitle">סך הכל</span>
