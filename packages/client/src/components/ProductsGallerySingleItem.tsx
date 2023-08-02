@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { Skeleton } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -13,6 +13,8 @@ import { actionAddFavorite, actionRemoveFavorite } from '../store/actions';
 
 const ProductsGallerySingleItem = (props: any) => {
     const dispatch = useDispatch();
+    const locationDetails = useLocation().pathname.split("/");
+
     const addToCartFunc = useAddToCart();
     const favorites = useSelector(getFavorites);
     const itemInitialFavState = favorites.find((val: TProduct) => val === props.id);
@@ -28,13 +30,19 @@ const ProductsGallerySingleItem = (props: any) => {
     };
 
     const onCartClick = async (e: any) => {
-        e.preventDefault()
+        e.preventDefault();
         const qty = 1; // change to users choice
         setIsAddingToCart(true);
+        if (locationDetails[1] === "earrings" || locationDetails[1] === "bracelets") {
+            const res = await addToCartFunc(props?.id, qty);
+            setIsAddingToCart(!res?.success);
+            return;
+        }
+
         const size = prompt(`choose a size: ${props.sizes.toString()}`);
         if (size) {
-            const variantOptionId = props.findVariant(size, props.variantGroup);
-            const res = await addToCartFunc(props.id, qty, {
+            const variantOptionId = props.findVariant(size.toUpperCase(), props.variantGroup);
+            const res = await addToCartFunc(props?.id, qty, {
                 [props.variantGroup.id]: variantOptionId
             });
             setIsAddingToCart(!res?.success);
