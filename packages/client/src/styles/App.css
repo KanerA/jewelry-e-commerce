@@ -737,8 +737,11 @@ input[type="submit"] {
   background-color: rgb(224, 201, 236);
   font-size: 20px;
   line-height: 2rem;
-  padding: 5% 20%;
+  padding: 5% 15%;
   direction: rtl;
+  overflow-y: scroll;
+  text-align: center;
+  z-index: 100;
   > #title {
     font-size: 30px;
     text-align: center;
@@ -1214,6 +1217,10 @@ input[type="submit"] {
 
   .footer {
     margin-top: 18rem;
+  }
+
+  .returnPolicyFloat {
+    padding: 5%;
   }
 }
 

@@ -71,6 +71,7 @@ export const products = (state: IInitialState = initialState, action: any) => {
             return { ...state, orderDetails: updatedOrderDetails }
         }
         case actions.SET_RETURN_POLICY_STATE: {
+            window.scrollTo({ top: 0, left: 0 })
             return { ...state, showReturnPolicy: action.payload }
         }
         default:
