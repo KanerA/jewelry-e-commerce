@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
 import { FaDotCircle, FaRegCircle } from 'react-icons/fa';
 import LeftArrow from './LeftArrow';
 import RightArrow from './RightArrow';

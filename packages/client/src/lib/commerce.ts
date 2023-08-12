@@ -12,9 +12,11 @@ const commerceConfig = {
     },
 };
 
-export default new Commerce(
+const commerce = new Commerce(
     checAPIKey,
     devEnvironment,
     commerceConfig,
 );
+
+export default commerce;
 // export default {}

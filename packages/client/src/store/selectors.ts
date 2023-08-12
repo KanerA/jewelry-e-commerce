@@ -1,5 +1,4 @@
 import store from ".";
-import initialState from "./initialState";
 import { IInitialState } from "./types";
 
 export const getFavorites = (state: any = store.getState()) => state.products.favorites;

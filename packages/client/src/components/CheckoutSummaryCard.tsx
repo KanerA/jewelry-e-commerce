@@ -19,7 +19,7 @@ const CheckoutSummaryCard = ({ shipmentOption, shipmentCost }: { shipmentOption:
         shipmentOption === 'delivery' ?
             setTotalPlusShipment(shipmentCost + total) :
             setTotalPlusShipment(total)
-    }, [shipmentOption]);
+    }, [shipmentOption, shipmentCost, total]);
 
     return (
         <div className="checkoutSummaryContainer">

@@ -73,20 +73,20 @@ const ProductPage = () => {
         } else {
             console.log("error in displaying product");
         }
-    }, [products]);
+    }, [products, id]);
 
 
     useEffect(() => {
         if (!!selectedFromDropDown) {
             findVariant(selectedFromDropDown);
         }
-    }, [selectedFromDropDown])
+    }, [selectedFromDropDown, findVariant])
 
     useEffect(() => {
         if (!!productById?.name) {
             formatVariantsToSizes();
         }
-    }, [productById]);
+    }, [productById, formatVariantsToSizes]);
 
     return (
         <div className="productPage">
