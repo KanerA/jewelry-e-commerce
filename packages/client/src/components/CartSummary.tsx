@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { TDropdownOptions, TProduct } from '../store/types';
+import { TProduct } from '../store/types';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { setTotal } from '../store/actions';
@@ -32,14 +32,13 @@ const CartSummary = (props: ICartSummaryProps) => {
     //     setShipmentCost(0);
     // };
 
-    const calculateTotalSum = (): void => {
-        const total: number = shipmentCost + cartSubTotal;
-        dispatch(setTotal(total));
-    };
-
     useEffect(() => {
+        const calculateTotalSum = (): void => {
+            const total: number = shipmentCost + cartSubTotal;
+            dispatch(setTotal(total));
+        };
         calculateTotalSum();
-    }, [cartSubTotal, shipmentCost, calculateTotalSum]);
+    }, [cartSubTotal, shipmentCost, total, dispatch]);
 
     return (
         <aside className="orderSummary">

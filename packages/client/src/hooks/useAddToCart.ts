@@ -1,4 +1,3 @@
-import { useDispatch } from "react-redux";
 import commerce from "../lib/commerce";
 
 const useAddToCart = () => {

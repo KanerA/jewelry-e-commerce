@@ -5,7 +5,6 @@ import { useSelector } from 'react-redux';
 import { getCartData, getCartId, getCheckoutToken } from '../store/selectors';
 import useGenerateCheckoutToken from '../hooks/useGenerateCheckoutToken';
 import CheckoutForm from '../components/CheckoutForm';
-import useCheckQuantity from '../hooks/useCheckQuantity';
 import ShipmentSelection from '../components/ShipmentSelection';
 import CheckoutFormNotEditing from '../components/CheckoutFormNotEditing';
 import PaymentMethods from '../components/Payment';
