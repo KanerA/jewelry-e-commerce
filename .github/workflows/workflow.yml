@@ -3,7 +3,7 @@ name: React CI
 on:
   push:
     branches:
-      - "main"
+      - "react-actions"
 
 jobs:
   build:
@@ -13,5 +13,5 @@ jobs:
         node-version: [18.x]
     steps:
       - uses: actions/checkout@v1
-      - run: npm install
-      - run: npm run build
+      - run: cd packages/client && npm install
+      - run: cd packages/client && npm run build
