@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import DropdownSelector from './DropdownSelector';
-import { TDropdownOptions, TProduct } from '../store/types';
+import { TProduct } from '../store/types';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { setTotal } from '../store/actions';
@@ -19,28 +18,27 @@ const calculateCartSubTotal = (cartProducts: any): number => {
 
 
 const CartSummary = (props: ICartSummaryProps) => {
-    const [shipmentCost, setShipmentCost] = useState<number>(0);
+    const [shipmentCost] = useState<number>(0);
     //  TODO: dispatch after change to orderDetails.shippingMethod
-    const [selectedFromDropDown, setSelectedFromDropDown] = useState<number>(0);
+    // const [selectedFromDropDown, setSelectedFromDropDown] = useState<number>(0);
 
     const cartSubTotal = calculateCartSubTotal(props.cartData);
     const total = useSelector(getCheckoutTotal);
     const dispatch = useDispatch();
 
-    const shipmentOptions: TDropdownOptions[] = [];
+    // const shipmentOptions: TDropdownOptions[] = [];
 
     // const calculateShipmentCost = (): void => {
     //     setShipmentCost(0);
     // };
 
-    const calculateTotalSum = (): void => {
-        const total: number = shipmentCost + cartSubTotal;
-        dispatch(setTotal(total));
-    };
-
     useEffect(() => {
+        const calculateTotalSum = (): void => {
+            const total: number = shipmentCost + cartSubTotal;
+            dispatch(setTotal(total));
+        };
         calculateTotalSum();
-    }, [cartSubTotal, shipmentCost]);
+    }, [cartSubTotal, shipmentCost, total, dispatch]);
 
     return (
         <aside className="orderSummary">
@@ -54,12 +52,6 @@ const CartSummary = (props: ICartSummaryProps) => {
                     <span id="shipmentSummaryTitle">משלוח</span>
                     <span id="shipmentCost">{0}</span>
                 </div>
-                {/* <div id="shipmentOptions">
-                    <DropdownSelector
-                        options={shipmentOptions}
-                        setSelectedFromDropDown={setSelectedFromDropDown}
-                        placeHolder='אופציות משלוח' />
-                </div> */}
             </div>
             <div id="summaryTotalAndCheckout">
                 <span id="totalTitle">סך הכל</span>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { MdFavorite, MdOutlineFavoriteBorder } from "react-icons/md";
 
 interface IFavoriteIconProps {

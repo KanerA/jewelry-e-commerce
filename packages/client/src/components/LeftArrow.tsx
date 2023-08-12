@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { IoIosArrowBack } from 'react-icons/io';
 
 const LeftArrow = ({ onLeftClick, iconsColor }: any) => {

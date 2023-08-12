@@ -47,18 +47,7 @@ const ProductPage = () => {
         }
     };
 
-    const formatVariantsToSizes = () => {
-        const variantGroup = productById?.variant_groups?.find((group: any) => group.name === "Size");
-        setSelectedVariantGroup(variantGroup?.id ?? "");
-        const options = variantGroup?.options.map((option: any) => option.name) ?? [];
-        setSizeOptions(options);
-    };
 
-    const findVariant = (size: number) => {
-        const variantGroup = productById?.variant_groups?.find((group: any) => group.name === "Size");
-        const variantOptionId = variantGroup?.options?.find((option: any) => option.name === size)?.id;
-        setSelectedVariantOption(variantOptionId);
-    };
 
     useEffect(() => {
         const spreadProducts = spreadProductsState(products);
@@ -73,20 +62,31 @@ const ProductPage = () => {
         } else {
             console.log("error in displaying product");
         }
-    }, [products]);
+    }, [products, id]);
 
 
     useEffect(() => {
+        const findVariant = (size: number) => {
+            const variantGroup = productById?.variant_groups?.find((group: any) => group.name === "Size");
+            const variantOptionId = variantGroup?.options?.find((option: any) => option.name === size)?.id;
+            setSelectedVariantOption(variantOptionId);
+        };
         if (!!selectedFromDropDown) {
             findVariant(selectedFromDropDown);
         }
-    }, [selectedFromDropDown])
+    }, [selectedFromDropDown, productById, setSelectedVariantOption])
 
     useEffect(() => {
+        const formatVariantsToSizes = () => {
+            const variantGroup = productById?.variant_groups?.find((group: any) => group.name === "Size");
+            setSelectedVariantGroup(variantGroup?.id ?? "");
+            const options = variantGroup?.options.map((option: any) => option.name) ?? [];
+            setSizeOptions(options);
+        };
         if (!!productById?.name) {
             formatVariantsToSizes();
         }
-    }, [productById]);
+    }, [productById, setSelectedVariantGroup, setSizeOptions]);
 
     return (
         <div className="productPage">
