@@ -1,5 +1,5 @@
 {
-  "name": "@shaked-jewelry/client",
+  "name": "shaked-jewelry",
   "version": "1.0.0",
   "private": true,
   "dependencies": {
