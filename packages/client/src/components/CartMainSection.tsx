@@ -30,7 +30,7 @@ const CartMainSection = (props: ICartMainSectionProps) => {
         } else {
             setIsLoading(false)
         }
-    }, [fetchCartFunc]);
+    }, [fetchCartFunc, props.cartData]);
     if (isLoading) {
         // change to loader
         return <main className="cartMainSection"><div id="cartLoader">Loading...</div></main>;

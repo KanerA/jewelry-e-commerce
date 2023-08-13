@@ -90,7 +90,7 @@ const PaymentMethods = ({ shippingCost }: { shippingCost: number }) => {
             console.log('Order successful . Your order id is--', orderID);
             navigate('/thankyou', { state: { orderID, transactionID } });
         }
-    }, [success]);
+    }, [success, orderID, navigate, transactionID]);
 
     useEffect(() => {
         if (ErrorMessage) {

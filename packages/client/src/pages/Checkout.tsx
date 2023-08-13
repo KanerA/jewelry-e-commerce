@@ -5,7 +5,6 @@ import { useSelector } from 'react-redux';
 import { getCartData, getCartId, getCheckoutToken } from '../store/selectors';
 import useGenerateCheckoutToken from '../hooks/useGenerateCheckoutToken';
 import CheckoutForm from '../components/CheckoutForm';
-import useCheckQuantity from '../hooks/useCheckQuantity';
 import ShipmentSelection from '../components/ShipmentSelection';
 import CheckoutFormNotEditing from '../components/CheckoutFormNotEditing';
 import PaymentMethods from '../components/Payment';
@@ -40,20 +39,19 @@ const Checkout = () => {
 
     // custom hooks
     const generateChktToken = useGenerateCheckoutToken(cartId);
-    const checkItemQuantity = useCheckQuantity();
+    // const checkItemQuantity = useCheckQuantity();
 
     // local states
-    const [quantityChecks, setQuantityChecks] = useState<any[]>([]);
+    // const [quantityChecks, setQuantityChecks] = useState<any[]>([]);
     const [formData, setFormData] = useState<IFormState | null>(null);
     const [isEditingForm, setIsEditingForm] = useState<boolean>(true);
-    const [isEditingShipment, setIsEditingShipment] = useState<boolean>(false);
+    // const [isEditingShipment, setIsEditingShipment] = useState<boolean>(false);
     const [isPayment, setIsPayment] = useState<boolean>(false);
     const [shipmentOption, setShipmentOption] = useState<TShipmentOptions>('selfPickup');
 
     const shipmentCost = 35; // shipment  cost to clients address
 
     const onSubmit = (data: any) => {
-        console.log(data)
         setFormData(data);
         setIsEditingForm(false);
     };
@@ -65,7 +63,7 @@ const Checkout = () => {
         if (cartId && !checkoutToken.id) {
             a();
         }
-    }, [cartId]);
+    }, [cartId, generateChktToken, checkoutToken.id]);
 
     useEffect(() => {
         const formatClientOrderDetails = (): IOrderDetailsUpdate["client"] => {
@@ -95,7 +93,7 @@ const Checkout = () => {
         }
 
         dispatch(setOrderDetails(finalOrderFormat))
-    }, [formData, cart, shipmentOption]);
+    }, [formData, cart, shipmentOption, dispatch]);
 
     // useEffect(() => {
     //     if (!checkoutToken) return;

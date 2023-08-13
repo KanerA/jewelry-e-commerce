@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import ProductsGallerySingleItem from './ProductsGallerySingleItem';
 import { TProduct } from '../store/types';
 

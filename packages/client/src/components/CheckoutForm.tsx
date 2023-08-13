@@ -2,7 +2,7 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 
 const CheckoutForm = ({ onSubmit }: { onSubmit: any }) => {
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { register, handleSubmit } = useForm();
 
     return (
         <form onSubmit={handleSubmit(onSubmit)}>

@@ -1,7 +1,6 @@
 import React from 'react';
 import { TProduct } from '../store/types';
 import { BiShekel } from 'react-icons/bi';
-import ImageComponent from './ImageComponent';
 
 interface IProps {
     item: TProduct;

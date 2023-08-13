@@ -64,7 +64,7 @@ const CartItem = (props: ICartItemProps) => {
 
     useEffect(() => {
         fetchCartFunc();
-    }, [quantity])
+    }, [quantity, fetchCartFunc])
     return (
         <div className="cartItem">
             <main>

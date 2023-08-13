@@ -55,7 +55,7 @@ const ProductsGallerySingleItem = (props: any) => {
 
     const removePTag = (text: string): string => {
         const temp = text?.split("<p>");
-        const temp2 = temp?.[0] == "" ? temp?.[1] : temp?.[0];
+        const temp2 = temp?.[0] === "" ? temp?.[1] : temp?.[0];
         return temp2?.split("</p>")?.[0];
     };
 
